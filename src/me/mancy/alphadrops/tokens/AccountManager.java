@@ -10,7 +10,7 @@ public class AccountManager {
 
     private final static List<Account> accounts = new ArrayList<>();
 
-    public static void addAccount(Player player) {
+    static void addAccount(Player player) {
         if (player == null) return;
         if (doesAccountExist(player)) return;
         accounts.add(new Account(player, 0));
