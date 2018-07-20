@@ -49,8 +49,11 @@ public class Main extends JavaPlugin {
         for (int x = 0; x < AccountManager.getAccounts().size(); x++) {
             accountsConfig.set(x + ". uuid", AccountManager.getAccounts().get(x).getPlayer().getUniqueId().toString());
             saveFile(accountsConfig, accountsFile);
-            accountsConfig.set(x + ". balance", AccountManager.getAccounts().get(x).getBalance());
-            saveFile(accountsConfig, accountsFile);
+            for (int y = 1; y <= 4; y++) {
+                accountsConfig.set(x + ". tier " + y + " tokens", AccountManager.getAccounts().get(x).getBalance(y));
+                saveFile(accountsConfig, accountsFile);
+            }
+
         }
 
         this.accountsConfig.set("Amount Of Accounts", AccountManager.getAccounts().size());
@@ -70,13 +73,14 @@ public class Main extends JavaPlugin {
             if (accountsConfig.contains(x + ". uuid")) {
                 uuid = UUID.fromString(accountsConfig.get(x + ". uuid").toString());
             }
-            if (accountsConfig.contains(x + ". balance")) {
-                balance = accountsConfig.getInt(x + ". balance");
-            }
             if (Bukkit.getServer().getPlayer(uuid) != null) {
-                AccountManager.addAccount(new Account(Bukkit.getServer().getPlayer(uuid), balance));
+                Account account = new Account(Bukkit.getPlayer(uuid), 0);
+                for (int y = 1; y <= 4; y++) {
+                    if (accountsConfig.contains(x + ". tier " + y + " tokens")) {
+                        account.setBalance(y, accountsConfig.getInt(x + ". tier " + y + " tokens"));
+                    }
+                }
             }
-
 
         }
 

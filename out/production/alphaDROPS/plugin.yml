@@ -1,0 +1,6 @@
+main: me.mancy.alphadrops.main.Main
+name: alphaDROPS
+author: Mancy
+version: 2.0.1
+commands:
+  drops:

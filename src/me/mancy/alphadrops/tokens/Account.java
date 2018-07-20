@@ -40,7 +40,13 @@ public class Account {
     }
 
     public Integer getBalance(int tier) {
-        return this.balance;
+        switch (tier) {
+            case 1: return this.balances.get(1);
+            case 2: return this.balances.get(2);
+            case 3: return this.balances.get(3);
+            case 4: return this.balances.get(4);
+        }
+        return -1;
     }
 
     public void resetBalance(int tier) {
