@@ -6,6 +6,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.List;
+
 public class MenuUtil {
 
     public static void fillEmptySlots(Inventory inv) {
@@ -29,10 +31,11 @@ public class MenuUtil {
         inventory.setItem((inventory.getStorageContents().length - 1), exit);
     }
 
-    public static void addButton(Inventory inventory, Material material, String name, int slot) {
+    public static void addButton(Inventory inventory, Material material, String name, List<String> desc, int slot) {
         ItemStack btn = new ItemStack(material);
         ItemMeta btnMeta = btn.getItemMeta();
         btnMeta.setDisplayName(name);
+        btnMeta.setLore(desc);
         btn.setItemMeta(btnMeta);
         inventory.setItem(slot, btn);
     }

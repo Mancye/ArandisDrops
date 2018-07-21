@@ -1,6 +1,5 @@
 package me.mancy.alphadrops.main;
 
-import me.mancy.alphadrops.menus.GUIListener;
 import me.mancy.alphadrops.menus.MainMenu;
 import me.mancy.alphadrops.tokens.Account;
 import me.mancy.alphadrops.tokens.AccountManager;
@@ -108,7 +107,7 @@ public class Main extends JavaPlugin {
     private void registerListeners() {
         new AccountSetup(this);
 
-        new GUIListener(this);
+        new MainMenu(this);
     }
 
     private void saveFile(FileConfiguration ymlConfig, File ymlFile) {

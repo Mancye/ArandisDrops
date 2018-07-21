@@ -1,6 +1,8 @@
 package me.mancy.alphadrops.commands;
 
+import me.mancy.alphadrops.menus.MainMenu;
 import me.mancy.alphadrops.menus.editor.EditorMainMenu;
+import me.mancy.alphadrops.utils.FormattedMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -32,11 +34,16 @@ public class BaseCMD implements CommandExecutor {
 
         if (label.equalsIgnoreCase("drops")) {
             Player p = (Player) sender;
+            String noPermission = new FormattedMessage(ChatColor.RED + "Sorry, you don't have permission to do this").toString();
             switch (args.length) {
                 case 0:
-                    /*
-                    Display help menu
-                     */
+                    if (p.hasPermission("dropparty.mainmenu") || p.hasPermission("dropparty.*")) {
+                        new MainMenu().openMainMenu(p);
+                        return true;
+                    } else {
+                        p.sendMessage(noPermission);
+                        return false;
+                    }
                 case 1:
                     /*
                     help, list, edit
@@ -44,9 +51,13 @@ public class BaseCMD implements CommandExecutor {
                     switch (args[0]) {
                         case "help":
                             sendHelpMsg(p);
-                            break;
+                            return true;
                         case "list":
-                            //TODO list drop locations
+                            if (p.hasPermission("dropparty.list") || p.hasPermission("dropparty.*")) {
+
+                            } else {
+                                p.sendMessage(noPermission);
+                            }
                             break;
                         case "edit":
                             p.openInventory(new EditorMainMenu().getMenu());
