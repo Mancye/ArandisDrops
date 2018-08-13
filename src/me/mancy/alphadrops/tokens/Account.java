@@ -8,7 +8,6 @@ import java.util.Map;
 public class Account {
 
     private Player player;
-
     //Tier, Balance
     private Map<Integer, Integer> balances = new HashMap<>();
 

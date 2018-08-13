@@ -1,7 +1,7 @@
 package me.mancy.alphadrops.menus.editor;
 
 import me.mancy.alphadrops.main.Main;
-import me.mancy.alphadrops.utils.MenuUtil;
+import me.mancy.alphadrops.utils.Menu;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -10,30 +10,30 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
-public class EditorMainMenu implements Listener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class EditorMainMenu extends Menu implements Listener {
+
+    private final Inventory menu = Bukkit.createInventory(null, 9, ChatColor.AQUA + "Select SettingsManager To Edit");
 
     public EditorMainMenu() {
-
+        setUp();
     }
-
     public EditorMainMenu(Main main) {
         main.getServer().getPluginManager().registerEvents(this, main);
     }
 
-    public Inventory getMenu() {
-        Inventory inv = Bukkit.createInventory(null, 9, ChatColor.RED + "Main Editor Menu");
         /*
-            Global Party Settings
+            Global Party SettingsManager
                 - Edit radius
                     * Click to prompt for value in chat
                 - Edit countdown
                     * Click to prompt for value in chat
                 - Edit height
                     * Click to prompt for value in chat
-            Tier Settings
+            Tier SettingsManager
               - Select tier
                     - Edit chances
                         * Common Uncommon Rare Epic Legendary
@@ -43,29 +43,42 @@ public class EditorMainMenu implements Listener {
                         * Increase/Decrease
          */
 
-        MenuUtil.addButton(inv, Material.BOOK, ChatColor.RED + "Global Settings", 3);
-        MenuUtil.addButton(inv, Material.BOOK, ChatColor.RED + "Tier Settings", 4);
-        MenuUtil.addExitButton(inv);
-        MenuUtil.fillEmptySlots(inv);
-        return inv;
+
+    @Override
+    protected Inventory getInventory() {
+        return this.menu;
     }
 
-    @EventHandler
-    private void handleClicks(InventoryClickEvent event) {
-        if (!(ChatColor.stripColor(event.getClickedInventory().getName()).equalsIgnoreCase("Main Editor Menu"))) return;
-        event.setCancelled(true);
-        Player p = (Player) event.getWhoClicked();
-        switch (event.getSlot()) {
+    @Override
+    protected void setUp() {
+        List<String> globalLore = new ArrayList<>();
+        globalLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.RED + "Edit drop radius");
+        globalLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.RED + "Edit drop countdown timer");
+        globalLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.RED + "Edit drop height");
+        setButton(3, Material.BOOK, ChatColor.GREEN + "Global SettingsManager", globalLore);
+        List<String> tierLore = new ArrayList<>();
+        tierLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.RED + "Edit drop chances");
+        tierLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.RED + "Edit item lists");
+        tierLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.RED + "Edit costs");
+        setButton(5, Material.FEATHER, ChatColor.AQUA + "Tier SettingsManager", tierLore);
+    }
 
-            case 3:
-                //TODO open global settings
-                p.openInventory(new GlobalSettingsMenu().getMenu());
-            case 4:
-                //TODO open tier settings
-            case 5:
-                event.getWhoClicked().closeInventory();
+    @Override
+    protected void handleInput(InventoryClickEvent event) {
+        if (event.getClickedInventory().getName().equalsIgnoreCase(this.menu.getName())) {
+            if (event.getWhoClicked() instanceof Player) {
+                event.setCancelled(true);
+                switch (event.getSlot()) {
+                    case 3:
+                        //event.getWhoClicked().openInventory();
+                        break;
+                    case 5:
+                      // event.getWhoClicked().openInventory();
+                        break;
+                }
+            }
         }
-
     }
+
 
 }

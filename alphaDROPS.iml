@@ -10,12 +10,10 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Documents/spigot-1.13-pre7-R0.1-SNAPSHOT-b1708.jar!/" />
+          <root url="jar://$USER_HOME$/Documents/spigotapi1.13.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="jar://$USER_HOME$/Documents/spigot-1.13-pre7-R0.1-SNAPSHOT-b1708.jar!/" />
-        </SOURCES>
+        <SOURCES />
       </library>
     </orderEntry>
   </component>

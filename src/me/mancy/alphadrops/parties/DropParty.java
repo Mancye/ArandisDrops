@@ -1,10 +1,29 @@
 package me.mancy.alphadrops.parties;
 
-public class DropParty {
+import me.mancy.alphadrops.main.Main;
+import org.bukkit.event.Listener;
+
+public class DropParty implements Listener {
 
     /*
-    Settings
+    SettingsManager
      */
+    /*
+     */
+
+    private int tier;
+
+    public DropParty(int tier) {
+        this.tier = tier;
+    }
+
+    public DropParty(Main main) {
+        main.getServer().getPluginManager().registerEvents(this, main);
+    }
+
+    public void start() {
+
+    }
 
 
 }

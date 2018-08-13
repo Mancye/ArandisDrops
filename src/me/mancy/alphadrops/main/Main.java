@@ -4,7 +4,6 @@ import me.mancy.alphadrops.menus.MainMenu;
 import me.mancy.alphadrops.tokens.Account;
 import me.mancy.alphadrops.tokens.AccountManager;
 import me.mancy.alphadrops.tokens.AccountSetup;
-import me.mancy.alphadrops.tokens.DropCosts;
 import me.mancy.alphadrops.utils.FormattedMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -18,30 +17,29 @@ import java.util.UUID;
 
 public class Main extends JavaPlugin {
 
+    private final File settingsFile = new File(this.getDataFolder() + "/settings.yml");
+    private final FileConfiguration settingsConfig = YamlConfiguration.loadConfiguration(settingsFile);
+
     private final File accountsFile = new File(this.getDataFolder() + "/accounts.yml");
     private final FileConfiguration accountsConfig = YamlConfiguration.loadConfiguration(accountsFile);
-
-    private final File dpSettingsFile = new File(this.getDataFolder() + "/dpsettings.yml");
-    private final FileConfiguration dpSettingsConfig = YamlConfiguration.loadConfiguration(dpSettingsFile);
 
     private final File dropLocationsFile = new File(this.getDataFolder() + "/droplocations.yml");
     private final FileConfiguration dropLocationsConfig = YamlConfiguration.loadConfiguration(dropLocationsFile);
 
-    private final File dropItemsFile = new File(this.getDataFolder() + "/dropitems.yml");
-    private final FileConfiguration dropItemsConfig = YamlConfiguration.loadConfiguration(dropItemsFile);
+    private final SettingsManager settings = new SettingsManager(settingsFile, settingsConfig);
 
     @Override
     public void onEnable() {
+        settings.loadSettings();
         loadAccounts();
-        loadCosts();
         registerListeners();
         Bukkit.getConsoleSender().sendMessage(new FormattedMessage(ChatColor.GREEN + this.getDescription().getName()).toString() + " Was Successfully Enabled");
     }
 
     @Override
     public void onDisable() {
+        settings.saveSettings();
         saveAccounts();
-        saveCosts();
         Bukkit.getConsoleSender().sendMessage(new FormattedMessage(ChatColor.RED + this.getDescription().getName()).toString() + " Was Successfully Disabled");
     }
 
@@ -86,27 +84,9 @@ public class Main extends JavaPlugin {
 
     }
 
-    private void saveCosts() {
-        for (int x = 1; x <= 4; x++) {
-            dpSettingsConfig.set("Tier " + x + " Drop Party Cost", DropCosts.getCost(x));
-            saveFile(dpSettingsConfig, dpSettingsFile);
-        }
-    }
-
-    private void loadCosts() {
-        for (int x = 1; x <= 4; x++) {
-            if (dpSettingsConfig.contains("Tier " + x + " Drop Party Cost")) {
-                DropCosts.setCost(x, dpSettingsConfig.getInt("Tier " + x + " Drop Party Cost"));
-            } else {
-                dpSettingsConfig.set("Tier " + x + " Drop Party Cost", 1);
-                saveFile(dpSettingsConfig, dpSettingsFile);
-            }
-        }
-    }
 
     private void registerListeners() {
         new AccountSetup(this);
-
         new MainMenu(this);
     }
 

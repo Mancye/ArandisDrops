@@ -11,8 +11,8 @@ public class FormattedMessage  {
         this.message = message;
     }
 
+    @Override
     public String toString() {
-        return prefix + " " + message;
+        return this.prefix + " " + message;
     }
-
 }
