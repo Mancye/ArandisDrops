@@ -1,5 +1,6 @@
 package me.mancy.alphadrops.main;
 
+import me.mancy.alphadrops.data.SettingsManager;
 import me.mancy.alphadrops.menus.MainMenu;
 import me.mancy.alphadrops.tokens.Account;
 import me.mancy.alphadrops.tokens.AccountManager;

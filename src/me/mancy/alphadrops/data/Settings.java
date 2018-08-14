@@ -1,8 +1,7 @@
-package me.mancy.alphadrops.main;
+package me.mancy.alphadrops.data;
 
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 

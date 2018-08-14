@@ -1,4 +1,4 @@
-package me.mancy.alphadrops.main;
+package me.mancy.alphadrops.data;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
@@ -9,17 +9,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class SettingsManager {
+public class SettingsManager {
 
     private final FileConfiguration configurationFile;
     private final File file;
 
-    SettingsManager(File file, FileConfiguration config) {
+    public SettingsManager(File file, FileConfiguration config) {
         this.configurationFile = config;
         this.file = file;
     }
 
-    void saveSettings() {
+    public void saveSettings() {
         configurationFile.set("Drop Radius", Settings.getDropRadius());
         saveFile(configurationFile, file);
         configurationFile.set("Countdown Time", Settings.getCountdownTime());
@@ -45,7 +45,7 @@ class SettingsManager {
     }
 
     @SuppressWarnings("unchecked")
-    void loadSettings() {
+    public void loadSettings() {
         Settings.setDropRadius(configurationFile.getDouble("Drop Radius"));
         Settings.setCountdownTime(configurationFile.getInt("Countdown Time"));
         Settings.setDropRadius(configurationFile.getDouble("Drop Height"));

@@ -38,7 +38,7 @@ public class BaseCMD implements CommandExecutor {
             switch (args.length) {
                 case 0:
                     if (p.hasPermission("dropparty.mainmenu") || p.hasPermission("dropparty.*")) {
-                        new MainMenu().openMainMenu(p);
+                        p.openInventory(new MainMenu().getInventory());
                         return true;
                     } else {
                         p.sendMessage(noPermission);

@@ -70,10 +70,10 @@ public class EditorMainMenu extends Menu implements Listener {
                 event.setCancelled(true);
                 switch (event.getSlot()) {
                     case 3:
-                        //event.getWhoClicked().openInventory();
+                        event.getWhoClicked().openInventory(new GlobalSettingsMenu().getInventory());
                         break;
                     case 5:
-                      // event.getWhoClicked().openInventory();
+                        event.getWhoClicked().openInventory(new TierSettingsMenu().getInventory());
                         break;
                 }
             }
