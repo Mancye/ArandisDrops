@@ -60,7 +60,7 @@ public class BaseCMD implements CommandExecutor {
                             }
                             break;
                         case "edit":
-                            p.openInventory(new EditorMainMenu().getMenu());
+                            p.openInventory(new EditorMainMenu().getInventory());
                             break;
                     }
                 case 2:

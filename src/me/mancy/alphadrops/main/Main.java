@@ -24,8 +24,8 @@ public class Main extends JavaPlugin {
     private final File accountsFile = new File(this.getDataFolder() + "/accounts.yml");
     private final FileConfiguration accountsConfig = YamlConfiguration.loadConfiguration(accountsFile);
 
-    private final File dropLocationsFile = new File(this.getDataFolder() + "/droplocations.yml");
-    private final FileConfiguration dropLocationsConfig = YamlConfiguration.loadConfiguration(dropLocationsFile);
+    private final File locationsFile = new File(this.getDataFolder() + "/locations.yml");
+    private final FileConfiguration locationsConfig = YamlConfiguration.loadConfiguration(locationsFile);
 
     private final SettingsManager settings = new SettingsManager(settingsFile, settingsConfig);
 
@@ -84,7 +84,6 @@ public class Main extends JavaPlugin {
         }
 
     }
-
 
     private void registerListeners() {
         new AccountSetup(this);
