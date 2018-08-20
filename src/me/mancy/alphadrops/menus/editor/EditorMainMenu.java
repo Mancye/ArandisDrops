@@ -15,7 +15,7 @@ import java.util.List;
 
 public class EditorMainMenu extends Menu implements Listener {
 
-    private final Inventory menu = Bukkit.createInventory(null, 9, ChatColor.AQUA + "Select SettingsManager To Edit");
+    private final Inventory menu = Bukkit.createInventory(null, 9, ChatColor.AQUA + "Select Settings To Edit");
 
     public EditorMainMenu() {
         setUp();
@@ -39,7 +39,7 @@ public class EditorMainMenu extends Menu implements Listener {
                     - Edit item list
                         * Common Uncommon Rare Epic Legendary
                     - Edit cost
-                        * Increase/Decrease
+                        * Click to prompt
          */
 
 

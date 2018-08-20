@@ -20,16 +20,15 @@ import java.util.List;
 
 public class MainMenu extends Menu implements Listener {
 
-    private Inventory menu;
+    private Inventory menu = Bukkit.createInventory(null, 27, ChatColor.AQUA + "Start a Drop Party");
 
     @Override
     public Inventory getInventory() {
-        return null;
+        return this.menu;
     }
 
     @Override
     public void setUp() {
-        this.menu = Bukkit.createInventory(null, 27, ChatColor.AQUA + "Start a Drop Party");
         setButton(10, Material.COAL_ORE, ChatColor.DARK_GRAY + "Tier 1", getTierLore(1));
         setButton(12, Material.IRON_BLOCK, ChatColor.GRAY + "Tier 2", getTierLore(2));
         setButton(14, Material.GOLD_BLOCK, ChatColor.GOLD + "Tier 3", getTierLore(3));
@@ -45,7 +44,7 @@ public class MainMenu extends Menu implements Listener {
     }
 
     public MainMenu() {
-
+        setUp();
     }
 
     public MainMenu(Main main) {
@@ -72,8 +71,8 @@ public class MainMenu extends Menu implements Listener {
     }
 
     @EventHandler
-    protected void handleInput(InventoryClickEvent event) {
-        if (ChatColor.stripColor(event.getClickedInventory().getName()).equalsIgnoreCase("Start a Drop Party!")) {
+    public void handleInput(InventoryClickEvent event) {
+        if (event.getInventory().getName().contains("Start a Drop Party")) {
             if (!(event.getWhoClicked() instanceof Player)) return;
             Player p = (Player) event.getWhoClicked();
             Account account = AccountManager.getAccount(p);
@@ -98,6 +97,7 @@ public class MainMenu extends Menu implements Listener {
                             System.out.println("Start");
                         break;
                     case 18:
+                        p.closeInventory();
                         break;
                 }
             }
