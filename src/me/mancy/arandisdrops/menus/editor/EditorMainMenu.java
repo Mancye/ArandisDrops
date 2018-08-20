@@ -7,23 +7,18 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditorMainMenu extends Menu implements Listener {
+public class EditorMainMenu extends Menu {
 
     private final Inventory menu = Bukkit.createInventory(null, 9, ChatColor.AQUA + "Select Settings To Edit");
 
     public EditorMainMenu() {
         setUp();
     }
-    public EditorMainMenu(Main main) {
-        main.getServer().getPluginManager().registerEvents(this, main);
-    }
-
         /*
             Global Party SettingsManager
                 - Edit radius

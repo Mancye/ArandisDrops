@@ -8,8 +8,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
-import java.util.ArrayList;
-
 public class TierSettingsMenu extends Menu {
 
     private final Inventory menu = Bukkit.createInventory(null, 27, ChatColor.AQUA + "Tier Settings");
