@@ -5,6 +5,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +45,6 @@ public class SettingsManager {
 
     }
 
-    @SuppressWarnings("unchecked")
     public void loadSettings() {
         Settings.setDropRadius(configurationFile.getDouble("Drop Radius"));
         Settings.setCountdownTime(configurationFile.getInt("Countdown Time"));
@@ -53,6 +53,7 @@ public class SettingsManager {
         for (int x = 1; x <= 5; x++) {
             if (!configurationFile.contains("Item Lists. Tier " + x))
                 configurationFile.set("Item Lists. Tier " + x, null);
+
             itemList.put(x, (List<ItemStack>) configurationFile.getList("Item Lists. Tier" + x));
         }
         Settings.setItemLists(itemList);
