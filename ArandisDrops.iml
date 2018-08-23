@@ -10,10 +10,12 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Documents/spigot-api-latest (2).jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/Premade Spigot 1.10/Spigot.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/Desktop/Premade Spigot 1.10/Spigot.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
   </component>

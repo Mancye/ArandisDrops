@@ -7,13 +7,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8abcf99b-48dc-43f3-b57b-4040f39d5b02" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/LocationManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ArandisDrops.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ArandisDrops.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/BaseCMD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/BaseCMD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/mancy/arandisdrops/data/Strings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/data/Strings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/mancy/arandisdrops/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/commands/BaseCMD.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/data/AccountsDataManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/data/Settings.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/data/SettingsManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/data/Strings.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/editprompts/global/SetCountdownPrompt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/editprompts/global/SetHeightPrompt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/editprompts/global/SetRadiusPrompt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/editprompts/tier/chances/tierfour/CommonChanceFour.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/editprompts/tier/chances/tierone/CommonChanceOne.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/editprompts/tier/chances/tierone/EpicChanceOne.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/editprompts/tier/chances/tierone/LegendaryChanceOne.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/editprompts/tier/chances/tierone/RareChanceOne.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/editprompts/tier/chances/tierone/UnCommonChanceOne.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/editprompts/tier/chances/tierthree/CommonChanceThree.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/editprompts/tier/chances/tierthree/UnCommonChanceThree.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/editprompts/tier/chances/tiertwo/CommonChanceTwo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/editprompts/tier/chances/tiertwo/UnCommonChanceTwo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/main/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/menus/MainMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/menus/editor/EditItemListsMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/menus/editor/EditorMainMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/menus/editor/GlobalSettingsMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/menus/editor/PlayerEditingManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/menus/editor/PlayersEditingHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/menus/editor/TierSettingsMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/parties/DropParty.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/parties/ItemRarity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/tokens/Account.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/tokens/AccountManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/tokens/AccountSetup.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/utils/FormattedMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/utils/Menu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/utils/MenuListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/utils/MenuRegistry.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropParty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropParty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/LocationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/LocationManager.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,17 +58,17 @@
     <session id="1185114143">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="18" />
+          <entry key="project.closed" value="20" />
           <entry key="project.open.time.0" value="8" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.4" value="3" />
-          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.4" value="5" />
+          <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="21" />
+          <entry key="project.opened" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -54,13 +86,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="15" />
-          <entry key="java" value="12575" />
+          <entry key="java" value="13203" />
           <entry key="yml" value="46" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="12575" />
+          <entry key="JAVA" value="13203" />
           <entry key="PLAIN_TEXT" value="15" />
           <entry key="YAML" value="46" />
         </counts>
@@ -96,7 +128,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/BaseCMD.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="968">
+            <state relative-caret-position="1581">
               <caret line="59" column="66" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -105,11 +137,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/LocationManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="10" column="63" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
+            <state relative-caret-position="403">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -117,15 +149,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropParty.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
+            <state relative-caret-position="1135">
+              <caret line="123" column="38" lean-forward="true" selection-start-line="123" selection-start-column="38" selection-end-line="123" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#getLocationsToUse#0;class#DropParty#0" />
                 <element signature="method#getItemList#0;class#DropParty#0" />
+                <element signature="method#removeBeaconCaps#0;class#DropParty#0" />
+                <element signature="method#playParticleEffects#0;class#DropParty#0" />
+                <element signature="method#playStartFireworks#0;class#DropParty#0" />
               </folding>
             </state>
           </provider>
@@ -134,7 +168,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
+            <state relative-caret-position="1271">
               <caret line="58" column="28" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -266,17 +300,17 @@
         <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/menus/editor/itemlists/UnCommonItemsMenu.java" />
         <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/data/Strings.java" />
         <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/BaseCMD.java" />
-        <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/LocationManager.java" />
         <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/main/Main.java" />
         <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropParty.java" />
+        <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/LocationManager.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-233" />
-    <option name="y" value="474" />
-    <option name="width" value="3460" />
-    <option name="height" value="1271" />
+    <option name="x" value="798" />
+    <option name="y" value="60" />
+    <option name="width" value="1868" />
+    <option name="height" value="1297" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -285,8 +319,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -344,13 +376,15 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Stephen Carras/workspace/alphaDROPS/src/me/mancy/alphadrops/menus/editor/GlobalSettingsMenu.java&#10;FIle&#9;PSI&#9;JAVA://java.io.File" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534998725365" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/spigot-api-latest (2).jar!/" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Premade Spigot 1.10/Spigot.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -417,7 +451,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="3456" height="1416" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.07538281" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.077444054" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -598,9 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1209">
           <caret line="47" column="32" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -654,9 +685,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
           <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -664,9 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
           <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -684,6 +709,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="775">
           <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/BaseCMD.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1581">
+          <caret line="59" column="66" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1271">
+          <caret line="58" column="28" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -727,44 +772,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/BaseCMD.java">
+    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropParty.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="968">
-          <caret line="59" column="66" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
+        <state relative-caret-position="1135">
+          <caret line="123" column="38" lean-forward="true" selection-start-line="123" selection-start-column="38" selection-end-line="123" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#getItemList#0;class#DropParty#0" />
+            <element signature="method#removeBeaconCaps#0;class#DropParty#0" />
+            <element signature="method#playParticleEffects#0;class#DropParty#0" />
+            <element signature="method#playStartFireworks#0;class#DropParty#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/LocationManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="10" column="63" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
+        <state relative-caret-position="403">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="58" column="28" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropParty.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getLocationsToUse#0;class#DropParty#0" />
-            <element signature="method#getItemList#0;class#DropParty#0" />
           </folding>
         </state>
       </provider>

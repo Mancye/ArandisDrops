@@ -11,7 +11,7 @@ public class LocationManager {
     public static List<Location> locations = new ArrayList<>();
 
     public static boolean isValidLocation(Location location) {
-        return location.getWorld().getHighestBlockAt(location).getType().equals(Material.BEACON);
+
     }
 
 }

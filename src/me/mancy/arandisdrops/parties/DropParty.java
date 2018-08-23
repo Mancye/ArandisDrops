@@ -3,12 +3,14 @@ package me.mancy.arandisdrops.parties;
 import me.mancy.arandisdrops.data.Settings;
 import me.mancy.arandisdrops.main.Main;
 import me.mancy.arandisdrops.utils.FormattedMessage;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
+import net.minecraft.server.v1_12_R1.PacketPlayOutWorldParticles;
+import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Firework;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import java.util.ArrayList;
@@ -28,11 +30,10 @@ public class DropParty implements Listener {
 
     private int tier;
 
+    private List<Location> locations = new ArrayList<>(LocationManager.locations.size());
     private List<Block> beaconCapBlocks = new ArrayList<>(LocationManager.locations.size());
 
-    public DropParty(int tier) {
-        this.tier = tier;
-    }
+    public DropParty(int tier) { this.tier = tier; }
 
     public DropParty(Main main) {
         this.plugin = main;
@@ -40,20 +41,19 @@ public class DropParty implements Listener {
     }
 
 
-    private List<Location> getLocationsToUse() {
+    private void setLocationsToUse() {
         if (LocationManager.locations != null) {
             int amtToUse = Math.round(LocationManager.locations.size() / 2f);
-            List<Location> locationsToUse = new ArrayList<>();
-
+            Collections.shuffle(LocationManager.locations);
             for (int x = 1; x <= amtToUse; x++) {
                 int index = new Random().nextInt(amtToUse);
                 if (LocationManager.locations.get(index) != null)
-                    locationsToUse.add(LocationManager.locations.get(index));
+                    locations.add(LocationManager.locations.get(index));
             }
-            return locationsToUse;
+            Collections.shuffle(locations);
+        } else {
+            Bukkit.getServer().getConsoleSender().sendMessage(new FormattedMessage(ChatColor.RED + "Fatal Error: No locations found when starting drop party").toString());
         }
-        System.out.println(new FormattedMessage(ChatColor.RED + "Fatal Error: No locations found when starting drop party"));
-        return null;
     }
 
     private List<ItemStack> getItemList(int tier) {
@@ -103,69 +103,124 @@ public class DropParty implements Listener {
     }
 
     private void removeBeaconCaps() {
-        int amtDone = 0;
 
-        for (Location loc : getLocationsToUse()) {
-            if (amtDone < amtDropLocs) {
-                Block highest = loc.getWorld().getBlockAt(loc.getWorld().getHighestBlockAt(loc).getLocation().subtract(0, 1, 0));
-                capBlocks.put(highest.getLocation(), highest);
-                amtDone++;
-            } else {
-                break;
+        for (Location loc : locations) {
+            Block highest = loc.getWorld().getHighestBlockAt(loc);
+            beaconCapBlocks.add(highest);
+        }
+
+        for (Location loc: locations) {
+           loc.getWorld().getHighestBlockAt(loc).setType(Material.AIR);
+        }
+
+    }
+
+    private void playDropFireworks(Location offsetLoc) {
+        Firework f = offsetLoc.getWorld().spawn(offsetLoc.add(0, 2, 0), Firework.class);
+        FireworkMeta fm = f.getFireworkMeta();
+        fm.addEffect(FireworkEffect.builder()
+                .flicker(false)
+                .trail(true)
+                .withColor(Color.LIME)
+                .with(FireworkEffect.Type.BALL_LARGE)
+                .withColor(Color.ORANGE)
+                .withFade(Color.ORANGE)
+                .build());
+        fm.setPower(3);
+        f.setFireworkMeta(fm);
+    }
+
+    private void playParticleEffects(Location offsetLoc, ItemStack i) {
+        Random random = new Random();
+        float red;
+        float green;
+        float blue;
+
+        if (Settings.getItemLists().get(1).contains(i)) {
+            red = 255;
+            green = 255;
+            blue = 255;
+        } else if (Settings.getItemLists().get(2).contains(i)) {
+            red = 21;
+            green = 255;
+            blue = 0;
+        } else if (Settings.getItemLists().get(3).contains(i)) {
+            red = 0;
+            green = 72;
+            blue = 255;
+        } else if (Settings.getItemLists().get(4).contains(i)) {
+            red = 255;
+            green = 225;
+            blue = 0;
+        } else if (Settings.getItemLists().get(5).contains(i)) {
+            red = 255;
+            green = 0;
+            blue = 0;
+        } else {
+            red = 0;
+            green = 0;
+            blue = 0;
+        }
+
+
+        for (Player online : Bukkit.getServer().getOnlinePlayers()) {
+            for (int amt = 0; amt < 40; amt++) {
+                float randX = 0.1f + random.nextFloat() * (1);
+                float randY = 0.4f + random.nextFloat() * (1);
+                float randZ = 0.1f + random.nextFloat() * (1);
+                online.spawnParticle(Particle.SPELL_MOB, new Location(offsetLoc.getWorld(), offsetLoc.getX() + randX, offsetLoc.getY() + randY, offsetLoc.getZ() + randZ),
+                                    0, red, green, blue);
             }
         }
-
-        for (Location loc : capBlocks.keySet()) {
-            capBlocks.get(loc).setType(Material.AIR);
-        }
-    }
-
-    private void cycleLocations() {
-
-    }
-
-    private void playDropFireworks() {
-
-    }
-
-    private void playDropParticles() {
-
     }
 
     private void playStartFireworks() {
-
+        for (Location location : locations) {
+            Location launchLoc = location.add(0, 2, 0);
+            Firework f = launchLoc.getWorld().spawn(launchLoc, Firework.class);
+            FireworkMeta fm = f.getFireworkMeta();
+            fm.addEffect(FireworkEffect.builder()
+                    .flicker(false)
+                    .trail(true)
+                    .withColor(Color.fromBGR(255, 0, 0))
+                    .with(FireworkEffect.Type.BALL_LARGE)
+                    .withColor(Color.ORANGE)
+                    .withFade(Color.BLUE)
+                    .build());
+            fm.setPower(3);
+            f.setFireworkMeta(fm);
+        }
     }
 
     public void start() {
+        setLocationsToUse();
+        if (!locations.isEmpty()) {
+            List<ItemStack> itemsToDrop = getItemList(tier);
 
+            for (int x = 0; x < itemsToDrop.size(); x++) {
+                final ItemStack i = itemsToDrop.get(x);
+                final Location locToDrop = locations.get(x);
+                Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 
-        BukkitScheduler bukkitScheduler = Bukkit.getServer().getScheduler();
-        List<ItemStack> itemsToDrop = getItemList(tier);
-        for (int x = 0; x < itemsToDrop.size(); x++) {
-            final ItemStack i = itemsToDrop.get(x);
-            i.setAmount(1);
+                    double offsetX = -Settings.getDropRadius() + (Settings.getDropRadius() + Settings.getDropRadius()) * new Random().nextDouble();
+                    double offsetZ = -Settings.getDropRadius() + (Settings.getDropRadius() + Settings.getDropRadius()) * new Random().nextDouble();
+                    Location offsetLoc = new Location(locToDrop.getWorld(), locToDrop.getX() + offsetX, (locToDrop.getWorld().getHighestBlockYAt(locToDrop) + 1) + DropPartyManager.heightToDrop, locToDrop.getZ() + offsetZ);
 
-            bukkitScheduler.scheduleSyncDelayedTask(plugin, () -> {
+                    playDropFireworks(offsetLoc);
+                    playParticleEffects(offsetLoc, i);
 
-                cycleLocations();
+                    offsetLoc.getWorld().dropItemNaturally(offsetLoc, i);
+                    itemsDropped++;
+                    if (itemsDropped >= itemsToDrop.size()) {
+                        replaceBeaconCaps();
+                    }
 
-                double offsetX = -Settings.getDropRadius() + (Settings.getDropRadius() + Settings.getDropRadius()) * new Random().nextDouble();
-                double offsetZ = -Settings.getDropRadius() + (Settings.getDropRadius() + Settings.getDropRadius()) * new Random().nextDouble();
-                Location offsetLoc = new Location(locToDrop.getWorld(), locToDrop.getX() + offsetX, (locToDrop.getWorld().getHighestBlockYAt(locToDrop) + 1) + DropPartyManager.heightToDrop, locToDrop.getZ() + offsetZ);
+                }, 40L * (x + 1));
 
-                playDropFireworks(offsetLoc);
-                playParticleEffects(offsetLoc, i);
-
-                offsetLoc.getWorld().dropItemNaturally(offsetLoc, i);
-                itemsDropped++;
-                if (itemsDropped >= itemsToDrop.size()) {
-                    replaceBeaconCaps();
-                }
-
-            }, 40L * (x + 1));
-
+            }
+        } else {
+            Bukkit.getServer().getConsoleSender().sendMessage(new FormattedMessage(ChatColor.RED + "Fatal Error: No locations set at time of drop party starting").toString());
         }
-
     }
 
 
