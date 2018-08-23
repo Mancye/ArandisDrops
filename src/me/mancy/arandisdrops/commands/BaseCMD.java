@@ -1,5 +1,6 @@
 package me.mancy.arandisdrops.commands;
 
+import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.menus.MainMenu;
 import me.mancy.arandisdrops.menus.editor.EditorMainMenu;
 import me.mancy.arandisdrops.utils.FormattedMessage;
@@ -34,14 +35,14 @@ public class BaseCMD implements CommandExecutor {
 
         if (label.equalsIgnoreCase("drops")) {
             Player p = (Player) sender;
-            String noPermission = new FormattedMessage(ChatColor.RED + "Sorry, you don't have permission to do this").toString();
+
             switch (args.length) {
                 case 0:
                     if (p.hasPermission("dropparty.mainmenu") || p.hasPermission("dropparty.*")) {
                         p.openInventory(new MainMenu().getInventory());
                         return true;
                     } else {
-                        p.sendMessage(noPermission);
+                        p.sendMessage(Strings.noPermission);
                         return false;
                     }
                 case 1:
@@ -56,7 +57,7 @@ public class BaseCMD implements CommandExecutor {
                             if (p.hasPermission("dropparty.list") || p.hasPermission("dropparty.*")) {
 
                             } else {
-                                p.sendMessage(noPermission);
+                                p.sendMessage(Strings.noPermission);
                             }
                             break;
                         case "edit":

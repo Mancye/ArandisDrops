@@ -7,6 +7,7 @@ import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.menus.MainMenu;
 import me.mancy.arandisdrops.menus.editor.EditorMainMenu;
 import me.mancy.arandisdrops.menus.editor.itemlists.*;
+import me.mancy.arandisdrops.parties.DropParty;
 import me.mancy.arandisdrops.tokens.AccountSetup;
 import me.mancy.arandisdrops.utils.FormattedMessage;
 import me.mancy.arandisdrops.utils.MenuListener;
@@ -55,6 +56,7 @@ public class Main extends JavaPlugin {
     private void registerListeners() {
         new AccountSetup(this);
         new MenuListener(this);
+        new DropParty(this);
 
         new CommonItemsMenu(this);
         new UnCommonItemsMenu(this);

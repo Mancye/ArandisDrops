@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Documents/spigotapi1.13.jar!/" />
+          <root url="jar://$USER_HOME$/Documents/spigot-api-latest (2).jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
