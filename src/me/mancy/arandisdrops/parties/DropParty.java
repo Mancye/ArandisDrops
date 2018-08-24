@@ -1,9 +1,9 @@
 package me.mancy.arandisdrops.parties;
 
 import me.mancy.arandisdrops.data.Settings;
+import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.main.Main;
 import me.mancy.arandisdrops.utils.FormattedMessage;
-import net.minecraft.server.v1_12_R1.PacketPlayOutWorldParticles;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Firework;
@@ -11,7 +11,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
-import org.bukkit.scheduler.BukkitScheduler;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,8 +29,8 @@ public class DropParty implements Listener {
 
     private int tier;
 
-    private List<Location> locations = new ArrayList<>(LocationManager.locations.size());
-    private List<Block> beaconCapBlocks = new ArrayList<>(LocationManager.locations.size());
+    private List<Location> locations = new ArrayList<>(LocationManager.getLocations().size());
+    private List<Block> beaconCapBlocks = new ArrayList<>(LocationManager.getLocations().size());
 
     public DropParty(int tier) { this.tier = tier; }
 
@@ -42,13 +41,13 @@ public class DropParty implements Listener {
 
 
     private void setLocationsToUse() {
-        if (LocationManager.locations != null) {
-            int amtToUse = Math.round(LocationManager.locations.size() / 2f);
-            Collections.shuffle(LocationManager.locations);
+        if (LocationManager.getLocations() != null) {
+            int amtToUse = Math.round(LocationManager.getLocations().size() / 2f);
+            Collections.shuffle(LocationManager.getLocations());
             for (int x = 1; x <= amtToUse; x++) {
                 int index = new Random().nextInt(amtToUse);
-                if (LocationManager.locations.get(index) != null)
-                    locations.add(LocationManager.locations.get(index));
+                if (LocationManager.getLocations().get(index) != null)
+                    locations.add(LocationManager.getLocations().get(index));
             }
             Collections.shuffle(locations);
         } else {
@@ -192,11 +191,11 @@ public class DropParty implements Listener {
         }
     }
 
+    private int itemsDropped = 0;
     public void start() {
         setLocationsToUse();
         if (!locations.isEmpty()) {
             List<ItemStack> itemsToDrop = getItemList(tier);
-
             for (int x = 0; x < itemsToDrop.size(); x++) {
                 final ItemStack i = itemsToDrop.get(x);
                 final Location locToDrop = locations.get(x);
@@ -204,7 +203,7 @@ public class DropParty implements Listener {
 
                     double offsetX = -Settings.getDropRadius() + (Settings.getDropRadius() + Settings.getDropRadius()) * new Random().nextDouble();
                     double offsetZ = -Settings.getDropRadius() + (Settings.getDropRadius() + Settings.getDropRadius()) * new Random().nextDouble();
-                    Location offsetLoc = new Location(locToDrop.getWorld(), locToDrop.getX() + offsetX, (locToDrop.getWorld().getHighestBlockYAt(locToDrop) + 1) + DropPartyManager.heightToDrop, locToDrop.getZ() + offsetZ);
+                    Location offsetLoc = new Location(locToDrop.getWorld(), locToDrop.getX() + offsetX, (locToDrop.getWorld().getHighestBlockYAt(locToDrop) + 1) + Settings.getDropHeight(), locToDrop.getZ() + offsetZ);
 
                     playDropFireworks(offsetLoc);
                     playParticleEffects(offsetLoc, i);
@@ -223,5 +222,12 @@ public class DropParty implements Listener {
         }
     }
 
+    private void replaceBeaconCaps() {
+        DropPartyManager.setIsActiveDropParty(false);
+        for (Block b : beaconCapBlocks) {
+            b.setType(Material.STONE_SLAB);
+        }
+        Bukkit.getServer().broadcastMessage(Strings.partyEnded);
+    }
 
 }

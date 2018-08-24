@@ -8,10 +8,20 @@ import java.util.List;
 
 public class LocationManager {
 
-    public static List<Location> locations = new ArrayList<>();
+    private static List<Location> locations = new ArrayList<>();
 
-    public static boolean isValidLocation(Location location) {
 
+    public static List<Location> getLocations() {
+        return locations;
+    }
+
+    public static void setLocations(List<Location> locations) {
+        LocationManager.locations = locations;
+    }
+
+    public static void addLocation(Location loc) {
+        if (loc != null)
+            locations.add(loc);
     }
 
 }

@@ -2,10 +2,9 @@ package me.mancy.arandisdrops.main;
 
 import me.mancy.arandisdrops.commands.BaseCMD;
 import me.mancy.arandisdrops.data.AccountsDataManager;
+import me.mancy.arandisdrops.data.LocationDataManager;
 import me.mancy.arandisdrops.data.SettingsManager;
 import me.mancy.arandisdrops.data.Strings;
-import me.mancy.arandisdrops.menus.MainMenu;
-import me.mancy.arandisdrops.menus.editor.EditorMainMenu;
 import me.mancy.arandisdrops.menus.editor.itemlists.*;
 import me.mancy.arandisdrops.parties.DropParty;
 import me.mancy.arandisdrops.tokens.AccountSetup;
@@ -33,25 +32,33 @@ public class Main extends JavaPlugin {
     private final File stringsFile = new File(this.getDataFolder() + "/strings.yml");
     private final FileConfiguration stringsConfig = YamlConfiguration.loadConfiguration(stringsFile);
 
-    private final SettingsManager settings = new SettingsManager(settingsFile, settingsConfig);
 
     @Override
     public void onEnable() {
-        settings.loadSettings();
-        new Strings(stringsConfig);
-        new AccountsDataManager(accountsConfig, accountsFile).loadAccounts();
         registerCommands();
         registerListeners();
-        Bukkit.getConsoleSender().sendMessage(new FormattedMessage(ChatColor.GREEN + this.getDescription().getName()).toString() + " Was Successfully Enabled");
+        loadData();
+        Bukkit.getConsoleSender().sendMessage(new FormattedMessage(ChatColor.GREEN + this.getDescription().getName()).toString() + "Was Successfully Enabled");
     }
 
     @Override
     public void onDisable() {
-        settings.saveSettings();
-        new AccountsDataManager(accountsConfig, accountsFile).saveAccounts();
-        Bukkit.getConsoleSender().sendMessage(new FormattedMessage(ChatColor.RED + this.getDescription().getName()).toString() + " Was Successfully Disabled");
+        saveData();
+        Bukkit.getConsoleSender().sendMessage(new FormattedMessage(ChatColor.RED + this.getDescription().getName()).toString() + "Was Successfully Disabled");
     }
 
+    private void loadData() {
+        new SettingsManager(settingsFile, settingsConfig).loadSettings();
+        new Strings(stringsFile, stringsConfig).loadStrings();
+        new AccountsDataManager(accountsConfig, accountsFile).loadAccounts();
+        new LocationDataManager(locationsConfig, locationsFile).loadLocations();
+    }
+
+    private void saveData() {
+        new SettingsManager(settingsFile, settingsConfig).saveSettings();
+        new AccountsDataManager(accountsConfig, accountsFile).saveAccounts();
+        new LocationDataManager(locationsConfig, locationsFile).saveLocations();
+    }
 
     private void registerListeners() {
         new AccountSetup(this);

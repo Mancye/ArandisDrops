@@ -1,39 +1,60 @@
 package me.mancy.arandisdrops.data;
 
 import me.mancy.arandisdrops.utils.FormattedMessage;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import java.io.File;
+import java.io.IOException;
+
 public class Strings {
 
-    private final FileConfiguration stringsConfig;
+    private final FileConfiguration configuration;
+    private final File file;
 
     public static String prefix = "";
 
     public static String noPermission = "";
 
-    public Strings(FileConfiguration configuration) {
-        this.stringsConfig = configuration;
+    public static String partyEnded = "";
+
+    public Strings(File file, FileConfiguration configuration) {
+        this.configuration = configuration;
+        this.file = file;
         loadStrings();
     }
 
-    private void loadStrings() {
-        if (stringsConfig == null) {
-            System.out.println("ArandisDrops ERROR Loading Strings!");
+    public void loadStrings() {
+        if (this.configuration == null) {
+            Bukkit.getServer().getConsoleSender().sendMessage(new FormattedMessage(ChatColor.RED + "Error Loading Strings").toString());
+            return;
         }
-        if (!stringsConfig.contains("prefix"))
-            stringsConfig.set("prefix", " ");
+        if (!this.configuration.contains("prefix")) {
+            this.configuration.set("prefix", " ");
+            saveFile(configuration, file);
+        }
 
-        if (stringsConfig.get("prefix") != null)
-            Strings.prefix = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("prefix"));
+        if (this.configuration.get("prefix") != null)
+            Strings.prefix = ChatColor.translateAlternateColorCodes('&', this.configuration.getString("prefix"));
          else
-            Strings.prefix = " ";
+            Strings.prefix = "";
+         
 
+        if (!this.configuration.contains("no-permission")) {
+            this.configuration.set("no-permission", prefix + " " + "&cSorry, you don't have permission to do this");
+            saveFile(configuration, file);
+        }
+        if (this.configuration.get("no-permission") != null)
+            Strings.noPermission = ChatColor.translateAlternateColorCodes('&', this.configuration.getString("no-permission"));
+    }
 
-        if (!stringsConfig.contains("no-permission"))
-            stringsConfig.set("no-permission", new FormattedMessage(ChatColor.RED + "Sorry, you don't have permission to do this").toString());
-        if (stringsConfig.get("no-permission") != null)
-            Strings.noPermission = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("no-permission"));
+    private void saveFile(FileConfiguration ymlConfig, File ymlFile) {
+        try {
+            ymlConfig.save(ymlFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
