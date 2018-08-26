@@ -5,15 +5,15 @@ Item Lists:
   Epic: []
   Legendary: []
 Costs:
-  Tier 1: 0
-  Tier 2: 0
-  Tier 3: 0
-  Tier 4: 0
-Drop Radius: 0.0
-Countdown Time: 0
-Drop Height: 0.0
+  Tier 1: 10
+  Tier 2: 12
+  Tier 3: 14
+  Tier 4: 16
+Drop Radius: 2.0
+Countdown Time: 10
+Drop Height: 5.0
 Drop Chances:
-  Tier 1: []
-  Tier 2: []
-  Tier 3: []
-  Tier 4: []
+  Tier 1: [20, 20, 20, 20, 20]
+  Tier 2: [20, 20, 20, 20, 20]
+  Tier 3: [20, 20, 20, 20, 20]
+  Tier 4: [20, 20, 20, 20, 20]

@@ -21,6 +21,7 @@ public class SettingsManager {
     }
 
     public void saveSettings() {
+        saveFile(configurationFile, file);
         configurationFile.set("Drop Radius", Settings.getDropRadius());
         saveFile(configurationFile, file);
         configurationFile.set("Countdown Time", Settings.getCountdownTime());
@@ -47,6 +48,7 @@ public class SettingsManager {
     }
 
     public void loadSettings() {
+        saveFile(configurationFile, file);
         Settings.setDropRadius(configurationFile.getDouble("Drop Radius"));
         Settings.setCountdownTime(configurationFile.getInt("Countdown Time"));
         Settings.setDropRadius(configurationFile.getDouble("Drop Height"));
