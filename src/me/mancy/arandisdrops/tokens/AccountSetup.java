@@ -17,7 +17,12 @@ public class AccountSetup implements Listener  {
 
     @EventHandler
     private void setupAccount(PlayerJoinEvent event) {
-        Bukkit.getScheduler().runTaskLater(plugin, () -> AccountManager.addAccount(event.getPlayer()), 10L);
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            if (AccountManager.getAccount(event.getPlayer()) == null) {
+                Account account = new Account(event.getPlayer(), 0);
+                AccountManager.addAccount(account);
+            }
+        }, 10L);
     }
 
 }

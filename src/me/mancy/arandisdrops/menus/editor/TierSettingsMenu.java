@@ -45,6 +45,9 @@ public class TierSettingsMenu extends Menu {
                 break;
             case 16:
                 break;
+            case 18:
+                player.closeInventory();
+                break;
         }
     }
 }

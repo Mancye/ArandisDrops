@@ -1,59 +1,39 @@
 package me.mancy.arandisdrops.data;
 
+import me.mancy.arandisdrops.main.Main;
 import me.mancy.arandisdrops.tokens.Account;
 import me.mancy.arandisdrops.tokens.AccountManager;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class AccountsDataManager {
 
-    private final FileConfiguration configuration;
-    private final File file;
+    private File accountsFile;
+    private final FileConfiguration accountsConfig;
+    private final Main plugin;
 
-    public AccountsDataManager(FileConfiguration configurationFile, File file) {
-        this.configuration = configurationFile;
-        this.file = file;
+    public AccountsDataManager(Main main) {
+        this.plugin = main;
+        saveDefaultConfig();
+        this.accountsConfig = YamlConfiguration.loadConfiguration(accountsFile);
     }
 
     public void saveAccounts() {
-        this.configuration.set("Amount Of Accounts", AccountManager.getAccounts().size());
-        for (int x = 0; x < AccountManager.getAccounts().size(); x++) {
-            this.configuration.set(x + ". uuid", AccountManager.getAccounts().get(x).getPlayer().getUniqueId().toString());
-            saveFile(this.configuration, file);
-            for (int y = 1; y <= 4; y++) {
-                this.configuration.set(x + ". tier " + y + " tokens", AccountManager.getAccounts().get(x).getBalance(y));
-                saveFile(this.configuration, file);
-            }
-
-        }
+        accountsConfig.set("Account List", AccountManager.getAccounts());
+        saveFile(accountsConfig, accountsFile);
     }
 
     public void loadAccounts() {
-        int amtAccounts = 0;
-        if (this.configuration.contains("Amount Of Accounts")) {
-            amtAccounts = this.configuration.getInt("Amount Of Accounts");
+        if (accountsConfig.getList("Account List") != null && !accountsConfig.getList("Account List").isEmpty()) {
+            AccountManager.setAccounts((List<Account>) accountsConfig.getList("Account List"));
         } else {
-            this.configuration.set("Amount Of Accounts", 0);
-        }
-
-        for (int x = 0; x < amtAccounts; x++) {
-            UUID uuid = null;
-            if (this.configuration.contains(x + ". uuid")) {
-                uuid = UUID.fromString(this.configuration.get(x + ". uuid").toString());
-            }
-            if (Bukkit.getServer().getPlayer(uuid) != null) {
-                Account account = new Account(Bukkit.getPlayer(uuid), 0);
-                for (int y = 1; y <= 4; y++) {
-                    if (this.configuration.contains(x + ". tier " + y + " tokens")) {
-                        account.setBalance(y, configuration.getInt(x + ". tier " + y + " tokens"));
-                    }
-                }
-            }
-
+            AccountManager.setAccounts(new ArrayList<>());
         }
     }
 
@@ -62,6 +42,15 @@ public class AccountsDataManager {
             ymlConfig.save(ymlFile);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void saveDefaultConfig() {
+        if (accountsFile == null) {
+            accountsFile = new File(plugin.getDataFolder(), "accounts.yml");
+        }
+        if (!accountsFile.exists()) {
+            plugin.saveResource("accounts.yml", false);
         }
     }
 

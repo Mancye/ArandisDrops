@@ -15,7 +15,7 @@ import java.util.List;
 
 public class GlobalSettingsMenu extends Menu {
 
-    private final Inventory menu = Bukkit.createInventory(null, 27, ChatColor.GREEN + "Global SettingsManager");
+    private final Inventory menu = Bukkit.createInventory(null, 27, ChatColor.GREEN + "Global Settings");
 
     /*Global Party SettingsManager
           - Edit radius
@@ -61,14 +61,17 @@ public class GlobalSettingsMenu extends Menu {
             case 11:
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(ChatColor.GRAY + "Enter a new value for the radius").toString());
+                PlayerEditingManager.playersEditingMap.put(player, SettingType.RADIUS);
                 break;
             case 13:
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(ChatColor.GRAY + "Enter a new value for the countdown").toString());
+                PlayerEditingManager.playersEditingMap.put(player, SettingType.COUNTDOWN);
                 break;
             case 15:
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(ChatColor.GRAY + "Enter a new value for the height").toString());
+                PlayerEditingManager.playersEditingMap.put(player, SettingType.HEIGHT);
                 break;
         }
 

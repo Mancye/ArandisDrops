@@ -1,13 +1,40 @@
 package me.mancy.arandisdrops.tokens;
 
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
-public class Account {
+public class Account implements ConfigurationSerializable {
 
     private Player player;
+
+    @Override
+    public Map<String, Object> serialize() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("Player-UUID", player.getUniqueId().toString());
+        map.put("Tier 1 Balance", getBalance(1));
+        map.put("Tier 2 Balance", getBalance(2));
+        map.put("Tier 3 Balance", getBalance(3));
+        map.put("Tier 4 Balance", getBalance(4));
+        return map;
+    }
+
+    public static Account deserialize(Map<String, Object> map) {
+        if (Bukkit.getPlayer(UUID.fromString((String)map.get("Player-UUID"))) != null) {
+            Account account = new Account(Bukkit.getPlayer(UUID.fromString((String)map.get("Player-UUID"))), 0);
+            account.setBalance(1, (int) map.get("Tier 1 Balance"));
+            account.setBalance(2, (int) map.get("Tier 2 Balance"));
+            account.setBalance(3, (int) map.get("Tier 3 Balance"));
+            account.setBalance(4, (int) map.get("Tier 4 Balance"));
+            return account;
+        }
+        return null;
+    }
+
     //Tier, Balance
     private Map<Integer, Integer> balances = new HashMap<>();
 
@@ -16,10 +43,12 @@ public class Account {
         for (int x = 1; x <= 4; x++) {
             this.balances.putIfAbsent(x, startBalance);
         }
+        AccountManager.addAccount(this);
     }
 
     public void addTokens(int tier, int amount) {
         this.balances.put(tier, this.balances.get(tier) + amount);
+        System.out.println(this.balances.get(tier));
     }
 
     public void removeTokens(int tier, int amount) {
@@ -71,4 +100,8 @@ public class Account {
         return this.player;
     }
 
+    @Override
+    public boolean equals(Object account) {
+        return (account instanceof Account && ((Account) account).player.equals(this.player));
+    }
 }

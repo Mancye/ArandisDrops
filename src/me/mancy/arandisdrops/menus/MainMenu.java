@@ -72,6 +72,7 @@ public class MainMenu extends Menu {
 
         switch (slot) {
             case 10:
+                System.out.println("Start");
                 if (account.getBalance(1) >= Settings.getCosts().get(1))
                     System.out.println("Start");
                 break;
@@ -87,7 +88,9 @@ public class MainMenu extends Menu {
                 if (account.getBalance(4) >= Settings.getCosts().get(4))
                     System.out.println("Start");
                 break;
-
+            case 18:
+                player.closeInventory();
+                break;
         }
 
     }

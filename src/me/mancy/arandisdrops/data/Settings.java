@@ -2,20 +2,21 @@ package me.mancy.arandisdrops.data;
 
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Settings {
 
     // Global Settings
-    private static double dropRadius;
-    private static double dropHeight;
-    private static int countdownTime;
+    private static double dropRadius = 0.0;
+    private static double dropHeight = 0.0;
+    private static int countdownTime = 0;
 
     //Tier Settings
-    private static Map<Integer, Integer[]> dropChances;
-    private static Map<Integer, Integer> costs;
-    private static Map<Integer, List<ItemStack>> itemLists;
+    private static Map<Integer, Integer[]> dropChances = new HashMap<>();
+    private static Map<Integer, Integer> costs = new HashMap<>();
+    private static Map<Integer, List<ItemStack>> itemLists = new HashMap<>();
 
     public static double getDropRadius() {
         return dropRadius;

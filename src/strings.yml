@@ -1,2 +1,4 @@
-prefix: '&8[&bA&7:&fDrops&8] '
-no-permission: '&cSorry, you do not have permission to do this'
+Prefix: '&8[&bA&7:&fDrops&8] '
+No-Permission: '&cSorry, you do not have permission to do this'
+Invalid-Arguments: '&cInvalid arguments, please use &b/drops help'
+Party-Ended: '&cA drop party has now ended!'
