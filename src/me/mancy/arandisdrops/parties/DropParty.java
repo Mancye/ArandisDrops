@@ -51,7 +51,7 @@ public class DropParty implements Listener {
             }
             Collections.shuffle(locations);
         } else {
-            Bukkit.getServer().getConsoleSender().sendMessage(new FormattedMessage(ChatColor.RED + "Fatal Error: No locations found when starting drop party").toString());
+            Bukkit.getServer().getConsoleSender().sendMessage(new FormattedMessage(ChatColor.RED + "Error: No locations found when starting drop party").toString());
         }
     }
 

@@ -39,6 +39,8 @@ public class AccountManager {
 
      private static boolean doesAccountExist(Player player) {
         for (Account account : accounts) {
+            if (account == null || account.getPlayer() == null)
+                continue;
             if (account.getPlayer().equals(player)) {
                 return true;
             }

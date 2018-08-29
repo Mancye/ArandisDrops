@@ -1,29 +1,27 @@
 package me.mancy.arandisdrops.menus.editor;
 
-import me.mancy.arandisdrops.data.Settings;
+
 import me.mancy.arandisdrops.utils.Menu;
 import me.mancy.arandisdrops.utils.MenuRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class EditItemListsMenu extends Menu {
 
     private final Inventory inventory = Bukkit.createInventory(null, 27, ChatColor.AQUA + "Edit Item Lists");
 
+    EditItemListsMenu() {
+        setUp();
+    }
+
     @Override
     protected Inventory getInventory() {
-        return null;
+        return inventory;
     }
 
     @Override

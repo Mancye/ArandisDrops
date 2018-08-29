@@ -29,7 +29,7 @@ public class GlobalSettingsMenu extends Menu {
     private final Material MATERIAL_RADIUS = Material.FEATHER;
     private final Material MATERIAL_COUNTDOWN = Material.FEATHER;
     private final Material MATERIAL_HEIGHT = Material.FEATHER;
-
+    private final Material MATERIAL_ITEM_LIST = Material.BOOK;
     GlobalSettingsMenu() {
         this.setUp();
     }
@@ -43,35 +43,49 @@ public class GlobalSettingsMenu extends Menu {
     protected void setUp(){
         List<String> radiusLore = new ArrayList<>(2);
         radiusLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Current: " + Settings.getDropRadius());
-        setButton(11, MATERIAL_RADIUS, ChatColor.AQUA + "Edit Radius", radiusLore);
+        setButton(10, MATERIAL_RADIUS, ChatColor.AQUA + "Edit Radius", radiusLore);
 
         List<String> countdownLore = new ArrayList<>(2);
         countdownLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Current: " + Settings.getCountdownTime());
-        setButton(13, MATERIAL_COUNTDOWN, ChatColor.AQUA + "Edit Countdown", countdownLore);
+        setButton(12, MATERIAL_COUNTDOWN, ChatColor.AQUA + "Edit Countdown", countdownLore);
 
         List<String> heightLore = new ArrayList<>(2);
         heightLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Current: " + Settings.getDropHeight());
-        setButton(15, MATERIAL_HEIGHT, ChatColor.AQUA + "Edit Height", heightLore);
+        setButton(14, MATERIAL_HEIGHT, ChatColor.AQUA + "Edit Height", heightLore);
+
+        setButton(16, MATERIAL_ITEM_LIST, ChatColor.AQUA + "Edit Item Lists", new ArrayList<>());
+
+        setExitButton(18);
+        setBackButton(26);
         MenuRegistry.registeredMenus.put(getInventory(), this);
     }
 
     @Override
     protected void handleInput(int slot, Player player) {
         switch (slot) {
-            case 11:
+            case 10:
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(ChatColor.GRAY + "Enter a new value for the radius").toString());
                 PlayerEditingManager.playersEditingMap.put(player, SettingType.RADIUS);
                 break;
-            case 13:
+            case 12:
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(ChatColor.GRAY + "Enter a new value for the countdown").toString());
                 PlayerEditingManager.playersEditingMap.put(player, SettingType.COUNTDOWN);
                 break;
-            case 15:
+            case 14:
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(ChatColor.GRAY + "Enter a new value for the height").toString());
                 PlayerEditingManager.playersEditingMap.put(player, SettingType.HEIGHT);
+                break;
+            case 16:
+                player.openInventory(new EditItemListsMenu().getInventory());
+                break;
+            case 18:
+                player.closeInventory();
+                break;
+            case 26:
+                player.openInventory(new EditorMainMenu().getInventory());
                 break;
         }
 

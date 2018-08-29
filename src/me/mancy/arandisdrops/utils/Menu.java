@@ -13,6 +13,7 @@ import java.util.List;
 public abstract class Menu {
 
     private final Material EXIT_BUTTON = Material.BARRIER;
+    private final Material BACK_BUTTON = Material.ARROW;
 
     protected abstract Inventory getInventory();
 
@@ -45,6 +46,10 @@ public abstract class Menu {
             if (inv.getItem(i) == null)
                 inv.setItem(i, emptySlot);
         }
+    }
+
+    protected void setBackButton(int slot) {
+        setButton(slot, BACK_BUTTON, ChatColor.RED + "Back", new ArrayList<>());
     }
 
     protected void setExitButton(int slot) {

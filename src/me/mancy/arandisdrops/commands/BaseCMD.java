@@ -24,6 +24,7 @@ public class BaseCMD implements CommandExecutor {
         if (p.hasPermission("dropparty.edit") || p.hasPermission("dropparty.*")) {
             p.sendMessage( helpPrefix + ChatColor.AQUA + ChatColor.ITALIC.toString() + " /drops edit" + ChatColor.GRAY + " To edit drop party settings");
             p.sendMessage(helpPrefix + ChatColor.AQUA + ChatColor.ITALIC.toString() + " /drops list" + ChatColor.GRAY + " To view available drop locations");
+            p.sendMessage(helpPrefix + ChatColor.AQUA + ChatColor.ITALIC.toString() + " /drops reload" + ChatColor.GRAY + " To reload strings file if changes are made");
         }
         p.sendMessage(helpPrefix + ChatColor.AQUA + ChatColor.ITALIC.toString() + " /dtokens" + ChatColor.GRAY + " To view your tokens");
 
@@ -39,7 +40,6 @@ public class BaseCMD implements CommandExecutor {
 
         if (label.equalsIgnoreCase("drops")) {
             Player p = (Player) sender;
-            p.sendMessage("Drop Radius: " + Settings.getDropRadius());
 
             switch (args.length) {
                 case 0:

@@ -14,6 +14,7 @@ public class SelectTierMenu extends Menu {
 
     SelectTierMenu() {
         this.setUp();
+        MenuRegistry.registeredMenus.put(getInventory(), this);
     }
 
     @Override
@@ -25,12 +26,13 @@ public class SelectTierMenu extends Menu {
     protected void setUp() {
         setButton(10, Material.COAL_ORE, ChatColor.DARK_GRAY + "Tier 1 Settings", null);
 
-        setButton(12, Material.IRON_BLOCK, ChatColor.DARK_GRAY + "Tier 2 Settings", null);
+        setButton(12, Material.IRON_BLOCK, ChatColor.GRAY + "Tier 2 Settings", null);
 
-        setButton(14, Material.GOLD_BLOCK, ChatColor.DARK_GRAY + "Tier 3 Settings", null);
+        setButton(14, Material.GOLD_BLOCK, ChatColor.AQUA + "Tier 3 Settings", null);
 
-        setButton(16, Material.DIAMOND_BLOCK, ChatColor.DARK_GRAY + "Tier 4 Settings", null);
+        setButton(16, Material.DIAMOND_BLOCK, ChatColor.RED + "Tier 4 Settings", null);
         setExitButton(18);
+        setBackButton(26);
         MenuRegistry.registeredMenus.put(getInventory(), this);
     }
 
@@ -38,15 +40,22 @@ public class SelectTierMenu extends Menu {
     protected void handleInput(int slot, Player player) {
         switch (slot) {
             case 10:
+                player.openInventory(new TierSettingsMenu(1).getInventory());
                 break;
             case 12:
+                player.openInventory(new TierSettingsMenu(2).getInventory());
                 break;
             case 14:
+                player.openInventory(new TierSettingsMenu(3).getInventory());
                 break;
             case 16:
+                player.openInventory(new TierSettingsMenu(4).getInventory());
                 break;
             case 18:
                 player.closeInventory();
+                break;
+            case 26:
+                player.openInventory(new EditorMainMenu().getInventory());
                 break;
         }
     }
