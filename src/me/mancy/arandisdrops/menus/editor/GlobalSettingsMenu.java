@@ -49,8 +49,8 @@ public class GlobalSettingsMenu extends Menu {
         countdownLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Current: " + Settings.getCountdownTime());
         setButton(13, MATERIAL_COUNTDOWN, ChatColor.AQUA + "Edit Countdown", countdownLore);
 
-        List<String> heightLore = new ArrayList<>(2);;
-        countdownLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Current: " + Settings.getDropHeight());
+        List<String> heightLore = new ArrayList<>(2);
+        heightLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Current: " + Settings.getDropHeight());
         setButton(15, MATERIAL_HEIGHT, ChatColor.AQUA + "Edit Height", heightLore);
         MenuRegistry.registeredMenus.put(getInventory(), this);
     }

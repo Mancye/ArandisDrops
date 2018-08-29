@@ -5,6 +5,7 @@ import me.mancy.arandisdrops.data.AccountsDataManager;
 import me.mancy.arandisdrops.data.LocationDataManager;
 import me.mancy.arandisdrops.data.SettingsManager;
 import me.mancy.arandisdrops.data.Strings;
+import me.mancy.arandisdrops.menus.editor.ItemList;
 import me.mancy.arandisdrops.menus.editor.listeners.EditValueChatHandler;
 import me.mancy.arandisdrops.parties.DropParty;
 import me.mancy.arandisdrops.tokens.Account;
@@ -64,6 +65,7 @@ public class Main extends JavaPlugin {
         new MenuListener(this);
         new DropParty(this);
         new EditValueChatHandler(this);
+        new ItemList(this);
     }
 
     private void registerCommands() {

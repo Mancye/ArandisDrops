@@ -1,5 +1,6 @@
 package me.mancy.arandisdrops.commands;
 
+import me.mancy.arandisdrops.data.Settings;
 import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.menus.MainMenu;
 import me.mancy.arandisdrops.menus.editor.EditorMainMenu;
@@ -38,6 +39,7 @@ public class BaseCMD implements CommandExecutor {
 
         if (label.equalsIgnoreCase("drops")) {
             Player p = (Player) sender;
+            p.sendMessage("Drop Radius: " + Settings.getDropRadius());
 
             switch (args.length) {
                 case 0:

@@ -9,9 +9,9 @@ import java.util.Map;
 public class Settings {
 
     // Global Settings
-    private static double dropRadius = 0.0;
-    private static double dropHeight = 0.0;
-    private static int countdownTime = 0;
+    private static double dropRadius;
+    private static double dropHeight;
+    private static int countdownTime;
 
     //Tier Settings
     private static Map<Integer, Integer[]> dropChances = new HashMap<>();

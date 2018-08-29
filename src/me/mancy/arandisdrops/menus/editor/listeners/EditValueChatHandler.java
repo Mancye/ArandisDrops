@@ -20,6 +20,7 @@ public class EditValueChatHandler implements Listener {
     @EventHandler
     private void handleChat(AsyncPlayerChatEvent event) {
         if (PlayerEditingManager.playersEditingMap.containsKey(event.getPlayer())) {
+            event.setCancelled(true);
             if (NumberUtils.isNumber(event.getMessage())) {
                 switch (PlayerEditingManager.playersEditingMap.get(event.getPlayer())) {
                     case HEIGHT:
@@ -30,7 +31,7 @@ public class EditValueChatHandler implements Listener {
                     case RADIUS:
                         Settings.setDropRadius(Double.parseDouble(event.getMessage()));
                         PlayerEditingManager.playersEditingMap.remove(event.getPlayer());
-                        event.getPlayer().sendMessage(new FormattedMessage(ChatColor.GRAY + "Set drop height to " + Settings.getDropRadius()).toString());
+                        event.getPlayer().sendMessage(new FormattedMessage(ChatColor.GRAY + "Set drop radius to " + Settings.getDropRadius()).toString());
                         break;
                     case COUNTDOWN:
                         Settings.setCountdownTime(Integer.parseInt(event.getMessage()));

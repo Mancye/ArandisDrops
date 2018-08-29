@@ -8,12 +8,6 @@ public class AccountManager {
 
     private static List<Account> accounts = new ArrayList<>();
 
-    static void addAccount(Player player) {
-        if (player == null) return;
-        if (doesAccountExist(player)) return;
-        accounts.add(new Account(player, 0));
-    }
-
     public static void addAccount(Account account) {
         if (account == null) return;
         if (doesAccountExist(account)) return;
@@ -39,8 +33,6 @@ public class AccountManager {
                 if (account.getPlayer().equals(player))
                     return account;
             }
-        } else {
-            System.out.println("Doesnt exist");
         }
         return null;
     }

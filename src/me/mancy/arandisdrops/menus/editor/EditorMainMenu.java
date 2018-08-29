@@ -1,6 +1,5 @@
 package me.mancy.arandisdrops.menus.editor;
 
-import me.mancy.arandisdrops.main.Main;
 import me.mancy.arandisdrops.utils.Menu;
 import me.mancy.arandisdrops.utils.MenuRegistry;
 import org.bukkit.Bukkit;
@@ -63,7 +62,7 @@ public class EditorMainMenu extends Menu {
         if (slot == 3)
             p.openInventory(new GlobalSettingsMenu().getInventory());
         if (slot == 5)
-            p.openInventory(new TierSettingsMenu().getInventory());
+            p.openInventory(new SelectTierMenu().getInventory());
     }
 
 
