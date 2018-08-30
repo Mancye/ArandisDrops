@@ -35,9 +35,10 @@ public class BaseCMD implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if (!(sender instanceof Player)) return false;
+
 
         if (label.equalsIgnoreCase("drops")) {
+            if (!(sender instanceof Player)) return false;
             Player p = (Player) sender;
 
             switch (args.length) {
@@ -75,9 +76,7 @@ public class BaseCMD implements CommandExecutor {
 
                     }
                 case 2:
-                    /*
-                    loc add
-                     */
+
                 case 3:
                     /*
                     loc remove (index)
@@ -99,6 +98,12 @@ public class BaseCMD implements CommandExecutor {
                     }
                     break;
                 case 4:
+
+                    /*
+                    TODO Implement console sender support
+                    TODO Implement offline player support
+                     */
+
                     if (p.hasPermission("dtokens.edit")) {
                         if (Bukkit.getPlayer(args[0]) != null) {
                             Player target = Bukkit.getPlayer(args[0]);

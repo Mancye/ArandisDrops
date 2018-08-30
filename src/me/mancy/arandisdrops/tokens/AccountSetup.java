@@ -21,10 +21,7 @@ public class AccountSetup implements Listener  {
             if (event.getPlayer() == null)
                 return;
             if (AccountManager.getPlayersAccount(event.getPlayer()) == null) {
-                Account ttits = new Account(event.getPlayer(), 0);
-                Account ttits1 = new Account(event.getPlayer(), 0);
-                if (ttits.equals(ttits1))
-                    event.getPlayer().sendMessage("Same");
+                new Account(event.getPlayer().getUniqueId(), 0);
                 event.getPlayer().sendMessage("New Account Made");
             } else {
                 event.getPlayer().sendMessage("Loaded Account");

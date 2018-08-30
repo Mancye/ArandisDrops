@@ -22,7 +22,11 @@ public class AccountManager {
 
     public static Account getPlayersAccount(Player player) {
         for (Account account : accounts) {
-            if (account.getPlayer() == player)
+            if (account == null)
+                return null;
+            if (account.getPlayerUUID() == null)
+                return null;
+            if (account.getPlayerUUID().equals(player.getUniqueId()))
                 return account;
         }
         return null;

@@ -1,6 +1,7 @@
 package me.mancy.arandisdrops.tokens;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 
@@ -15,10 +16,9 @@ public class Account implements ConfigurationSerializable {
     //Tier, Balance
     private Map<Integer, Integer> balances = new HashMap<>();
 
-    public Account(Player player, int startBalance) {
-        this.playerUUID = player.getUniqueId();
-        if (AccountManager.getPlayersAccount(player) != null)
-            return;
+    public Account(UUID playerUUID, int startBalance) {
+        this.playerUUID = playerUUID;
+
         for (int x = 1; x <= 4; x++) {
             this.balances.putIfAbsent(x, startBalance);
         }
@@ -48,20 +48,23 @@ public class Account implements ConfigurationSerializable {
     }
 
     public Integer getBalance(int tier) {
-        if (this.getPlayer() == null) return -1;
         switch (tier) {
-            case 1: if (this.balances.containsKey(1))
-                return this.balances.get(1);
-            return -1;
-            case 2: if (this.balances.containsKey(2))
-                return this.balances.get(2);
-            return -1;
-            case 3: if (this.balances.containsKey(3))
-                return this.balances.get(3);
-            return -1;
-            case 4: if (this.balances.containsKey(4))
-                return this.balances.get(4);
-            return -1;
+            case 1:
+                if (this.balances.containsKey(1))
+                    return this.balances.get(1);
+                return -1;
+            case 2:
+                if (this.balances.containsKey(2))
+                    return this.balances.get(2);
+                return -1;
+            case 3:
+                if (this.balances.containsKey(3))
+                    return this.balances.get(3);
+                return -1;
+            case 4:
+                if (this.balances.containsKey(4))
+                    return this.balances.get(4);
+                return -1;
         }
         return -1;
     }
@@ -76,17 +79,17 @@ public class Account implements ConfigurationSerializable {
         }
     }
 
-    public Player getPlayer() {
-        return Bukkit.getPlayer(this.playerUUID);
-    }
 
+    public UUID getPlayerUUID() {
+        return this.playerUUID;
+    }
 
     @Override
     public boolean equals(Object object) {
-        if(this == object)
+        if (this == object)
             return true;
 
-        if(object == null || object.getClass() != this.getClass())
+        if (object == null || object.getClass() != this.getClass())
             return false;
 
         Account account = (Account) object;
@@ -106,20 +109,21 @@ public class Account implements ConfigurationSerializable {
     }
 
     public static Account deserialize(Map<String, Object> map) {
-        if (Bukkit.getPlayer(UUID.fromString((String)map.get("Player-UUID"))) != null) {
-            Account account = new Account(Bukkit.getPlayer(UUID.fromString((String)map.get("Player-UUID"))), 0);
-            account.setBalance(1, (int) map.get("Tier 1 Balance"));
-            account.setBalance(2, (int) map.get("Tier 2 Balance"));
-            account.setBalance(3, (int) map.get("Tier 3 Balance"));
-            account.setBalance(4, (int) map.get("Tier 4 Balance"));
-            return account;
-        }
-        return null;
+        Account account = new Account(UUID.fromString((String) map.get("Player-UUID")), 0);
+        account.setBalance(1, (int) map.get("Tier 1 Balance"));
+        account.setBalance(2, (int) map.get("Tier 2 Balance"));
+        account.setBalance(3, (int) map.get("Tier 3 Balance"));
+        account.setBalance(4, (int) map.get("Tier 4 Balance"));
+        return account;
     }
 
     @Override
     public int hashCode() {
-        return Bukkit.getPlayer(playerUUID).getEntityId();
+        if (Bukkit.getPlayer(playerUUID) == null) {
+            return Bukkit.getOfflinePlayer(playerUUID).hashCode();
+        } else {
+            return Bukkit.getPlayer(playerUUID).hashCode();
+        }
     }
 
 }
