@@ -19,12 +19,6 @@ import java.util.Random;
 
 public class DropParty implements Listener {
 
-    /*
-    SettingsManager
-     */
-    /*
-     */
-
     private Main plugin;
 
     private int tier;
@@ -194,6 +188,7 @@ public class DropParty implements Listener {
     private int itemsDropped = 0;
     public void start() {
         setLocationsToUse();
+        removeBeaconCaps();
         if (!locations.isEmpty()) {
             List<ItemStack> itemsToDrop = getItemList(tier);
             for (int x = 0; x < itemsToDrop.size(); x++) {

@@ -5,6 +5,7 @@ import me.mancy.arandisdrops.data.AccountsDataManager;
 import me.mancy.arandisdrops.data.LocationDataManager;
 import me.mancy.arandisdrops.data.SettingsManager;
 import me.mancy.arandisdrops.data.Strings;
+import me.mancy.arandisdrops.menus.MainMenu;
 import me.mancy.arandisdrops.menus.editor.ItemList;
 import me.mancy.arandisdrops.menus.editor.listeners.EditValueChatHandler;
 import me.mancy.arandisdrops.parties.DropParty;
@@ -23,18 +24,11 @@ import java.io.File;
 
 public class Main extends JavaPlugin {
 
-
     private final File locationsFile = new File(this.getDataFolder() + "/locations.yml");
     private final FileConfiguration locationsConfig = YamlConfiguration.loadConfiguration(locationsFile);
 
-
     @Override
     public void onEnable() {
-
-        ConfigurationSerialization.registerClass(Account.class, "Account");
-
-
-        saveResource("settings.yml", false);
         registerCommands();
         registerListeners();
         loadData();
@@ -48,6 +42,7 @@ public class Main extends JavaPlugin {
     }
 
     private void loadData() {
+        ConfigurationSerialization.registerClass(Account.class, "Account");
         new SettingsManager(this).loadSettings();
         new Strings(this).loadStrings();
         new AccountsDataManager(this).loadAccounts();
@@ -66,6 +61,7 @@ public class Main extends JavaPlugin {
         new DropParty(this);
         new EditValueChatHandler(this);
         new ItemList(this);
+        new MainMenu(this);
     }
 
     private void registerCommands() {

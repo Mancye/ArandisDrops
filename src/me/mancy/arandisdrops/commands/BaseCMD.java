@@ -1,6 +1,5 @@
 package me.mancy.arandisdrops.commands;
 
-import me.mancy.arandisdrops.data.Settings;
 import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.menus.MainMenu;
 import me.mancy.arandisdrops.menus.editor.EditorMainMenu;
@@ -89,13 +88,7 @@ public class BaseCMD implements CommandExecutor {
             switch (args.length) {
                 case 0:
                     if (p.hasPermission("dtokens.view")) {
-                        Account account = AccountManager.getAccount(p);
-                        if (account == null) {
-                            account = new Account(p, 0);
-                        } else {
-                            AccountManager.addAccount(account);
-                        }
-
+                        Account account = AccountManager.getPlayersAccount(p);
                         p.sendMessage(new FormattedMessage(ChatColor.AQUA + "Your Tokens:").toString());
                         p.sendMessage(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Tier 1: " + ChatColor.AQUA + account.getBalance(1));
                         p.sendMessage(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Tier 2: " + ChatColor.AQUA + account.getBalance(2));
@@ -109,12 +102,7 @@ public class BaseCMD implements CommandExecutor {
                     if (p.hasPermission("dtokens.edit")) {
                         if (Bukkit.getPlayer(args[0]) != null) {
                             Player target = Bukkit.getPlayer(args[0]);
-                            Account account = AccountManager.getAccount(target);
-                            if (account == null) {
-                                account = new Account(Bukkit.getPlayer(args[0]), 0);
-                                AccountManager.addAccount(account);
-                                System.out.println("New account created");
-                            }
+                            Account account = AccountManager.getPlayersAccount(target);
                             if (args[1].equalsIgnoreCase("add")) {
                                 if (Integer.parseInt(args[2]) >= 1 && Integer.parseInt(args[2]) <= 4) {
                                     account.addTokens(Integer.parseInt(args[2]), Integer.parseInt(args[3]));

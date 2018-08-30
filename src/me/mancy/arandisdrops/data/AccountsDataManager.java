@@ -8,9 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AccountsDataManager {
 
@@ -25,15 +23,15 @@ public class AccountsDataManager {
     }
 
     public void saveAccounts() {
-        accountsConfig.set("Account List", AccountManager.getAccounts());
+        accountsConfig.set("Account List", Arrays.asList(AccountManager.getAccounts().toArray()));
         saveFile(accountsConfig, accountsFile);
     }
 
     public void loadAccounts() {
         if (accountsConfig.getList("Account List") != null && !accountsConfig.getList("Account List").isEmpty()) {
-            AccountManager.setAccounts((List<Account>) accountsConfig.getList("Account List"));
+            AccountManager.setAccounts(new HashSet<>((List<Account>) accountsConfig.getList("Account List")));
         } else {
-            AccountManager.setAccounts(new ArrayList<>());
+            AccountManager.setAccounts(new HashSet<>());
         }
     }
 

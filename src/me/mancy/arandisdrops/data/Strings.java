@@ -22,7 +22,13 @@ public class Strings {
 
     public static String partyEnded = "";
 
+    public static String partyStarted = "";
+
     public static String invalidArguments = "";
+
+    public static String insufficientBalance = "";
+
+    public static String alreadyActive = "";
 
     public Strings(Main main) {
         this.plugin = main;
@@ -43,7 +49,10 @@ public class Strings {
         prefix = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Prefix"));
         noPermission = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("No-Permission"));
         partyEnded = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Party-Ended"));
+        partyEnded = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Party-Started"));
         invalidArguments = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Invalid-Arguments"));
+        partyEnded = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Insufficient-Balance"));
+        alreadyActive = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Already-Active"));
     }
 
     public static void reloadConfig() {

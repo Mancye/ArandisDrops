@@ -1,9 +1,13 @@
 package me.mancy.arandisdrops.menus;
 
+import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.main.Main;
 import me.mancy.arandisdrops.data.Settings;
+import me.mancy.arandisdrops.parties.DropParty;
+import me.mancy.arandisdrops.parties.DropPartyManager;
 import me.mancy.arandisdrops.tokens.Account;
 import me.mancy.arandisdrops.tokens.AccountManager;
+import me.mancy.arandisdrops.utils.FormattedMessage;
 import me.mancy.arandisdrops.utils.Menu;
 import me.mancy.arandisdrops.utils.MenuRegistry;
 import org.bukkit.Bukkit;
@@ -11,15 +15,20 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainMenu extends Menu {
+public class MainMenu extends Menu implements Listener {
 
     private Inventory menu = Bukkit.createInventory(null, 27, ChatColor.AQUA + "Start a Drop Party");
+
+    public MainMenu(Main main) {
+        main.getServer().getPluginManager().registerEvents(this, main);
+    }
 
     @Override
     public Inventory getInventory() {
@@ -52,41 +61,62 @@ public class MainMenu extends Menu {
         if (!event.getInventory().getName().contains("Start a Drop Party")) return;
         if (!(event.getPlayer() instanceof Player)) return;
         Player p = (Player) event.getPlayer();
-        if (AccountManager.getAccount(p) == null) return;
+        if (AccountManager.getPlayersAccount(p) == null) return;
 
-        Account account = AccountManager.getAccount(p);
+        Account account = AccountManager.getPlayersAccount(p);
 
 
         List<String> tokensDesc = new ArrayList<>();
         for (int x = 1; x <= 4; x++) {
             if (account.getBalance(x) != null)
-            tokensDesc.add(ChatColor.GRAY + ChatColor.ITALIC.toString() + "Tier " + x + ": " + ChatColor.GREEN + account.getBalance(x));
+                tokensDesc.add(ChatColor.GRAY + ChatColor.ITALIC.toString() + "Tier " + x + ": " + ChatColor.GREEN + account.getBalance(x));
         }
         setButton(26, Material.BOOK, ChatColor.GRAY + "Your Tokens:", tokensDesc);
     }
 
     @Override
     protected void handleInput(int slot, Player player) {
-        Account account = AccountManager.getAccount(player);
+        Account account = AccountManager.getPlayersAccount(player);
         if (account == null) return;
-
+        if (slot % 2 == 0 && slot >= 10 && slot <= 18) {
+            if (DropPartyManager.isActiveDropParty()) {
+                player.closeInventory();
+                player.sendMessage(new FormattedMessage(Strings.alreadyActive).toString());
+                return;
+            }
+        }
         switch (slot) {
             case 10:
-                System.out.println("Start");
-                if (account.getBalance(1) >= Settings.getCosts().get(1))
-                    System.out.println("Start");
+                if (account.getBalance(1) >= Settings.getCosts().get(1)) {
+                    new DropParty(1).start();
+                } else {
+                    player.closeInventory();
+                    player.sendMessage(new FormattedMessage(Strings.insufficientBalance).toString());
+                }
                 break;
             case 12:
-                if (account.getBalance(2) >= Settings.getCosts().get(2))
-                    System.out.println("Start");
+                if (account.getBalance(2) >= Settings.getCosts().get(2)) {
+                    new DropParty(2).start();
+                } else {
+                    player.closeInventory();
+                    player.sendMessage(new FormattedMessage(Strings.insufficientBalance).toString());
+                }
                 break;
             case 14:
-                if (account.getBalance(3) >= Settings.getCosts().get(3))
-                    System.out.println("Start");
+                if (account.getBalance(3) >= Settings.getCosts().get(3)) {
+                    new DropParty(3).start();
+                } else {
+                    player.closeInventory();
+                    player.sendMessage(new FormattedMessage(Strings.insufficientBalance).toString());
+                }
                 break;
             case 16:
-                if (account.getBalance(4) >= Settings.getCosts().get(4))
-                    System.out.println("Start");
+                if (account.getBalance(4) >= Settings.getCosts().get(4)) {
+                    new DropParty(4).start();
+                } else {
+                    player.closeInventory();
+                    player.sendMessage(new FormattedMessage(Strings.insufficientBalance).toString());
+                }
                 break;
             case 18:
                 player.closeInventory();
