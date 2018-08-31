@@ -5,6 +5,7 @@ import me.mancy.arandisdrops.main.Main;
 import me.mancy.arandisdrops.data.Settings;
 import me.mancy.arandisdrops.parties.DropParty;
 import me.mancy.arandisdrops.parties.DropPartyManager;
+import me.mancy.arandisdrops.parties.LocationManager;
 import me.mancy.arandisdrops.tokens.Account;
 import me.mancy.arandisdrops.tokens.AccountManager;
 import me.mancy.arandisdrops.utils.FormattedMessage;
@@ -72,6 +73,7 @@ public class MainMenu extends Menu implements Listener {
                 tokensDesc.add(ChatColor.GRAY + ChatColor.ITALIC.toString() + "Tier " + x + ": " + ChatColor.GREEN + account.getBalance(x));
         }
         setButton(26, Material.BOOK, ChatColor.GRAY + "Your Tokens:", tokensDesc);
+        p.updateInventory();
     }
 
     @Override
@@ -83,12 +85,17 @@ public class MainMenu extends Menu implements Listener {
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(Strings.alreadyActive).toString());
                 return;
+            } else if (LocationManager.getValidatedLocations().isEmpty()) {
+                player.closeInventory();
+                player.sendMessage(new FormattedMessage(ChatColor.RED + "Error: No locations set").toString());
+                return;
             }
         }
         switch (slot) {
             case 10:
                 if (account.getBalance(1) >= Settings.getCosts().get(1)) {
                     new DropParty(1).start();
+                    account.removeTokens(1, Settings.getCosts().get(1));
                 } else {
                     player.closeInventory();
                     player.sendMessage(new FormattedMessage(Strings.insufficientBalance).toString());
@@ -97,6 +104,7 @@ public class MainMenu extends Menu implements Listener {
             case 12:
                 if (account.getBalance(2) >= Settings.getCosts().get(2)) {
                     new DropParty(2).start();
+                    account.removeTokens(2, Settings.getCosts().get(2));
                 } else {
                     player.closeInventory();
                     player.sendMessage(new FormattedMessage(Strings.insufficientBalance).toString());
@@ -105,6 +113,7 @@ public class MainMenu extends Menu implements Listener {
             case 14:
                 if (account.getBalance(3) >= Settings.getCosts().get(3)) {
                     new DropParty(3).start();
+                    account.removeTokens(3, Settings.getCosts().get(4));
                 } else {
                     player.closeInventory();
                     player.sendMessage(new FormattedMessage(Strings.insufficientBalance).toString());
@@ -113,6 +122,7 @@ public class MainMenu extends Menu implements Listener {
             case 16:
                 if (account.getBalance(4) >= Settings.getCosts().get(4)) {
                     new DropParty(4).start();
+                    account.removeTokens(4, Settings.getCosts().get(4));
                 } else {
                     player.closeInventory();
                     player.sendMessage(new FormattedMessage(Strings.insufficientBalance).toString());

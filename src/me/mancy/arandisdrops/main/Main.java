@@ -1,6 +1,7 @@
 package me.mancy.arandisdrops.main;
 
 import me.mancy.arandisdrops.commands.BaseCMD;
+import me.mancy.arandisdrops.commands.DTokensCMD;
 import me.mancy.arandisdrops.data.AccountsDataManager;
 import me.mancy.arandisdrops.data.LocationDataManager;
 import me.mancy.arandisdrops.data.SettingsManager;
@@ -8,6 +9,7 @@ import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.menus.MainMenu;
 import me.mancy.arandisdrops.menus.editor.ItemList;
 import me.mancy.arandisdrops.menus.editor.listeners.EditValueChatHandler;
+import me.mancy.arandisdrops.parties.DropLocation;
 import me.mancy.arandisdrops.parties.DropParty;
 import me.mancy.arandisdrops.tokens.Account;
 import me.mancy.arandisdrops.tokens.AccountSetup;
@@ -62,11 +64,12 @@ public class Main extends JavaPlugin {
         new EditValueChatHandler(this);
         new ItemList(this);
         new MainMenu(this);
+        new DropLocation(this);
     }
 
     private void registerCommands() {
         this.getCommand("drops").setExecutor(new BaseCMD());
-        this.getCommand("dtokens").setExecutor(new BaseCMD());
+        this.getCommand("dtokens").setExecutor(new DTokensCMD());
     }
 
 }

@@ -23,12 +23,6 @@ public class AccountsDataManager {
     }
 
     public void saveAccounts() {
-        List<Account> badAccounts = new ArrayList<>();
-        for (Account account : AccountManager.getAccounts()) {
-            if (account == null) {
-                badAccounts.add(account);
-            }
-        }
         accountsConfig.set("Account List", Arrays.asList(AccountManager.getAccounts().toArray()));
         saveFile(accountsConfig, accountsFile);
     }

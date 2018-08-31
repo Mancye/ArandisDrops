@@ -3,14 +3,20 @@ package me.mancy.arandisdrops.commands;
 import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.menus.MainMenu;
 import me.mancy.arandisdrops.menus.editor.EditorMainMenu;
+import me.mancy.arandisdrops.parties.DropLocation;
+import me.mancy.arandisdrops.parties.LocationManager;
 import me.mancy.arandisdrops.tokens.Account;
 import me.mancy.arandisdrops.tokens.AccountManager;
 import me.mancy.arandisdrops.utils.FormattedMessage;
+import org.apache.commons.lang.math.NumberUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 public class BaseCMD implements CommandExecutor {
@@ -34,8 +40,6 @@ public class BaseCMD implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-
 
         if (label.equalsIgnoreCase("drops")) {
             if (!(sender instanceof Player)) return false;
@@ -75,78 +79,49 @@ public class BaseCMD implements CommandExecutor {
                             break;
 
                     }
-                case 2:
-
-                case 3:
-                    /*
-                    loc remove (index)
-                     */
-            }
-        } else if (label.equalsIgnoreCase("dtokens")) {
-            Player p = (Player) sender;
-            switch (args.length) {
-                case 0:
-                    if (p.hasPermission("dtokens.view")) {
-                        Account account = AccountManager.getPlayersAccount(p);
-                        p.sendMessage(new FormattedMessage(ChatColor.AQUA + "Your Tokens:").toString());
-                        p.sendMessage(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Tier 1: " + ChatColor.AQUA + account.getBalance(1));
-                        p.sendMessage(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Tier 2: " + ChatColor.AQUA + account.getBalance(2));
-                        p.sendMessage(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Tier 3: " + ChatColor.AQUA + account.getBalance(3));
-                        p.sendMessage(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Tier 4: " + ChatColor.AQUA + account.getBalance(4));
-                    } else {
-                        p.sendMessage(Strings.noPermission);
-                    }
                     break;
-                case 4:
+                case 2:
+                    if (args[0].equalsIgnoreCase("loc") && args[1].equalsIgnoreCase("add")) {
+                        if (p.hasPermission("dropparty.editlocations") || p.hasPermission("dropparty.*")) {
+                            if (p.getLocation().getBlock().getRelative(BlockFace.DOWN).getType().equals(Material.BEACON)) {
 
-                    /*
-                    TODO Implement console sender support
-                    TODO Implement offline player support
-                     */
+                                DropLocation.playersEditing.add(p.getUniqueId());
+                                LocationManager.addUnvalidatedLocation(p.getLocation());
+                                p.sendMessage(new FormattedMessage(ChatColor.GRAY + "Location set, to validate it you must place a non-stained glass block directly above the beacon").toString());
 
-                    if (p.hasPermission("dtokens.edit")) {
-                        if (Bukkit.getPlayer(args[0]) != null) {
-                            Player target = Bukkit.getPlayer(args[0]);
-                            Account account = AccountManager.getPlayersAccount(target);
-                            if (args[1].equalsIgnoreCase("add")) {
-                                if (Integer.parseInt(args[2]) >= 1 && Integer.parseInt(args[2]) <= 4) {
-                                    account.addTokens(Integer.parseInt(args[2]), Integer.parseInt(args[3]));
-                                    target.sendMessage(new FormattedMessage(ChatColor.AQUA + "You have received " + Integer.parseInt(args[3]) + " Tier " + Integer.parseInt(args[2]) + " Tokens").toString());
-                                } else {
-                                    p.sendMessage(new FormattedMessage(ChatColor.RED + "Enter a tier between 1 and 4").toString());
-                                }
-                            } else if (args[1].equalsIgnoreCase("remove")) {
-                                if (Integer.parseInt(args[2]) >= 1 && Integer.parseInt(args[2]) <= 4) {
-                                    account.removeTokens(Integer.parseInt(args[2]), Integer.parseInt(args[3]));
-                                    target.sendMessage(new FormattedMessage(ChatColor.RED + "You have lost " + Integer.parseInt(args[3]) + " Tier " + Integer.parseInt(args[2]) + " Tokens").toString());
-                                } else {
-                                    p.sendMessage(new FormattedMessage(ChatColor.RED + "Enter a tier between 1 and 4").toString());
-                                }
-                            } else if (args[1].equalsIgnoreCase("set")) {
-                                if (Integer.parseInt(args[2]) >= 1 && Integer.parseInt(args[2]) <= 4) {
-                                    account.setBalance(Integer.parseInt(args[2]), Integer.parseInt(args[3]));
-                                    target.sendMessage(new FormattedMessage(ChatColor.AQUA + "Your Tier " + Integer.parseInt(args[2]) + " Tokens Balance Has Been Set To " + Integer.parseInt(args[3]) + " Tokens").toString());
-
-                                } else {
-                                    p.sendMessage(new FormattedMessage(ChatColor.RED + "Enter a tier between 1 and 4").toString());
-                                }
                             } else {
-                                p.sendMessage(Strings.invalidArguments);
+                                p.sendMessage(new FormattedMessage(ChatColor.RED + "You must be standing on a beacon").toString());
+                                return false;
                             }
                         } else {
-                            p.sendMessage(new FormattedMessage(ChatColor.RED + "Enter a valid player name.").toString());
-                            return true;
+                            p.sendMessage(new FormattedMessage(Strings.noPermission).toString());
+                            return false;
                         }
                     } else {
-                        p.sendMessage(Strings.noPermission);
+                        p.sendMessage(new FormattedMessage(Strings.invalidArguments).toString());
+                        return false;
                     }
                     break;
-                    default:
-                        p.sendMessage(Strings.invalidArguments);
-                        return true;
+                case 3:
+                    if (args[0].equalsIgnoreCase("loc") && args[1].equalsIgnoreCase("remove") && NumberUtils.isNumber(args[2])) {
+                        if (p.hasPermission("dropparty.editlocations") || p.hasPermission("dropparty.*")) {
+                            int index = Integer.parseInt(args[2]) - 1;
+                            if (LocationManager.getValidatedLocations().size() >= index) {
+                                LocationManager.getValidatedLocations().remove(1);
+                            } else {
+                                p.sendMessage(new FormattedMessage(ChatColor.RED + "Invalid location index.").toString());
+                            }
+                        } else {
+                            p.sendMessage(new FormattedMessage(Strings.noPermission).toString());
+                            return false;
+                        }
+                    } else {
+                        p.sendMessage(new FormattedMessage(Strings.invalidArguments).toString());
+                        return false;
+                    }
+                    break;
             }
         }
-
         return false;
     }
 }

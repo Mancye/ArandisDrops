@@ -12,6 +12,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class LocationDataManager {
@@ -37,7 +39,7 @@ public class LocationDataManager {
     }
 
     public void saveLocations() {
-        locationConfig.set("Drop Locations", LocationManager.getLocations());
+        locationConfig.set("Drop Locations", LocationManager.getValidatedLocations());
         saveFile(locationConfig, locationFile);
     }
 
@@ -45,10 +47,10 @@ public class LocationDataManager {
     public void loadLocations() {
         if (locationConfig.contains("Drop Locations") && locationConfig.getList("Drop Locations") != null) {
             try {
-                LocationManager.setLocations((List<Location>) this.locationConfig.getList("Drop Locations"));
+                LocationManager.setValidatedLocations((List<Location>) this.locationConfig.getList("Drop Locations"));
             } catch (ClassCastException e) {
                 Bukkit.getServer().getConsoleSender().sendMessage(new FormattedMessage(ChatColor.RED + "ERROR: Drop Locations configuration section corrupted, please revert changes to locations.yml file.").toString());
-                LocationManager.setLocations(new ArrayList<>());
+                LocationManager.setValidatedLocations(new ArrayList<>());
             }
         } else {
             locationConfig.set("Drop Locations", null);

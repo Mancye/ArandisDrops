@@ -23,8 +23,8 @@ public class DropParty implements Listener {
 
     private int tier;
 
-    private List<Location> locations = new ArrayList<>(LocationManager.getLocations().size());
-    private List<Block> beaconCapBlocks = new ArrayList<>(LocationManager.getLocations().size());
+    private List<Location> locations = new ArrayList<>(LocationManager.getValidatedLocations().size());
+    private List<Block> beaconCapBlocks = new ArrayList<>(LocationManager.getValidatedLocations().size());
 
     public DropParty(int tier) { this.tier = tier; }
 
@@ -35,13 +35,13 @@ public class DropParty implements Listener {
 
 
     private void setLocationsToUse() {
-        if (LocationManager.getLocations() != null) {
-            int amtToUse = Math.round(LocationManager.getLocations().size() / 2f);
-            Collections.shuffle(LocationManager.getLocations());
+        if (LocationManager.getValidatedLocations() != null) {
+            int amtToUse = Math.round(LocationManager.getValidatedLocations().size() / 2f);
+            Collections.shuffle(LocationManager.getValidatedLocations());
             for (int x = 1; x <= amtToUse; x++) {
                 int index = new Random().nextInt(amtToUse);
-                if (LocationManager.getLocations().get(index) != null)
-                    locations.add(LocationManager.getLocations().get(index));
+                if (LocationManager.getValidatedLocations().get(index) != null)
+                    locations.add(LocationManager.getValidatedLocations().get(index));
             }
             Collections.shuffle(locations);
         } else {

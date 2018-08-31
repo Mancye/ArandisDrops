@@ -49,9 +49,9 @@ public class Strings {
         prefix = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Prefix"));
         noPermission = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("No-Permission"));
         partyEnded = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Party-Ended"));
-        partyEnded = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Party-Started"));
+        partyStarted = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Party-Started"));
         invalidArguments = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Invalid-Arguments"));
-        partyEnded = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Insufficient-Balance"));
+        insufficientBalance = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Insufficient-Balance"));
         alreadyActive = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Already-Active"));
     }
 

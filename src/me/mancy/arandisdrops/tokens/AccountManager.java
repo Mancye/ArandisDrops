@@ -1,5 +1,6 @@
 package me.mancy.arandisdrops.tokens;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -32,6 +33,18 @@ public class AccountManager {
         return null;
     }
 
+
+    public static Account getOfflineAccount(OfflinePlayer player) {
+        for (Account account : accounts) {
+            if (account == null)
+                return null;
+            if (account.getPlayerUUID() == null)
+                return null;
+            if (account.getPlayerUUID().equals(player.getUniqueId()))
+                return account;
+        }
+        return null;
+    }
 
 
 }
