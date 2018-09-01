@@ -60,7 +60,10 @@ public class BaseCMD implements CommandExecutor {
                             return true;
                         case "list":
                             if (p.hasPermission("dropparty.list") || p.hasPermission("dropparty.*")) {
-
+                                p.sendMessage(new FormattedMessage(ChatColor.AQUA + "Drop Locations:").toString());
+                                for (int x = 0; x < LocationManager.getValidatedLocations().size(); x++) {
+                                    p.sendMessage(ChatColor.DARK_GRAY + "- " + ChatColor.AQUA + "Location #" + (x + 1));
+                                }
                             } else {
                                 p.sendMessage(Strings.noPermission);
                             }

@@ -188,6 +188,7 @@ public class DropParty implements Listener {
 
     private int itemsDropped = 0;
     public void start() {
+        DropPartyManager.setIsActiveDropParty(true);
         playStartFireworks();
         setLocationsToUse();
         removeBeaconCaps();
@@ -196,7 +197,11 @@ public class DropParty implements Listener {
             List<ItemStack> itemsToDrop = getItemList(tier);
             for (int x = 0; x < itemsToDrop.size(); x++) {
                 final ItemStack i = itemsToDrop.get(x);
-                final Location locToDrop = locations.get(locIndex);
+                final Location locToDrop;
+                if (x < locations.size())
+                    locToDrop = locations.get(x);
+                else
+                    locToDrop = locations.get(0);
 
                 Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 

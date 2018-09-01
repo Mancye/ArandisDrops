@@ -24,7 +24,7 @@ public class TierSettingsMenu extends Menu {
     }
 
     @Override
-    protected Inventory getInventory() {
+    public Inventory getInventory() {
         return this.inventory;
     }
 

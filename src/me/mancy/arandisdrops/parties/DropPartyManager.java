@@ -6,7 +6,7 @@ public class DropPartyManager {
         return activeDropParty;
     }
 
-    public static void setIsActiveDropParty(boolean isActiveDropParty) {
+    static void setIsActiveDropParty(boolean isActiveDropParty) {
         DropPartyManager.activeDropParty = isActiveDropParty;
     }
 

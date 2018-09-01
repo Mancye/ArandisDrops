@@ -18,24 +18,6 @@ public class EditorMainMenu extends Menu {
     public EditorMainMenu() {
         setUp();
     }
-        /*
-            Global Party SettingsManager
-                - Edit radius
-                    * Click to prompt for value in chat
-                - Edit countdown
-                    * Click to prompt for value in chat
-                - Edit height
-                    * Click to prompt for value in chat
-            Tier SettingsManager
-              - Select tier
-                    - Edit chances
-                        * Common Uncommon Rare Epic Legendary
-                    - Edit item list
-                        * Common Uncommon Rare Epic Legendary
-                    - Edit cost
-                        * Click to prompt
-         */
-
 
     @Override
     public Inventory getInventory() {
@@ -48,12 +30,13 @@ public class EditorMainMenu extends Menu {
         globalLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.AQUA + "Edit drop radius");
         globalLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.AQUA + "Edit drop countdown timer");
         globalLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.AQUA + "Edit drop height");
-        setButton(3, Material.BOOK, ChatColor.RED + "Global Settings", globalLore);
+        globalLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.AQUA + "Edit item lists");
+        setButton(3, Material.BOOK, ChatColor.GRAY + "Global Settings", globalLore);
+
         List<String> tierLore = new ArrayList<>();
         tierLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.AQUA + "Edit drop chances");
-        tierLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.AQUA + "Edit item lists");
         tierLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.AQUA + "Edit costs");
-        setButton(5, Material.FEATHER, ChatColor.RED + "Tier Settings", tierLore);
+        setButton(5, Material.FEATHER, ChatColor.GRAY + "Tier Settings", tierLore);
         MenuRegistry.registeredMenus.put(getInventory(), this);
     }
 

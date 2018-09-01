@@ -30,12 +30,12 @@ public class GlobalSettingsMenu extends Menu {
     private final Material MATERIAL_COUNTDOWN = Material.FEATHER;
     private final Material MATERIAL_HEIGHT = Material.FEATHER;
     private final Material MATERIAL_ITEM_LIST = Material.BOOK;
-    GlobalSettingsMenu() {
+    public GlobalSettingsMenu() {
         this.setUp();
     }
 
     @Override
-    protected Inventory getInventory() {
+    public Inventory getInventory() {
         return this.menu;
     }
 

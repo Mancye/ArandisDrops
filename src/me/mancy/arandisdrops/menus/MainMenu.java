@@ -73,7 +73,9 @@ public class MainMenu extends Menu implements Listener {
                 tokensDesc.add(ChatColor.GRAY + ChatColor.ITALIC.toString() + "Tier " + x + ": " + ChatColor.GREEN + account.getBalance(x));
         }
         setButton(26, Material.BOOK, ChatColor.GRAY + "Your Tokens:", tokensDesc);
-        p.updateInventory();
+        setUp();
+        p.openInventory(new MainMenu().getInventory());
+
     }
 
     @Override
@@ -88,6 +90,10 @@ public class MainMenu extends Menu implements Listener {
             } else if (LocationManager.getValidatedLocations().isEmpty()) {
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(ChatColor.RED + "Error: No locations set").toString());
+                return;
+            } else if (Settings.getItemLists().get(1).isEmpty() && Settings.getItemLists().get(2).isEmpty() && Settings.getItemLists().get(3).isEmpty() && Settings.getItemLists().get(4).isEmpty() && Settings.getItemLists().get(5).isEmpty()) {
+                player.closeInventory();
+                player.sendMessage(new FormattedMessage(ChatColor.RED + "Error: No items to drop").toString());
                 return;
             }
         }
