@@ -7,18 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8abcf99b-48dc-43f3-b57b-4040f39d5b02" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/DTokensCMD.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/commands/BaseCMD.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/commands/BaseCMD.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/parties/DropLocation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/parties/DropLocation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/parties/DropParty.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/parties/DropParty.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/parties/LocationManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ArandisDrops/me/mancy/arandisdrops/parties/LocationManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/BaseCMD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/BaseCMD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/mancy/arandisdrops/data/AccountsDataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/data/AccountsDataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/mancy/arandisdrops/data/LocationDataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/data/LocationDataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/mancy/arandisdrops/data/Strings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/data/Strings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/me/mancy/arandisdrops/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/mancy/arandisdrops/menus/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/menus/MainMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropLocation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropParty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropParty.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/LocationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/LocationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/mancy/arandisdrops/tokens/AccountManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/mancy/arandisdrops/tokens/AccountManager.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,41 +30,41 @@
     <session id="1185114143">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="38" />
+          <entry key="project.closed" value="42" />
           <entry key="project.open.time.0" value="8" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="7" />
-          <entry key="project.open.time.5" value="11" />
-          <entry key="project.open.time.6" value="7" />
+          <entry key="project.open.time.5" value="13" />
+          <entry key="project.open.time.6" value="8" />
           <entry key="project.open.time.7" value="6" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="44" />
+          <entry key="project.opened" value="47" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="351" />
+          <entry key="java" value="357" />
           <entry key="yml" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="351" />
+          <entry key="JAVA" value="357" />
           <entry key="YAML" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="29" />
-          <entry key="java" value="30358" />
+          <entry key="java" value="31440" />
           <entry key="yml" value="552" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="30358" />
+          <entry key="JAVA" value="31440" />
           <entry key="PLAIN_TEXT" value="29" />
           <entry key="YAML" value="552" />
         </counts>
@@ -75,13 +74,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/DTokensCMD.java">
+        <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropParty.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3">
-              <caret line="78" column="36" lean-forward="true" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="2914">
+              <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -89,38 +85,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/BaseCMD.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1154">
-              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="2294">
+              <caret line="87" column="45" selection-start-line="87" selection-start-column="45" selection-end-line="87" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/data/Strings.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="744">
-              <caret line="50" column="29" lean-forward="true" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropParty.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1640">
-              <caret line="222" column="43" lean-forward="true" selection-start-line="222" selection-start-column="43" selection-end-line="222" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/data/LocationDataManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="868">
-              <caret line="42" column="47" lean-forward="true" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -128,42 +97,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="737">
-              <caret line="66" column="31" selection-start-line="66" selection-start-column="31" selection-end-line="66" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/menus/MainMenu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="90" column="23" selection-start-line="90" selection-start-column="23" selection-end-line="90" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/LocationManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-              <folding>
-                <element signature="e#956#957#0" expanded="true" />
-                <element signature="e#997#998#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/data/AccountsDataManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="865">
-              <caret line="40" column="33" lean-forward="true" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
+            <state relative-caret-position="155">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -172,10 +107,67 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/data/LocationDataManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="341">
+              <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/LocationManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="775">
+              <caret line="33" column="52" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/data/AccountsDataManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="992">
+              <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/data/SettingsManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2387">
+              <caret line="88" column="38" selection-start-line="88" selection-start-column="38" selection-end-line="88" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/tokens/AccountSetup.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="589">
+              <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropPartyManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="372">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropLocation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+            <state relative-caret-position="868">
+              <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -260,14 +252,14 @@
         <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/tokens/AccountManager.java" />
         <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/DTokensCMD.java" />
         <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/data/AccountsDataManager.java" />
-        <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/LocationManager.java" />
         <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/data/LocationDataManager.java" />
-        <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropParty.java" />
         <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/data/Strings.java" />
         <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/menus/MainMenu.java" />
-        <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/main/Main.java" />
-        <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/BaseCMD.java" />
         <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropLocation.java" />
+        <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/BaseCMD.java" />
+        <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/LocationManager.java" />
+        <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropParty.java" />
+        <option value="$PROJECT_DIR$/src/me/mancy/arandisdrops/main/Main.java" />
       </list>
     </option>
   </component>
@@ -289,7 +281,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -363,11 +354,12 @@
       </pane>
       <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Stephen Carras/workspace/alphaDROPS/src/me/mancy/alphadrops/menus/editor/GlobalSettingsMenu.java&#10;FIle&#9;PSI&#9;JAVA://java.io.File" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535689900254" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535689956786" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Documents/spigot-api-latest-shaded.jar!/" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -437,9 +429,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="3456" height="1416" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.050058894" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.050942287" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -457,7 +448,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50053304" side_tool="true" weight="0.32957292" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Messages" order="10" visible="true" weight="0.003223207" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.003223207" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" visible="true" weight="0.07626619" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -535,13 +526,6 @@
     <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/menus/editor/itemlists/ItemListAddMenu.java" />
     <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/menus/editor/EditCostsMenu.java" />
     <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/ItemRarity.java" />
-    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/data/SettingsManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="88" column="38" lean-forward="true" selection-start-line="88" selection-start-column="38" selection-end-line="88" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/utils/FormattedMessage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
@@ -612,9 +596,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1116">
           <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -677,24 +658,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/tokens/AccountSetup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/tokens/AccountManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="958">
           <caret line="41" column="28" lean-forward="true" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropPartyManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
@@ -705,10 +672,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/data/AccountsDataManager.java">
+    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/data/Strings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="865">
-          <caret line="40" column="33" lean-forward="true" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
+        <state relative-caret-position="1302">
+          <caret line="50" column="29" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/DTokensCMD.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2077">
+          <caret line="78" column="36" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/menus/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1953">
+          <caret line="90" column="23" selection-start-line="90" selection-start-column="23" selection-end-line="90" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropParty.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2914">
+          <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/BaseCMD.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2294">
+          <caret line="87" column="45" selection-start-line="87" selection-start-column="45" selection-end-line="87" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -717,80 +725,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/LocationManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-          <folding>
-            <element signature="e#956#957#0" expanded="true" />
-            <element signature="e#997#998#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="775">
+          <caret line="33" column="52" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/data/Strings.java">
+    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/data/AccountsDataManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="50" column="29" lean-forward="true" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/menus/MainMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="90" column="23" selection-start-line="90" selection-start-column="23" selection-end-line="90" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="737">
-          <caret line="66" column="31" selection-start-line="66" selection-start-column="31" selection-end-line="66" selection-end-column="31" />
+        <state relative-caret-position="992">
+          <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropParty.java">
+    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/data/SettingsManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1640">
-          <caret line="222" column="43" lean-forward="true" selection-start-line="222" selection-start-column="43" selection-end-line="222" selection-end-column="43" />
+        <state relative-caret-position="2387">
+          <caret line="88" column="38" selection-start-line="88" selection-start-column="38" selection-end-line="88" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/data/LocationDataManager.java">
+    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/tokens/AccountSetup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="868">
-          <caret line="42" column="47" lean-forward="true" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
+        <state relative-caret-position="589">
+          <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/BaseCMD.java">
+    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropPartyManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1154">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/commands/DTokensCMD.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3">
-          <caret line="78" column="36" lean-forward="true" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="372">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/parties/DropLocation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+        <state relative-caret-position="868">
+          <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/mancy/arandisdrops/data/LocationDataManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
         </state>
       </provider>
     </entry>

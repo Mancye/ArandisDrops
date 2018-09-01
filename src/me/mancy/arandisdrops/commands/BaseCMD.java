@@ -5,18 +5,14 @@ import me.mancy.arandisdrops.menus.MainMenu;
 import me.mancy.arandisdrops.menus.editor.EditorMainMenu;
 import me.mancy.arandisdrops.parties.DropLocation;
 import me.mancy.arandisdrops.parties.LocationManager;
-import me.mancy.arandisdrops.tokens.Account;
-import me.mancy.arandisdrops.tokens.AccountManager;
 import me.mancy.arandisdrops.utils.FormattedMessage;
 import org.apache.commons.lang.math.NumberUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 public class BaseCMD implements CommandExecutor {
@@ -84,7 +80,10 @@ public class BaseCMD implements CommandExecutor {
                     if (args[0].equalsIgnoreCase("loc") && args[1].equalsIgnoreCase("add")) {
                         if (p.hasPermission("dropparty.editlocations") || p.hasPermission("dropparty.*")) {
                             if (p.getLocation().getBlock().getRelative(BlockFace.DOWN).getType().equals(Material.BEACON)) {
-
+                                if (LocationManager.getValidatedLocations().contains(LocationManager.getBlockLocation(p.getLocation())) || LocationManager.getUnValidatedLocations().contains(LocationManager.getBlockLocation(p.getLocation()))) {
+                                    p.sendMessage(new FormattedMessage(ChatColor.RED + "A drop location has already been set at this location!").toString());
+                                    return false;
+                                }
                                 DropLocation.playersEditing.add(p.getUniqueId());
                                 LocationManager.addUnvalidatedLocation(p.getLocation());
                                 p.sendMessage(new FormattedMessage(ChatColor.GRAY + "Location set, to validate it you must place a non-stained glass block directly above the beacon").toString());

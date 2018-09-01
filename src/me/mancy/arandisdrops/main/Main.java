@@ -17,17 +17,11 @@ import me.mancy.arandisdrops.utils.FormattedMessage;
 import me.mancy.arandisdrops.utils.MenuListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
 
 public class Main extends JavaPlugin {
-
-    private final File locationsFile = new File(this.getDataFolder() + "/locations.yml");
-    private final FileConfiguration locationsConfig = YamlConfiguration.loadConfiguration(locationsFile);
 
     @Override
     public void onEnable() {

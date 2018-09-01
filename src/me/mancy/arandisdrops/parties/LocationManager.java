@@ -21,15 +21,19 @@ public class LocationManager {
         LocationManager.validatedLocations = locations;
     }
 
-    public static void addUnvalidatedLocation(Location loc) {
-        if (loc != null)
-            unValidatedLocations.add(loc);
+    public static Location getBlockLocation(Location location) {
+        return new Location(location.getWorld(), location.getBlockX(), location.getBlockY(), location.getBlockZ());
     }
 
-    public static void addValidatedLocation(Location loc) {
+    public static void addUnvalidatedLocation(Location loc) {
         if (loc != null) {
-            unValidatedLocations.remove(loc);
-            validatedLocations.add(loc);
+            unValidatedLocations.add(getBlockLocation(loc));
+        }
+    }
+
+    static void addValidatedLocation(Location loc) {
+        if (loc != null) {
+            validatedLocations.add(getBlockLocation(loc));
         }
     }
 

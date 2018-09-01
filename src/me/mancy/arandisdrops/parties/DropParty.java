@@ -19,7 +19,7 @@ import java.util.Random;
 
 public class DropParty implements Listener {
 
-    private Main plugin;
+    private static Main plugin;
 
     private int tier;
 
@@ -29,7 +29,7 @@ public class DropParty implements Listener {
     public DropParty(int tier) { this.tier = tier; }
 
     public DropParty(Main main) {
-        this.plugin = main;
+        DropParty.plugin = main;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -98,12 +98,13 @@ public class DropParty implements Listener {
     private void removeBeaconCaps() {
 
         for (Location loc : locations) {
-            Block highest = loc.getWorld().getHighestBlockAt(loc);
-            beaconCapBlocks.add(highest);
+            Block b = loc.getWorld().getBlockAt(loc.getBlockX(), loc.getWorld().getHighestBlockYAt(loc) - 1, loc.getBlockZ());
+            beaconCapBlocks.add(b);
         }
 
         for (Location loc: locations) {
-           loc.getWorld().getHighestBlockAt(loc).setType(Material.AIR);
+            Block b = loc.getWorld().getBlockAt(loc.getBlockX(), loc.getWorld().getHighestBlockYAt(loc) - 1, loc.getBlockZ());
+            b.setType(Material.AIR);
         }
 
     }
@@ -187,13 +188,16 @@ public class DropParty implements Listener {
 
     private int itemsDropped = 0;
     public void start() {
+        playStartFireworks();
         setLocationsToUse();
         removeBeaconCaps();
         if (!locations.isEmpty()) {
+            int locIndex = 0;
             List<ItemStack> itemsToDrop = getItemList(tier);
             for (int x = 0; x < itemsToDrop.size(); x++) {
                 final ItemStack i = itemsToDrop.get(x);
-                final Location locToDrop = locations.get(x);
+                final Location locToDrop = locations.get(locIndex);
+
                 Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 
                     double offsetX = -Settings.getDropRadius() + (Settings.getDropRadius() + Settings.getDropRadius()) * new Random().nextDouble();
