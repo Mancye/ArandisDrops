@@ -2,10 +2,7 @@ package me.mancy.arandisdrops.main;
 
 import me.mancy.arandisdrops.commands.BaseCMD;
 import me.mancy.arandisdrops.commands.DTokensCMD;
-import me.mancy.arandisdrops.data.AccountsDataManager;
-import me.mancy.arandisdrops.data.LocationDataManager;
-import me.mancy.arandisdrops.data.SettingsManager;
-import me.mancy.arandisdrops.data.Strings;
+import me.mancy.arandisdrops.data.*;
 import me.mancy.arandisdrops.menus.MainMenu;
 import me.mancy.arandisdrops.menus.editor.ItemList;
 import me.mancy.arandisdrops.menus.editor.listeners.EditValueChatHandler;
@@ -20,7 +17,6 @@ import me.mancy.arandisdrops.utils.MenuListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
@@ -45,6 +41,7 @@ public class Main extends JavaPlugin {
         ConfigurationSerialization.registerClass(Account.class, "Account");
         new SettingsManager(this).loadSettings();
         new Strings(this).loadStrings();
+        new ParticlesDataManager(this).loadParticles();
         new AccountsDataManager(this).loadAccounts();
         new LocationDataManager(this).loadLocations();
     }

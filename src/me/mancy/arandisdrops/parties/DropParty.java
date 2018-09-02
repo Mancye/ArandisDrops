@@ -1,5 +1,6 @@
 package me.mancy.arandisdrops.parties;
 
+import me.mancy.arandisdrops.data.Particles;
 import me.mancy.arandisdrops.data.Settings;
 import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.main.Main;
@@ -132,29 +133,29 @@ public class DropParty implements Listener {
 
         if (Settings.getItemLists().get(1).contains(i)) {
             //Common = White
-            red = 255;
-            green = 255;
-            blue = 255;
+            red = Particles.commonRed;
+            green = Particles.commonGreen;
+            blue = Particles.commonBlue;
         } else if (Settings.getItemLists().get(2).contains(i)) {
             //Uncommon = green
-            red = 0;
-            green = 255;
-            blue = 0;
+            red = Particles.uncommonGreen;
+            green = Particles.uncommonGreen;
+            blue = Particles.uncommonBlue;
         } else if (Settings.getItemLists().get(3).contains(i)) {
             // Rare =blue
-            red = 31;
-            green = 152;
-            blue = 255;
+            red = Particles.rareRed;
+            green = Particles.rareGreen;
+            blue = Particles.rareBlue;
         } else if (Settings.getItemLists().get(4).contains(i)) {
             //Epic = Gold
-            red = 239;
-            green = 215;
-            blue = 31;
+            red = Particles.epicRed;
+            green = Particles.epicGreen;
+            blue = Particles.epicBlue;
         } else if (Settings.getItemLists().get(5).contains(i)) {
             // Legendary = Red
-            red = 255;
-            green = 0;
-            blue = 0;
+            red = Particles.legendaryRed;
+            green = Particles.legendaryGreen;
+            blue = Particles.legendaryBlue;
         } else {
             red = 0;
             green = 0;

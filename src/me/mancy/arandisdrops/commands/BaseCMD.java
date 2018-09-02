@@ -1,5 +1,6 @@
 package me.mancy.arandisdrops.commands;
 
+import me.mancy.arandisdrops.data.ParticlesDataManager;
 import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.menus.MainMenu;
 import me.mancy.arandisdrops.menus.editor.EditorMainMenu;
@@ -30,7 +31,7 @@ public class BaseCMD implements CommandExecutor {
             p.sendMessage(helpPrefix + ChatColor.AQUA + ChatColor.ITALIC.toString() + " /drops list" + ChatColor.GRAY + " To view available drop locations");
             p.sendMessage(helpPrefix + ChatColor.AQUA + ChatColor.ITALIC.toString() + " /drops loc add" + ChatColor.GRAY + " To add a new drop location, must be standing on a beacon");
             p.sendMessage(helpPrefix + ChatColor.AQUA + ChatColor.ITALIC.toString() + " /drops loc remove (number)" + ChatColor.GRAY + " To remove a drop location");
-            p.sendMessage(helpPrefix + ChatColor.AQUA + ChatColor.ITALIC.toString() + " /drops reload" + ChatColor.GRAY + " To reload strings file if changes are made");
+            p.sendMessage(helpPrefix + ChatColor.AQUA + ChatColor.ITALIC.toString() + " /drops reload" + ChatColor.GRAY + " To reload particles and strings file if changes are made");
         }
         p.sendMessage(helpPrefix + ChatColor.AQUA + ChatColor.ITALIC.toString() + " /dtokens" + ChatColor.GRAY + " To view your tokens");
 
@@ -89,7 +90,9 @@ public class BaseCMD implements CommandExecutor {
                         case "reload":
                             if (p.hasPermission("dropparty.edit") || p.hasPermission("dropparty.*") || p.hasPermission("*")) {
                                 Strings.reloadConfig();
+                                ParticlesDataManager.reloadConfig();
                                 p.sendMessage(new FormattedMessage(ChatColor.GRAY + "Reloaded strings file").toString());
+                                p.sendMessage(new FormattedMessage(ChatColor.GRAY + "Reloaded particles file").toString());
                             }
                             break;
                         default:

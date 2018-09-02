@@ -43,12 +43,18 @@ public class EditorMainMenu extends Menu {
 
     @Override
     protected void handleInput(int slot, Player p) {
-        if (slot == 0)
-            p.closeInventory();
-        if (slot == 3)
-            p.openInventory(new GlobalSettingsMenu().getInventory());
-        if (slot == 5)
-            p.openInventory(new SelectTierMenu().getInventory());
+        switch (slot) {
+            case 0:
+                p.closeInventory();
+                break;
+            case 3:
+                p.openInventory(new GlobalSettingsMenu().getInventory());
+                break;
+            case 5:
+                p.openInventory(new SelectTierMenu().getInventory());
+                break;
+        }
+
     }
 
 
