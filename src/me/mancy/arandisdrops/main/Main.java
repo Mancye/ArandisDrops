@@ -9,15 +9,18 @@ import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.menus.MainMenu;
 import me.mancy.arandisdrops.menus.editor.ItemList;
 import me.mancy.arandisdrops.menus.editor.listeners.EditValueChatHandler;
+import me.mancy.arandisdrops.parties.Countdown;
 import me.mancy.arandisdrops.parties.DropLocation;
 import me.mancy.arandisdrops.parties.DropParty;
 import me.mancy.arandisdrops.tokens.Account;
+import me.mancy.arandisdrops.tokens.AccountManager;
 import me.mancy.arandisdrops.tokens.AccountSetup;
 import me.mancy.arandisdrops.utils.FormattedMessage;
 import me.mancy.arandisdrops.utils.MenuListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
@@ -28,6 +31,7 @@ public class Main extends JavaPlugin {
         registerCommands();
         registerListeners();
         loadData();
+        loadAccounts();
         Bukkit.getConsoleSender().sendMessage(new FormattedMessage(ChatColor.GREEN + this.getDescription().getName()).toString() + " Was Successfully Enabled");
     }
 
@@ -59,6 +63,13 @@ public class Main extends JavaPlugin {
         new ItemList(this);
         new MainMenu(this);
         new DropLocation(this);
+        new Countdown(this);
+    }
+
+    private void loadAccounts() {
+        getServer().getOnlinePlayers().stream()
+                .filter(p -> AccountManager.getPlayersAccount(p) == null)
+                .forEach(p -> new Account(p.getUniqueId(), 0));
     }
 
     private void registerCommands() {

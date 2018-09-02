@@ -22,7 +22,6 @@ public class LocationDataManager {
     private final FileConfiguration locationConfig;
     private File locationFile;
 
-
     public LocationDataManager(Main main) {
         this.plugin = main;
         saveDefaultConfig();

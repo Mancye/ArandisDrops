@@ -17,19 +17,11 @@ public class GlobalSettingsMenu extends Menu {
 
     private final Inventory menu = Bukkit.createInventory(null, 27, ChatColor.GREEN + "Global Settings");
 
-    /*Global Party SettingsManager
-          - Edit radius
-                   * Click to prompt for value in chat
-          - Edit countdown
-                    * Click to prompt for value in chat
-          - Edit height
-                   * Click to prompt for value in chat
-    */
-
     private final Material MATERIAL_RADIUS = Material.FEATHER;
     private final Material MATERIAL_COUNTDOWN = Material.FEATHER;
     private final Material MATERIAL_HEIGHT = Material.FEATHER;
     private final Material MATERIAL_ITEM_LIST = Material.BOOK;
+
     public GlobalSettingsMenu() {
         this.setUp();
     }

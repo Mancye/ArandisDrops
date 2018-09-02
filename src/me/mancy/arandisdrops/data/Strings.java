@@ -44,8 +44,7 @@ public class Strings {
             plugin.saveResource("strings.yml", false);
         }
     }
-
-    public void loadStrings() {
+    private static void reloadStrings() {
         prefix = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Prefix"));
         noPermission = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("No-Permission"));
         partyEnded = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Party-Ended"));
@@ -54,9 +53,13 @@ public class Strings {
         insufficientBalance = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Insufficient-Balance"));
         alreadyActive = ChatColor.translateAlternateColorCodes('&', stringsConfig.getString("Already-Active"));
     }
+    public void loadStrings() {
+        reloadStrings();
+    }
 
     public static void reloadConfig() {
         stringsConfig = YamlConfiguration.loadConfiguration(stringsFile);
+        reloadStrings();
     }
 
 

@@ -12,7 +12,4 @@ public class DropPartyManager {
 
     private static boolean activeDropParty = false;
 
-
-
-
 }

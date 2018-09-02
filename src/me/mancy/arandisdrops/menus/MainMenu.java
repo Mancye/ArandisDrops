@@ -3,6 +3,7 @@ package me.mancy.arandisdrops.menus;
 import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.main.Main;
 import me.mancy.arandisdrops.data.Settings;
+import me.mancy.arandisdrops.parties.Countdown;
 import me.mancy.arandisdrops.parties.DropParty;
 import me.mancy.arandisdrops.parties.DropPartyManager;
 import me.mancy.arandisdrops.parties.LocationManager;
@@ -38,18 +39,24 @@ public class MainMenu extends Menu implements Listener {
 
     @Override
     public void setUp() {
-        setButton(10, Material.COAL_ORE, ChatColor.DARK_GRAY + "Tier 1", getTierLore(1));
-        setButton(12, Material.IRON_BLOCK, ChatColor.GRAY + "Tier 2", getTierLore(2));
-        setButton(14, Material.GOLD_BLOCK, ChatColor.GOLD + "Tier 3", getTierLore(3));
-        setButton(16, Material.DIAMOND_BLOCK, ChatColor.AQUA + "Tier 4", getTierLore(4));
+        setButton(10, Material.COAL_ORE, ChatColor.DARK_GRAY + "Tier 1", new ArrayList<>());
+        setButton(12, Material.IRON_BLOCK, ChatColor.GRAY + "Tier 2", new ArrayList<>());
+        setButton(14, Material.GOLD_BLOCK, ChatColor.GOLD + "Tier 3", new ArrayList<>());
+        setButton(16, Material.DIAMOND_BLOCK, ChatColor.AQUA + "Tier 4", new ArrayList<>());
         setExitButton(18);
         MenuRegistry.registeredMenus.put(getInventory(), this);
     }
 
-    private List<String> getTierLore(int tier) {
+    private List<String> getTierLore(int tier, Player p) {
         List<String> lore = new ArrayList<>();
-        lore.add(ChatColor.RED + ChatColor.ITALIC.toString() + "Click To Start A Tier " + tier + " Drop Party!");
-        lore.add(ChatColor.RED + ChatColor.ITALIC.toString() + "COST: " + Settings.getCosts().get(tier) + " Token(s)");
+        Account account = AccountManager.getPlayersAccount(p);
+        ChatColor color;
+        if (account.getBalance(tier) >= Settings.getCosts().get(tier))
+            color = ChatColor.GREEN;
+        else
+            color = ChatColor.RED;
+        lore.add(color + ChatColor.ITALIC.toString() + "Click To Start A Tier " + tier + " Drop Party!");
+        lore.add(color + ChatColor.ITALIC.toString() + "COST: " + Settings.getCosts().get(tier) + " Token(s)");
         return lore;
     }
 
@@ -57,11 +64,7 @@ public class MainMenu extends Menu implements Listener {
         setUp();
     }
 
-    @EventHandler
-    private void updateMenu(InventoryOpenEvent event) {
-        if (!event.getInventory().getName().contains("Start a Drop Party")) return;
-        if (!(event.getPlayer() instanceof Player)) return;
-        Player p = (Player) event.getPlayer();
+    public void displayTokens(Player p) {
         if (AccountManager.getPlayersAccount(p) == null) return;
 
         Account account = AccountManager.getPlayersAccount(p);
@@ -70,11 +73,9 @@ public class MainMenu extends Menu implements Listener {
         List<String> tokensDesc = new ArrayList<>();
         for (int x = 1; x <= 4; x++) {
             if (account.getBalance(x) != null)
-                tokensDesc.add(ChatColor.GRAY + ChatColor.ITALIC.toString() + "Tier " + x + ": " + ChatColor.GREEN + account.getBalance(x));
+                tokensDesc.add(ChatColor.GRAY + ChatColor.ITALIC.toString() + "Tier " + x + ": " + ChatColor.AQUA + account.getBalance(x));
         }
         setButton(26, Material.BOOK, ChatColor.GRAY + "Your Tokens:", tokensDesc);
-        setUp();
-        p.openInventory(new MainMenu().getInventory());
 
     }
 
@@ -86,59 +87,33 @@ public class MainMenu extends Menu implements Listener {
             if (DropPartyManager.isActiveDropParty()) {
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(Strings.alreadyActive).toString());
-                return;
             } else if (LocationManager.getValidatedLocations().isEmpty()) {
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(ChatColor.RED + "Error: No locations set").toString());
-                return;
             } else if (Settings.getItemLists().get(1).isEmpty() && Settings.getItemLists().get(2).isEmpty() && Settings.getItemLists().get(3).isEmpty() && Settings.getItemLists().get(4).isEmpty() && Settings.getItemLists().get(5).isEmpty()) {
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(ChatColor.RED + "Error: No items to drop").toString());
-                return;
+            } else {
+                Countdown countdown = new Countdown();
+                int tier = Integer.parseInt(getInventory().getItem(slot).getItemMeta().getDisplayName().charAt(7) + "");
+                System.out.println(tier);
+                if (account.getBalance(tier) >= Settings.getCosts().get(tier)) {
+                    account.removeTokens(tier, Settings.getCosts().get(tier));
+                    countdown.setTimer(Settings.getCountdownTime(), tier);
+                    countdown.startTimer(tier);
+                } else {
+                    player.closeInventory();
+                    player.sendMessage(new FormattedMessage(Strings.insufficientBalance).toString());
+                }
             }
-        }
-        switch (slot) {
-            case 10:
-                if (account.getBalance(1) >= Settings.getCosts().get(1)) {
-                    new DropParty(1).start();
-                    account.removeTokens(1, Settings.getCosts().get(1));
-                } else {
-                    player.closeInventory();
-                    player.sendMessage(new FormattedMessage(Strings.insufficientBalance).toString());
-                }
-                break;
-            case 12:
-                if (account.getBalance(2) >= Settings.getCosts().get(2)) {
-                    new DropParty(2).start();
-                    account.removeTokens(2, Settings.getCosts().get(2));
-                } else {
-                    player.closeInventory();
-                    player.sendMessage(new FormattedMessage(Strings.insufficientBalance).toString());
-                }
-                break;
-            case 14:
-                if (account.getBalance(3) >= Settings.getCosts().get(3)) {
-                    new DropParty(3).start();
-                    account.removeTokens(3, Settings.getCosts().get(4));
-                } else {
-                    player.closeInventory();
-                    player.sendMessage(new FormattedMessage(Strings.insufficientBalance).toString());
-                }
-                break;
-            case 16:
-                if (account.getBalance(4) >= Settings.getCosts().get(4)) {
-                    new DropParty(4).start();
-                    account.removeTokens(4, Settings.getCosts().get(4));
-                } else {
-                    player.closeInventory();
-                    player.sendMessage(new FormattedMessage(Strings.insufficientBalance).toString());
-                }
-                break;
-            case 18:
-                player.closeInventory();
-                break;
         }
 
     }
 
+    public void displayPriceDesc(Player p) {
+        setButton(10, Material.COAL_ORE, ChatColor.DARK_GRAY + "Tier 1", getTierLore(1, p));
+        setButton(12, Material.IRON_BLOCK, ChatColor.GRAY + "Tier 2", getTierLore(2, p));
+        setButton(14, Material.GOLD_BLOCK, ChatColor.GOLD + "Tier 3", getTierLore(3, p));
+        setButton(16, Material.DIAMOND_BLOCK, ChatColor.AQUA + "Tier 4", getTierLore(4, p));
+    }
 }

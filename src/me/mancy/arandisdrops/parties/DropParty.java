@@ -131,22 +131,27 @@ public class DropParty implements Listener {
         float blue;
 
         if (Settings.getItemLists().get(1).contains(i)) {
+            //Common = White
             red = 255;
             green = 255;
             blue = 255;
         } else if (Settings.getItemLists().get(2).contains(i)) {
-            red = 21;
+            //Uncommon = green
+            red = 0;
             green = 255;
             blue = 0;
         } else if (Settings.getItemLists().get(3).contains(i)) {
-            red = 0;
-            green = 72;
+            // Rare =blue
+            red = 31;
+            green = 152;
             blue = 255;
         } else if (Settings.getItemLists().get(4).contains(i)) {
-            red = 255;
-            green = 225;
-            blue = 0;
+            //Epic = Gold
+            red = 239;
+            green = 215;
+            blue = 31;
         } else if (Settings.getItemLists().get(5).contains(i)) {
+            // Legendary = Red
             red = 255;
             green = 0;
             blue = 0;
@@ -187,13 +192,12 @@ public class DropParty implements Listener {
     }
 
     private int itemsDropped = 0;
-    public void start() {
+    void start() {
         DropPartyManager.setIsActiveDropParty(true);
         playStartFireworks();
         setLocationsToUse();
         removeBeaconCaps();
         if (!locations.isEmpty()) {
-            int locIndex = 0;
             List<ItemStack> itemsToDrop = getItemList(tier);
             for (int x = 0; x < itemsToDrop.size(); x++) {
                 final ItemStack i = itemsToDrop.get(x);

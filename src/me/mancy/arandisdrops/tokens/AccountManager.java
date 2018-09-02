@@ -17,7 +17,7 @@ public class AccountManager {
         AccountManager.accounts = accounts;
     }
 
-    public static void registerAccount(Account account) {
+    static void registerAccount(Account account) {
         accounts.add(account);
     }
 

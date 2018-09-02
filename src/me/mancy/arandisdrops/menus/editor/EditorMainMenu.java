@@ -37,11 +37,14 @@ public class EditorMainMenu extends Menu {
         tierLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.AQUA + "Edit drop chances");
         tierLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.AQUA + "Edit costs");
         setButton(5, Material.FEATHER, ChatColor.GRAY + "Tier Settings", tierLore);
+        setExitButton(0);
         MenuRegistry.registeredMenus.put(getInventory(), this);
     }
 
     @Override
     protected void handleInput(int slot, Player p) {
+        if (slot == 0)
+            p.closeInventory();
         if (slot == 3)
             p.openInventory(new GlobalSettingsMenu().getInventory());
         if (slot == 5)

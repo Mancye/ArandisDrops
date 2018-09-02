@@ -79,6 +79,7 @@ public class ItemList implements Listener {
                     } else if (event.getInventory().getName().contains("Legendary")) {
                         Settings.getItemLists().put(5, itemStackList);
                     }
+                    event.getPlayer().openInventory(new GlobalSettingsMenu().getInventory());
                 }
             }
         }
