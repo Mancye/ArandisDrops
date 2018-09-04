@@ -5,6 +5,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ParticlesDataManager {
 
@@ -18,27 +20,15 @@ public class ParticlesDataManager {
         ParticlesDataManager.particleConfig = YamlConfiguration.loadConfiguration(particleFile);
     }
 
-    public static void reloadParticles() {
-        Particles.commonRed = particleConfig.getInt("Common.R");
-        Particles.commonGreen = particleConfig.getInt("Common.G");
-        Particles.commonBlue = particleConfig.getInt("Common.B");
+    private static void reloadParticles() {
+        Map<String, Integer[]> particles = new HashMap<>();
+        String[] rarities = {"Common", "Uncommon", "Rare", "Epic", "Legendary"};
 
-        Particles.uncommonRed = particleConfig.getInt("Uncommon.R");
-        Particles.uncommonGreen = particleConfig.getInt("Uncommon.G");
-        Particles.uncommonBlue = particleConfig.getInt("Uncommon.B");
-
-        Particles.rareRed = particleConfig.getInt("Rare.R");
-        Particles.rareGreen = particleConfig.getInt("Rare.G");
-        Particles.rareBlue = particleConfig.getInt("Rare.B");
-
-        Particles.epicRed = particleConfig.getInt("Epic.R");
-        Particles.epicGreen = particleConfig.getInt("Epic.G");
-        Particles.epicBlue = particleConfig.getInt("Epic.B");
-
-        Particles.legendaryRed = particleConfig.getInt("Legendary.R");
-        Particles.legendaryGreen = particleConfig.getInt("Legendary.G");
-        Particles.legendaryBlue = particleConfig.getInt("Legendary.B");
-    }
+        for (int x = 0; x < rarities.length; x++) {
+            particles.put(rarities[x], particleConfig.getIntegerList("Particles." + rarities[x]).toArray(new Integer[particleConfig.getIntegerList("Particles." + rarities[x]).size()]));
+        }
+        Particles.particles = particles;
+      }
 
     public void loadParticles() {
         reloadParticles();

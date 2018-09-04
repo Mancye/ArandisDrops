@@ -90,7 +90,7 @@ public class MainMenu extends Menu implements Listener {
             } else if (LocationManager.getValidatedLocations().isEmpty()) {
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(ChatColor.RED + "Error: No locations set").toString());
-            } else if (Settings.getItemLists().get(1).isEmpty() && Settings.getItemLists().get(2).isEmpty() && Settings.getItemLists().get(3).isEmpty() && Settings.getItemLists().get(4).isEmpty() && Settings.getItemLists().get(5).isEmpty()) {
+            } else if (Settings.getItemLists().get(1).size() == 0 && Settings.getItemLists().get(2).size() == 0 && Settings.getItemLists().get(3).size() == 0 && Settings.getItemLists().get(4).size() == 0 && Settings.getItemLists().get(5).size() == 0) {
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(ChatColor.RED + "Error: No items to drop").toString());
             } else {

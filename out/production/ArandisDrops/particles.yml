@@ -1,20 +1,6 @@
-Common:
-  R: 255
-  G: 255
-  B: 255
-Uncommon:
-  R: 0
-  G: 255
-  B: 0
-Rare:
-  R: 31
-  G: 152
-  B: 255
-Epic:
-  R: 239
-  G: 215
-  B: 31
-Legendary:
-  R: 255
-  G: 0
-  B: 0
+Particles:
+  Common: [255, 255, 255]
+  Uncommon: [31, 10, 255]
+  Rare: [20, 20, 200]
+  Epic: [255, 223, 0]
+  Legendary: [200, 10, 10]

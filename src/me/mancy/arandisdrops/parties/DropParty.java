@@ -13,15 +13,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class DropParty implements Listener {
 
     private static Main plugin;
-
+    private Particles particles = new Particles();
     private int tier;
 
     private List<Location> locations = new ArrayList<>(LocationManager.getValidatedLocations().size());
@@ -131,31 +128,31 @@ public class DropParty implements Listener {
         float green;
         float blue;
 
-        if (Settings.getItemLists().get(1).contains(i)) {
+        if (Arrays.asList(Settings.getItemLists().get(1)).contains(i)) {
             //Common = White
-            red = Particles.commonRed;
-            green = Particles.commonGreen;
-            blue = Particles.commonBlue;
-        } else if (Settings.getItemLists().get(2).contains(i)) {
+            red = Particles.particles.get("Common")[0];
+            green = Particles.particles.get("Common")[1];
+            blue = Particles.particles.get("Common")[2];
+        } else if (Arrays.asList(Settings.getItemLists().get(2)).contains(i)) {
             //Uncommon = green
-            red = Particles.uncommonGreen;
-            green = Particles.uncommonGreen;
-            blue = Particles.uncommonBlue;
-        } else if (Settings.getItemLists().get(3).contains(i)) {
+            red = Particles.particles.get("Uncommon")[0];
+            green = Particles.particles.get("Uncommon")[1];
+            blue = Particles.particles.get("Uncommon")[2];
+        } else if (Arrays.asList(Settings.getItemLists().get(3)).contains(i)) {
             // Rare =blue
-            red = Particles.rareRed;
-            green = Particles.rareGreen;
-            blue = Particles.rareBlue;
-        } else if (Settings.getItemLists().get(4).contains(i)) {
+            red = Particles.particles.get("Rare")[0];
+            green = Particles.particles.get("Rare")[1];
+            blue = Particles.particles.get("Rare")[2];
+        } else if (Arrays.asList(Settings.getItemLists().get(4)).contains(i)) {
             //Epic = Gold
-            red = Particles.epicRed;
-            green = Particles.epicGreen;
-            blue = Particles.epicBlue;
-        } else if (Settings.getItemLists().get(5).contains(i)) {
+            red = Particles.particles.get("Epic")[0];
+            green = Particles.particles.get("Epic")[1];
+            blue = Particles.particles.get("Epic")[2];
+        } else if (Arrays.asList(Settings.getItemLists().get(5)).contains(i)) {
             // Legendary = Red
-            red = Particles.legendaryRed;
-            green = Particles.legendaryGreen;
-            blue = Particles.legendaryBlue;
+            red = Particles.particles.get("Legendary")[0];
+            green = Particles.particles.get("Legendary")[1];
+            blue = Particles.particles.get("Legendary")[2];
         } else {
             red = 0;
             green = 0;

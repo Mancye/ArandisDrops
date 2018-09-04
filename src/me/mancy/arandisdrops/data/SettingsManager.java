@@ -66,11 +66,12 @@ public class SettingsManager {
         Settings.setDropRadius(settingsConfiguration.getDouble("Drop Radius"));
         Settings.setCountdownTime(settingsConfiguration.getInt("Countdown Time"));
         Settings.setDropHeight(settingsConfiguration.getDouble("Drop Height"));
+
         Map<Integer, List<ItemStack>> itemList = new HashMap<>();
         String[] rarities = {"Common", "Uncommon", "Rare", "Epic", "Legendary"};
         for (int x = 1; x <= 5; x++) {
             if (!settingsConfiguration.contains("Item Lists." + rarities[x - 1]))
-                settingsConfiguration.set("Item Lists." + rarities[x - 1], new ArrayList<>());
+                settingsConfiguration.set("Item Lists." + rarities[x - 1], new ItemStack[]{});
 
             itemList.put(x, (List<ItemStack>) settingsConfiguration.getList("Item Lists." + rarities[x - 1]));
         }
