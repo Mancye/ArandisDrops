@@ -12,6 +12,6 @@ public class FormattedMessage  {
 
     @Override
     public String toString() {
-        return Strings.prefix + " " + message;
+        return Strings.prefix.trim() + " " + message;
     }
 }

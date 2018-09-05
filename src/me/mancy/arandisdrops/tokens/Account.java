@@ -1,9 +1,8 @@
 package me.mancy.arandisdrops.tokens;
 
+import me.mancy.arandisdrops.tokens.event.TokenModifyEvent;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
-import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +10,7 @@ import java.util.UUID;
 
 public class Account implements ConfigurationSerializable {
 
+    private static TokenModifyEvent tokenModifyEvent = new TokenModifyEvent();
     private final UUID playerUUID;
 
     //Tier, Balance
@@ -23,12 +23,11 @@ public class Account implements ConfigurationSerializable {
             this.balances.putIfAbsent(x, startBalance);
         }
         AccountManager.registerAccount(this);
-
     }
 
     public void addTokens(int tier, int amount) {
         this.balances.put(tier, this.balances.get(tier) + amount);
-        System.out.println(this.balances.get(tier));
+        Bukkit.getServer().getPluginManager().callEvent(tokenModifyEvent);
     }
 
     public void removeTokens(int tier, int amount) {
@@ -37,6 +36,7 @@ public class Account implements ConfigurationSerializable {
         } else {
             this.balances.put(tier, this.balances.get(tier) - amount);
         }
+        Bukkit.getServer().getPluginManager().callEvent(tokenModifyEvent);
     }
 
     public void setBalance(int tier, int amount) {
@@ -71,16 +71,19 @@ public class Account implements ConfigurationSerializable {
 
     public void resetBalance(int tier) {
         this.balances.put(tier, 0);
+        Bukkit.getServer().getPluginManager().callEvent(tokenModifyEvent);
     }
 
     public void resetAllBalances() {
         for (int x = 1; x <= 4; x++) {
             this.balances.put(x, 0);
         }
+        Bukkit.getServer().getPluginManager().callEvent(tokenModifyEvent);
+
     }
 
 
-    public UUID getPlayerUUID() {
+    UUID getPlayerUUID() {
         return this.playerUUID;
     }
 

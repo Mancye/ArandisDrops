@@ -12,6 +12,7 @@ import me.mancy.arandisdrops.parties.DropParty;
 import me.mancy.arandisdrops.tokens.Account;
 import me.mancy.arandisdrops.tokens.AccountManager;
 import me.mancy.arandisdrops.tokens.AccountSetup;
+import me.mancy.arandisdrops.tokens.listener.TokenChangeHandler;
 import me.mancy.arandisdrops.utils.FormattedMessage;
 import me.mancy.arandisdrops.utils.MenuListener;
 import org.bukkit.Bukkit;
@@ -53,6 +54,7 @@ public class Main extends JavaPlugin {
     }
 
     private void registerListeners() {
+        new TokenChangeHandler(this);
         new AccountSetup(this);
         new MenuListener(this);
         new DropParty(this);

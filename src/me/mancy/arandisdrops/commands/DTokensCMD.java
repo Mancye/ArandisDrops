@@ -65,7 +65,7 @@ public class DTokensCMD implements CommandExecutor {
                             if (Integer.parseInt(args[2]) >= 1 && Integer.parseInt(args[2]) <= 4) {
                                 account.setBalance(Integer.parseInt(args[2]), Integer.parseInt(args[3]));
                                 target.sendMessage(new FormattedMessage(ChatColor.AQUA + "Your Tier " + Integer.parseInt(args[2]) + " Tokens Balance Has Been Set To " + Integer.parseInt(args[3]) + " Tokens").toString());
-                                sender.sendMessage(new FormattedMessage(ChatColor.GRAY + "Set" + target.getName() + "'s Tier " + Integer.parseInt(args[2]) + " tokens to " + Integer.parseInt(args[3])).toString());
+                                sender.sendMessage(new FormattedMessage(ChatColor.GRAY + "Set " + target.getName() + "'s Tier " + Integer.parseInt(args[2]) + " tokens to " + Integer.parseInt(args[3])).toString());
                             } else {
                                 sender.sendMessage(new FormattedMessage(ChatColor.RED + "Enter a tier between 1 and 4").toString());
                             }

@@ -7,7 +7,9 @@ import java.util.Map;
 
 public class PlayerEditingManager {
 
-    public static Map<Player, SettingType> playersEditingMap = new HashMap<>();
-    public static Map<Player, Integer> playerTierEditingMap = new HashMap<>();
-    public static Map<Player, Integer> playerRarityEditingMap = new HashMap<>();
+    public static PlayerEditingManager instance = new PlayerEditingManager();
+
+    public Map<Player, SettingType> playersEditingMap = new HashMap<>();
+    public Map<Player, Integer> playerTierEditingMap = new HashMap<>();
+    public Map<Player, Integer> playerRarityEditingMap = new HashMap<>();
 }

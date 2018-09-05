@@ -58,17 +58,17 @@ public class GlobalSettingsMenu extends Menu {
             case 10:
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(ChatColor.GRAY + "Enter a new value for the radius").toString());
-                PlayerEditingManager.playersEditingMap.put(player, SettingType.RADIUS);
+                PlayerEditingManager.instance.playersEditingMap.put(player, SettingType.RADIUS);
                 break;
             case 12:
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(ChatColor.GRAY + "Enter a new value for the countdown").toString());
-                PlayerEditingManager.playersEditingMap.put(player, SettingType.COUNTDOWN);
+                PlayerEditingManager.instance.playersEditingMap.put(player, SettingType.COUNTDOWN);
                 break;
             case 14:
                 player.closeInventory();
                 player.sendMessage(new FormattedMessage(ChatColor.GRAY + "Enter a new value for the height").toString());
-                PlayerEditingManager.playersEditingMap.put(player, SettingType.HEIGHT);
+                PlayerEditingManager.instance.playersEditingMap.put(player, SettingType.HEIGHT);
                 break;
             case 16:
                 player.openInventory(new EditItemListsMenu().getInventory());

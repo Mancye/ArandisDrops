@@ -12,30 +12,41 @@ import java.util.*;
 
 public class AccountsDataManager {
 
-    private File accountsFile;
-    private final FileConfiguration accountsConfig;
-    private final Main plugin;
+    private static File accountsFile;
+    private static FileConfiguration accountsConfig;
+    private static Main plugin;
 
     public AccountsDataManager(Main main) {
-        this.plugin = main;
+        plugin = main;
         saveDefaultConfig();
-        this.accountsConfig = YamlConfiguration.loadConfiguration(accountsFile);
+        accountsConfig = YamlConfiguration.loadConfiguration(accountsFile);
+    }
+
+    public static void safeSave() {
+        AccountManager.getAccounts().removeIf(Objects::isNull);
+        accountsConfig.set("Account List", Arrays.asList(AccountManager.getAccounts().toArray()));
+        saveFile(accountsConfig, accountsFile);
     }
 
     public void saveAccounts() {
+        AccountManager.getAccounts().removeIf(Objects::isNull);
         accountsConfig.set("Account List", Arrays.asList(AccountManager.getAccounts().toArray()));
         saveFile(accountsConfig, accountsFile);
     }
 
     public void loadAccounts() {
         if (accountsConfig.getList("Account List") != null && !accountsConfig.getList("Account List").isEmpty()) {
-            AccountManager.setAccounts(new HashSet<>((List<Account>) accountsConfig.getList("Account List")));
+            final List<Account> list = (List<Account>) accountsConfig.getList("Account List");
+            list.removeIf(Objects::isNull);
+            final Set<Account> accountsSet = new HashSet<>(list);
+            accountsSet.removeIf(Objects::isNull);
+            AccountManager.setAccounts(accountsSet);
         } else {
             AccountManager.setAccounts(new HashSet<>());
         }
     }
 
-    private void saveFile(FileConfiguration ymlConfig, File ymlFile) {
+    private static void saveFile(FileConfiguration ymlConfig, File ymlFile) {
         try {
             ymlConfig.save(ymlFile);
         } catch (IOException e) {

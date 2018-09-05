@@ -41,12 +41,12 @@ public class TierSettingsMenu extends Menu {
     protected void handleInput(int slot, Player player) {
         switch (slot) {
             case 12:
-                PlayerEditingManager.playersEditingMap.put(player, SettingType.CHANCE);
+                PlayerEditingManager.instance.playersEditingMap.put(player, SettingType.CHANCE);
                 player.openInventory(new EditDropChancesMenu(tier).getInventory());
                 break;
             case 14:
-                PlayerEditingManager.playerTierEditingMap.put(player, tier);
-                PlayerEditingManager.playersEditingMap.put(player, SettingType.COST);
+                PlayerEditingManager.instance.playerTierEditingMap.put(player, tier);
+                PlayerEditingManager.instance.playersEditingMap.put(player, SettingType.COST);
                 player.sendMessage(new FormattedMessage(ChatColor.AQUA + "Enter a new cost").toString());
                 break;
             case 18:
