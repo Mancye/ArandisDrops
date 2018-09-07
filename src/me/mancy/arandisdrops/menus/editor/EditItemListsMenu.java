@@ -31,6 +31,8 @@ public class EditItemListsMenu extends Menu {
         setButton(13, Material.FEATHER, ChatColor.AQUA + "Rare", new ArrayList<>());
         setButton(14, Material.FEATHER, ChatColor.AQUA + "Epic", new ArrayList<>());
         setButton(15, Material.FEATHER, ChatColor.AQUA + "Legendary", new ArrayList<>());
+        setExitButton(26);
+        setBackButton(18);
         MenuRegistry.registeredMenus.put(getInventory(), this);
     }
 
@@ -52,6 +54,12 @@ public class EditItemListsMenu extends Menu {
                 break;
             case 15:
                 player.openInventory(new ItemList("Legendary").getInventory());
+                break;
+            case 18:
+                player.openInventory(new GlobalSettingsMenu().getInventory());
+                break;
+            case 26:
+                player.closeInventory();
                 break;
         }
 

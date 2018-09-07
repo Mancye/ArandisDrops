@@ -96,11 +96,12 @@ public class MainMenu extends Menu implements Listener {
             } else {
                 Countdown countdown = new Countdown();
                 int tier = Integer.parseInt(getInventory().getItem(slot).getItemMeta().getDisplayName().charAt(7) + "");
-                System.out.println(tier);
+
                 if (account.getBalance(tier) >= Settings.getCosts().get(tier)) {
                     account.removeTokens(tier, Settings.getCosts().get(tier));
                     countdown.setTimer(Settings.getCountdownTime(), tier);
                     countdown.startTimer(tier);
+                    player.closeInventory();
                 } else {
                     player.closeInventory();
                     player.sendMessage(new FormattedMessage(Strings.insufficientBalance).toString());

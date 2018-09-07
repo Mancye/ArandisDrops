@@ -23,7 +23,7 @@ public class EditValueChatHandler implements Listener {
 
     @EventHandler
     private void handleChat(AsyncPlayerChatEvent event) {
-        if (PlayerEditingManager.instance.playersEditingMap.containsKey(event.getPlayer()) && !PlayerEditingManager.instance.instance.playerTierEditingMap.containsKey(event.getPlayer())) {
+        if (PlayerEditingManager.instance.playersEditingMap.containsKey(event.getPlayer()) && !PlayerEditingManager.instance.playerTierEditingMap.containsKey(event.getPlayer())) {
             event.setCancelled(true);
             if (NumberUtils.isNumber(event.getMessage())) {
                 switch (PlayerEditingManager.instance.playersEditingMap.get(event.getPlayer())) {

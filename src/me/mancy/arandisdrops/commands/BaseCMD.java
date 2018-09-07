@@ -5,6 +5,7 @@ import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.menus.MainMenu;
 import me.mancy.arandisdrops.menus.editor.EditorMainMenu;
 import me.mancy.arandisdrops.parties.DropLocation;
+import me.mancy.arandisdrops.parties.DropPartyManager;
 import me.mancy.arandisdrops.parties.LocationManager;
 import me.mancy.arandisdrops.utils.FormattedMessage;
 import net.md_5.bungee.api.chat.*;
@@ -84,8 +85,13 @@ public class BaseCMD implements CommandExecutor {
                             }
                             break;
                         case "edit":
-                            if (p.hasPermission("dropparty.edit") || p.hasPermission("dropparty.*") || p.hasPermission("*"))
-                            p.openInventory(new EditorMainMenu().getInventory());
+                            if (p.hasPermission("dropparty.edit") || p.hasPermission("dropparty.*") || p.hasPermission("*")) {
+                                if (!DropPartyManager.isActiveDropParty()) {
+                                    p.openInventory(new EditorMainMenu().getInventory());
+                                } else {
+                                    p.sendMessage(new FormattedMessage(ChatColor.RED + "You can not edit drop party settings while there is a party active").toString());
+                                }
+                            }
                             break;
                         case "reload":
                             if (p.hasPermission("dropparty.edit") || p.hasPermission("dropparty.*") || p.hasPermission("*")) {
@@ -110,7 +116,7 @@ public class BaseCMD implements CommandExecutor {
                                 }
                                 DropLocation.playersEditing.add(p.getUniqueId());
                                 LocationManager.addUnvalidatedLocation(p.getLocation());
-                                p.sendMessage(new FormattedMessage(ChatColor.GRAY + "Location set, to validate it you must place a non-stained glass block directly above the beacon").toString());
+                                p.sendMessage(new FormattedMessage(ChatColor.GRAY + "Location set, to validate it you must place a stone slab above the beacon").toString());
 
                             } else {
                                 p.sendMessage(new FormattedMessage(ChatColor.RED + "You must be standing on a beacon").toString());
@@ -141,7 +147,7 @@ public class BaseCMD implements CommandExecutor {
                                 Location loc = LocationManager.getValidatedLocations().get(index);
                                 LocationManager.getValidatedLocations().remove(index);
                                 LocationManager.getUnValidatedLocations().remove(loc);
-                                p.sendMessage(new FormattedMessage(ChatColor.GRAY + "Removed location " + (index + 1) + "successfully").toString());
+                                p.sendMessage(new FormattedMessage(ChatColor.GRAY + "Removed location " + (index + 1) + " successfully").toString());
                                 return true;
                             } else {
                                 p.sendMessage(new FormattedMessage(ChatColor.RED + "Invalid location index, view a list of locations with " + ChatColor.AQUA + "/drops list").toString());

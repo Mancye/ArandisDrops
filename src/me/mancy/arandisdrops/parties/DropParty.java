@@ -18,13 +18,12 @@ import java.util.*;
 public class DropParty implements Listener {
 
     private static Main plugin;
-    private Particles particles = new Particles();
     private int tier;
 
     private List<Location> locations = new ArrayList<>(LocationManager.getValidatedLocations().size());
     private List<Block> beaconCapBlocks = new ArrayList<>(LocationManager.getValidatedLocations().size());
 
-    public DropParty(int tier) { this.tier = tier; }
+    DropParty(int tier) { this.tier = tier; }
 
     public DropParty(Main main) {
         DropParty.plugin = main;
@@ -50,7 +49,6 @@ public class DropParty implements Listener {
     private List<ItemStack> getItemList(int tier) {
 
         int totalItemsToDrop = Bukkit.getServer().getOnlinePlayers().size() * 2;
-        // Ex. 10 online = 20
 
         List<ItemStack> itemStackList = new ArrayList<>();
 
@@ -90,18 +88,21 @@ public class DropParty implements Listener {
         for (int x = 0; x <= amtLegendaryItems; x++)
             itemStackList.add(Settings.getItemLists().get(5).get(x));
         Collections.shuffle(itemStackList, new Random());
+
+        if (itemStackList.size() > totalItemsToDrop) {
+            itemStackList.subList(totalItemsToDrop - 1, itemStackList.size());
+            for (int x = itemStackList.size() - 1; x > totalItemsToDrop; x--) {
+                itemStackList.remove(x);
+            }
+        }
+
         return itemStackList;
     }
 
     private void removeBeaconCaps() {
-
         for (Location loc : locations) {
             Block b = loc.getWorld().getBlockAt(loc.getBlockX(), loc.getWorld().getHighestBlockYAt(loc) - 1, loc.getBlockZ());
             beaconCapBlocks.add(b);
-        }
-
-        for (Location loc: locations) {
-            Block b = loc.getWorld().getBlockAt(loc.getBlockX(), loc.getWorld().getHighestBlockYAt(loc) - 1, loc.getBlockZ());
             b.setType(Material.AIR);
         }
 
@@ -233,7 +234,7 @@ public class DropParty implements Listener {
         for (Block b : beaconCapBlocks) {
             b.setType(Material.STONE_SLAB);
         }
-        Bukkit.getServer().broadcastMessage(Strings.partyEnded);
+        Bukkit.getServer().broadcastMessage(new FormattedMessage(Strings.partyEnded.trim()).toString());
     }
 
 }
