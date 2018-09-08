@@ -17,9 +17,9 @@ public class GlobalSettingsMenu extends Menu {
 
     private final Inventory menu = Bukkit.createInventory(null, 27, ChatColor.GREEN + "Global Settings");
 
-    private final Material MATERIAL_RADIUS = Material.FEATHER;
-    private final Material MATERIAL_COUNTDOWN = Material.FEATHER;
-    private final Material MATERIAL_HEIGHT = Material.FEATHER;
+    private final Material MATERIAL_RADIUS = Material.HOPPER;
+    private final Material MATERIAL_COUNTDOWN = Material.CLOCK;
+    private final Material MATERIAL_HEIGHT = Material.QUARTZ_STAIRS;
     private final Material MATERIAL_ITEM_LIST = Material.BOOK;
 
     public GlobalSettingsMenu() {

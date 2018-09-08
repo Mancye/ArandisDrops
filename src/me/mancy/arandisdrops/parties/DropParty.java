@@ -57,36 +57,54 @@ public class DropParty implements Listener {
         int amtRareItems = Math.round((Settings.getDropChances().get(tier)[2] / 100f) * totalItemsToDrop);
         int amtEpicItems = Math.round((Settings.getDropChances().get(tier)[3] / 100f) * totalItemsToDrop);
         int amtLegendaryItems = Math.round((Settings.getDropChances().get(tier)[4] / 100f) * totalItemsToDrop);
+        if (!Settings.getItemLists().get(1).isEmpty()) {
+            if (amtCommonItems > Settings.getItemLists().get(1).size())
+                amtCommonItems = Settings.getItemLists().get(1).size();
+        }
 
-        if (amtCommonItems > Settings.getItemLists().get(1).size())
-            amtCommonItems = Settings.getItemLists().get(1).size();
+        if (!Settings.getItemLists().get(2).isEmpty()) {
+            if (amtUnCommonItems > Settings.getItemLists().get(2).size())
+                amtUnCommonItems = Settings.getItemLists().get(2).size();
+        }
 
-        if (amtUnCommonItems > Settings.getItemLists().get(2).size())
-            amtUnCommonItems = Settings.getItemLists().get(2).size();
+        if (!Settings.getItemLists().get(3).isEmpty()) {
+            if (amtRareItems > Settings.getItemLists().get(3).size())
+                amtRareItems = Settings.getItemLists().get(3).size();
+        }
 
-        if (amtRareItems > Settings.getItemLists().get(3).size())
-            amtRareItems = Settings.getItemLists().get(3).size();
+        if (!Settings.getItemLists().get(4).isEmpty()) {
+            if (amtEpicItems > Settings.getItemLists().get(4).size())
+                amtEpicItems = Settings.getItemLists().get(4).size();
+        }
 
-        if (amtEpicItems > Settings.getItemLists().get(4).size())
-            amtEpicItems = Settings.getItemLists().get(4).size();
+        if (!Settings.getItemLists().get(5).isEmpty()) {
+            if (amtLegendaryItems > Settings.getItemLists().get(5).size())
+                amtLegendaryItems = Settings.getItemLists().get(5).size();
+        }
+        if (!Settings.getItemLists().get(1).isEmpty()) {
+            for (int x = 0; x <= amtCommonItems; x++)
+                itemStackList.add(Settings.getItemLists().get(1).get(x));
+        }
 
-        if (amtLegendaryItems > Settings.getItemLists().get(5).size())
-            amtLegendaryItems = Settings.getItemLists().get(5).size();
+        if (!Settings.getItemLists().get(2).isEmpty()) {
+            for (int x = 0; x <= amtUnCommonItems; x++)
+                itemStackList.add(Settings.getItemLists().get(2).get(x));
+        }
 
-        for (int x = 0; x <= amtCommonItems; x++)
-            itemStackList.add(Settings.getItemLists().get(1).get(x));
+        if (!Settings.getItemLists().get(3).isEmpty()) {
+            for (int x = 0; x <= amtRareItems; x++)
+                itemStackList.add(Settings.getItemLists().get(3).get(x));
+        }
 
-        for (int x = 0; x <= amtUnCommonItems; x++)
-            itemStackList.add(Settings.getItemLists().get(2).get(x));
+        if (!Settings.getItemLists().get(4).isEmpty()) {
+            for (int x = 0; x <= amtEpicItems; x++)
+                itemStackList.add(Settings.getItemLists().get(4).get(x));
+        }
 
-        for (int x = 0; x <= amtRareItems; x++)
-            itemStackList.add(Settings.getItemLists().get(3).get(x));
-
-        for (int x = 0; x <= amtEpicItems; x++)
-            itemStackList.add(Settings.getItemLists().get(4).get(x));
-
-        for (int x = 0; x <= amtLegendaryItems; x++)
-            itemStackList.add(Settings.getItemLists().get(5).get(x));
+        if (!Settings.getItemLists().get(5).isEmpty()) {
+            for (int x = 0; x <= amtLegendaryItems; x++)
+                itemStackList.add(Settings.getItemLists().get(5).get(x));
+        }
         Collections.shuffle(itemStackList, new Random());
 
         if (itemStackList.size() > totalItemsToDrop) {

@@ -3,13 +3,17 @@ package me.mancy.arandisdrops.menus.editor;
 import me.mancy.arandisdrops.data.Settings;
 import me.mancy.arandisdrops.main.Main;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 
@@ -17,7 +21,7 @@ public class ItemList implements Listener {
     private Inventory inventory = Bukkit.createInventory(null, 54, "Loading...");
 
     private Main plugin;
-
+    private static String rarity = "";
     public ItemList(Main main) {
         this.plugin = main;
         main.getServer().getPluginManager().registerEvents(this, main);
@@ -25,6 +29,23 @@ public class ItemList implements Listener {
 
     ItemList(String rarity) {
         this.inventory = Bukkit.createInventory(null, 54, rarity + " Item List");
+        ItemList.rarity = rarity;
+        ItemStack itemStack = new ItemStack(Material.ARROW);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.RED + "Back");
+        itemStack.setItemMeta(itemMeta);
+        inventory.setItem(53, itemStack);
+    }
+
+    @EventHandler
+    private void back(InventoryClickEvent event) {
+        if (event.getClickedInventory() != null && event.getClickedInventory().getName() != null) {
+            if (event.getClickedInventory().getName().equalsIgnoreCase(rarity + " Item List")) {
+                if (event.getSlot() == 53) {
+                    event.getWhoClicked().openInventory(new EditItemListsMenu().getInventory());
+                }
+            }
+        }
     }
 
     @EventHandler
@@ -76,7 +97,7 @@ public class ItemList implements Listener {
                     ItemStack[] contents = event.getInventory().getContents();
                     List<ItemStack> itemStacks = new ArrayList<>();
                     for (ItemStack i : contents) {
-                        if (i != null)
+                        if (i != null && !(i.hasItemMeta() && i.getItemMeta().hasDisplayName() && i.getItemMeta().getDisplayName().contains("Back")))
                             itemStacks.add(i);
                     }
                     if (event.getInventory().getName().contains("Common") && !event.getInventory().getName().contains("Un")) {
@@ -90,9 +111,9 @@ public class ItemList implements Listener {
                     } else if (event.getInventory().getName().contains("Legendary")) {
                         Settings.getItemLists().put(5, itemStacks);
                     }
-                    Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                        event.getPlayer().openInventory(new EditItemListsMenu().getInventory());
-                    }, 5L);
+                    Bukkit.getScheduler().runTaskLater(plugin, () ->
+                                    event.getPlayer().openInventory(new EditItemListsMenu().getInventory())
+                            , 5L);
                 }
             }
         }
