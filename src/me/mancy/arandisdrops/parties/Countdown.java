@@ -3,7 +3,7 @@ package me.mancy.arandisdrops.parties;
 import me.mancy.arandisdrops.data.Settings;
 import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.main.Main;
-import me.mancy.arandisdrops.utils.FormattedMessage;
+import me.mancy.arandisdrops.utils.Messager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -34,13 +34,13 @@ public class Countdown {
         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
         taskID = scheduler.scheduleSyncRepeatingTask(plugin, () -> {
             if (time == 0) {
-                Bukkit.broadcastMessage(new FormattedMessage(Strings.partyStarted.trim()).toString());
+                Bukkit.broadcastMessage(Messager.toFormatted(Strings.partyStarted.trim()));
                 new DropParty(dropTier).start();
                 stopTimer();
                 return;
             }
             if (time % 5 == 0 && time <= 20) {
-                Bukkit.broadcastMessage(new FormattedMessage(ChatColor.GRAY + "Time Until Drop Party" + ChatColor.DARK_GRAY + ": " + ChatColor.RED + time + " Seconds!").toString());
+                Bukkit.broadcastMessage(Messager.toFormatted(ChatColor.GRAY + "Time Until Drop party" + ChatColor.DARK_GRAY + ": " + ChatColor.AQUA + time + " Seconds!"));
             }
 
 

@@ -1,7 +1,7 @@
 package me.mancy.arandisdrops.parties;
 
 import me.mancy.arandisdrops.main.Main;
-import me.mancy.arandisdrops.utils.FormattedMessage;
+import me.mancy.arandisdrops.utils.Messager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -19,8 +19,8 @@ import java.util.UUID;
 
 public class DropLocation implements Listener {
 
-    public static Set<UUID> playersEditing = new HashSet<>();
     private Main plugin;
+
     public DropLocation(Main main) {
         main.getServer().getPluginManager().registerEvents(this, main);
         this.plugin = main;
@@ -28,50 +28,53 @@ public class DropLocation implements Listener {
 
     @EventHandler
     private void placeValidBlock(BlockPlaceEvent event) {
-            if (event.getBlock().getType().name().contains("STAINED_GLASS"))
-                return;
-            Iterator<Location> iterator = LocationManager.getUnValidatedLocations().iterator();
-            int amtValid = LocationManager.getValidatedLocations().size();
-            while (iterator.hasNext()) {
-                Location location = iterator.next();
-                if (!LocationManager.getValidatedLocations().contains(location)) {
-                    if (location.getBlockX() == event.getBlock().getX() && location.getBlockZ() == event.getBlock().getZ()) {
-                        if (event.getBlockAgainst().getType().name().contains("STAINED_GLASS")) {
-                            if (isValidLocation(location)) {
-                                LocationManager.addValidatedLocation(location);
-                                iterator.remove();
-                                break;
-                            }
+        if (event.getBlock().getType().name().contains("STAINED_GLASS"))
+            return;
+        Iterator<Location> iterator = LocationManager.getUnValidatedLocations().iterator();
+        int amtValid = LocationManager.getValidatedLocations().size();
+        while (iterator.hasNext()) {
+            Location location = iterator.next();
+            if (!LocationManager.getValidatedLocations().contains(location)) {
+                if (location.getBlockX() == event.getBlock().getX() && location.getBlockZ() == event.getBlock().getZ()) {
+                    if (event.getBlockAgainst().getType().name().contains("STAINED_GLASS")) {
+                        if (isValidLocation(location)) {
+                            LocationManager.addValidatedLocation(location);
+                            iterator.remove();
+                            break;
                         }
                     }
                 }
             }
-            if (amtValid < LocationManager.getValidatedLocations().size()) {
-                event.getPlayer().sendMessage(new FormattedMessage(ChatColor.AQUA + "Successfully validated location!").toString());
-            }
+        }
+        if (amtValid < LocationManager.getValidatedLocations().size()) {
+            event.getPlayer().sendMessage(Messager.toFormatted(ChatColor.AQUA + "Successfully validated location!"));
+        }
     }
 
     @EventHandler
     private void removeValidBlock(BlockBreakEvent event) {
         if (event.getPlayer().hasPermission("droppary.editlocations")) {
-            Bukkit.getServer().getScheduler().runTaskLater(plugin, () -> {
-                Iterator<Location> iterator = LocationManager.getValidatedLocations().iterator();
-                int amtValid = LocationManager.getValidatedLocations().size();
-                while (iterator.hasNext()) {
-                    Location location = iterator.next();
-                    if (event.getBlock().getX() == location.getBlockX() && event.getBlock().getZ() == location.getBlockZ()) {
+            Iterator<Location> iterator = LocationManager.getValidatedLocations().iterator();
+            int amtValid = LocationManager.getValidatedLocations().size();
+            if (event.getBlock().getType().name().contains("STAINED_GLASS"))
+                return;
+            while (iterator.hasNext()) {
+                Location location = iterator.next();
+                if (event.getBlock().getX() == location.getBlockX() && event.getBlock().getZ() == location.getBlockZ()) {
+
+                    if (event.getBlock().getType() == Material.BEACON)
+                        return;
+                    Bukkit.getServer().getScheduler().runTaskLater(plugin, () -> {
                         if (!isValidLocation(location)) {
                             LocationManager.addUnvalidatedLocation(location);
                             iterator.remove();
-                            break;
+                            if (amtValid > LocationManager.getValidatedLocations().size())
+                                event.getPlayer().sendMessage(Messager.toFormatted(ChatColor.RED + "Unvalidated location!"));
                         }
-
-                    }
+                    }, 5L);
+                    break;
                 }
-                if (amtValid > LocationManager.getValidatedLocations().size())
-                    event.getPlayer().sendMessage(new FormattedMessage(ChatColor.RED + "Unvalidated location!").toString());
-            }, 10L);
-
+            }
         }
     }
 

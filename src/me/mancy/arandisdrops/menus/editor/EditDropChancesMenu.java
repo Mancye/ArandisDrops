@@ -1,8 +1,8 @@
 package me.mancy.arandisdrops.menus.editor;
 
-import me.mancy.arandisdrops.utils.FormattedMessage;
 import me.mancy.arandisdrops.utils.Menu;
 import me.mancy.arandisdrops.utils.MenuRegistry;
+import me.mancy.arandisdrops.utils.Messager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -40,27 +40,27 @@ public class EditDropChancesMenu extends Menu {
     protected void handleInput(int slot, Player player) {
         switch (slot) {
             case 11:
-                player.sendMessage(new FormattedMessage(ChatColor.AQUA + "Enter a new value").toString());
+                Messager.sendMessage(player, ChatColor.GRAY + "Enter a new value");
                 PlayerEditingManager.instance.playerTierEditingMap.put(player, tier);
                 PlayerEditingManager.instance.playerRarityEditingMap.put(player, 1);
                 break;
             case 12:
-                player.sendMessage(new FormattedMessage(ChatColor.AQUA + "Enter a new value").toString());
+                Messager.sendMessage(player, ChatColor.GRAY + "Enter a new value");
                 PlayerEditingManager.instance.playerTierEditingMap.put(player, tier);
                 PlayerEditingManager.instance.playerRarityEditingMap.put(player, 2);
                 break;
             case 13:
-                player.sendMessage(new FormattedMessage(ChatColor.AQUA + "Enter a new value").toString());
+                Messager.sendMessage(player, ChatColor.GRAY + "Enter a new value");
                 PlayerEditingManager.instance.playerTierEditingMap.put(player, tier);
                 PlayerEditingManager.instance.playerRarityEditingMap.put(player, 3);
                 break;
             case 14:
-                player.sendMessage(new FormattedMessage(ChatColor.AQUA + "Enter a new value").toString());
+                Messager.sendMessage(player, ChatColor.GRAY + "Enter a new value");
                 PlayerEditingManager.instance.playerTierEditingMap.put(player, tier);
                 PlayerEditingManager.instance.playerRarityEditingMap.put(player, 4);
                 break;
             case 15:
-                player.sendMessage(new FormattedMessage(ChatColor.AQUA + "Enter a new value").toString());
+                Messager.sendMessage(player, ChatColor.GRAY + "Enter a new value");
                 PlayerEditingManager.instance.playerTierEditingMap.put(player, tier);
                 PlayerEditingManager.instance.playerRarityEditingMap.put(player, 5);
                 break;

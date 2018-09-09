@@ -7,7 +7,7 @@ import me.mancy.arandisdrops.menus.editor.EditorMainMenu;
 import me.mancy.arandisdrops.parties.DropLocation;
 import me.mancy.arandisdrops.parties.DropPartyManager;
 import me.mancy.arandisdrops.parties.LocationManager;
-import me.mancy.arandisdrops.utils.FormattedMessage;
+import me.mancy.arandisdrops.utils.Messager;
 import net.md_5.bungee.api.chat.*;
 import org.apache.commons.lang.math.NumberUtils;
 import org.bukkit.ChatColor;
@@ -25,7 +25,7 @@ public class BaseCMD implements CommandExecutor {
     private void sendHelpMsg(Player p) {
         String helpPrefix = ChatColor.GRAY + "-";
         p.sendMessage(" ");
-        p.sendMessage(new FormattedMessage(ChatColor.AQUA + "Drop Party" + ChatColor.GRAY + " help page:").toString());
+        Messager.sendMessage(p, ChatColor.AQUA + "Drop Party" + ChatColor.GRAY + " help page:");
         p.sendMessage(helpPrefix + ChatColor.AQUA + ChatColor.ITALIC.toString() + " /drops" + ChatColor.GRAY + " Opens the main drop menu");
         if (p.hasPermission("dropparty.edit") || p.hasPermission("dropparty.*") || p.hasPermission("*")) {
             p.sendMessage( helpPrefix + ChatColor.AQUA + ChatColor.ITALIC.toString() + " /drops edit" + ChatColor.GRAY + " To edit drop party settings");
@@ -42,7 +42,7 @@ public class BaseCMD implements CommandExecutor {
     }
     private void listLocations(Player p) {
         if (LocationManager.getValidatedLocations().size() > 0) {
-            p.sendMessage(new FormattedMessage(ChatColor.RED + "Valid Drop Locations ").toString());
+            Messager.sendMessage(p, ChatColor.RED + "Valid Drop Locations ");
             for (int x = 0; x < LocationManager.getValidatedLocations().size(); x++) {
                 BaseComponent message = new TextComponent(ChatColor.DARK_GRAY + "-" + ChatColor.GRAY + " Location #" + (x + 1));
                 Location loc = LocationManager.getValidatedLocations().get(x);
@@ -52,7 +52,7 @@ public class BaseCMD implements CommandExecutor {
                 p.spigot().sendMessage(message);
             }
         } else {
-            p.sendMessage(new FormattedMessage(ChatColor.RED + "No locations found").toString());
+            Messager.sendMessage(p, ChatColor.RED + "No locations found");
         }
 
     }
@@ -81,7 +81,7 @@ public class BaseCMD implements CommandExecutor {
                                 listLocations(p);
                                 return true;
                             } else {
-                                p.sendMessage(new FormattedMessage(Strings.noPermission.trim()).toString());
+                                Messager.sendMessage(p, Strings.noPermission.trim());
                             }
                             break;
                         case "edit":
@@ -89,7 +89,7 @@ public class BaseCMD implements CommandExecutor {
                                 if (!DropPartyManager.isActiveDropParty()) {
                                     p.openInventory(new EditorMainMenu().getInventory());
                                 } else {
-                                    p.sendMessage(new FormattedMessage(ChatColor.RED + "You can not edit drop party settings while there is a party active").toString());
+                                    Messager.sendMessage(p, ChatColor.RED + "You can not edit drop party settings while there is a party active");
                                 }
                             }
                             break;
@@ -97,8 +97,8 @@ public class BaseCMD implements CommandExecutor {
                             if (p.hasPermission("dropparty.edit") || p.hasPermission("dropparty.*") || p.hasPermission("*")) {
                                 Strings.reloadConfig();
                                 ParticlesDataManager.reloadConfig();
-                                p.sendMessage(new FormattedMessage(ChatColor.GRAY + "Reloaded strings file").toString());
-                                p.sendMessage(new FormattedMessage(ChatColor.GRAY + "Reloaded particles file").toString());
+                                Messager.sendMessage(p, ChatColor.GRAY + "Reloaded strings file");
+                                Messager.sendMessage(p, ChatColor.GRAY + "Reloaded particles file");
                             }
                             break;
                         default:
@@ -111,23 +111,22 @@ public class BaseCMD implements CommandExecutor {
                         if (p.hasPermission("dropparty.edit") || p.hasPermission("dropparty.*") || p.hasPermission("*")) {
                             if (p.getLocation().getBlock().getRelative(BlockFace.DOWN).getType().equals(Material.BEACON)) {
                                 if (LocationManager.getValidatedLocations().contains(LocationManager.getBlockLocation(p.getLocation())) || LocationManager.getUnValidatedLocations().contains(LocationManager.getBlockLocation(p.getLocation()))) {
-                                    p.sendMessage(new FormattedMessage(ChatColor.RED + "A drop location has already been set at this location!").toString());
+                                    Messager.sendMessage(p, ChatColor.RED + "A drop location has already been set at this location!");
                                     return false;
                                 }
-                                DropLocation.playersEditing.add(p.getUniqueId());
                                 LocationManager.addUnvalidatedLocation(p.getLocation());
-                                p.sendMessage(new FormattedMessage(ChatColor.GRAY + "Location set, to validate it you must place a stone slab above the beacon").toString());
+                                Messager.sendMessage(p, ChatColor.GRAY + "Location set, to validate it you must place a stone slab above the beacon");
 
                             } else {
-                                p.sendMessage(new FormattedMessage(ChatColor.RED + "You must be standing on a beacon").toString());
+                                Messager.sendMessage(p, ChatColor.RED + "You must be standing on a beacon");
                                 return false;
                             }
                         } else {
-                            p.sendMessage(new FormattedMessage(Strings.noPermission.trim()).toString());
+                            Messager.sendMessage(p, Strings.noPermission.trim());
                             return false;
                         }
                     } else {
-                        p.sendMessage(new FormattedMessage(Strings.invalidArguments.trim()).toString());
+                        Messager.sendMessage(p, Strings.invalidArguments.trim());
                         return false;
                     }
                     break;
@@ -136,29 +135,29 @@ public class BaseCMD implements CommandExecutor {
                         if (p.hasPermission("dropparty.edit") || p.hasPermission("dropparty.*") || p.hasPermission("*")) {
                             int index = Integer.parseInt(args[2]) - 1;
                             if ((index + 1) <= 0) {
-                                p.sendMessage(new FormattedMessage(ChatColor.RED + "Location index must be greater than 0, view a list of locations with " + ChatColor.AQUA + "/drops list").toString());
+                                Messager.sendMessage(p, ChatColor.RED + "Location index must be greater than 0, view a list of locations with " + ChatColor.AQUA + "/drops list");
                                 return false;
                             }
                             if (LocationManager.getValidatedLocations().isEmpty()) {
-                                p.sendMessage(new FormattedMessage(ChatColor.RED + "No locations found").toString());
+                                Messager.sendMessage(p, ChatColor.RED + "No locations found");
                                 return false;
                             }
                             if (LocationManager.getValidatedLocations().size() - 1 >= index) {
                                 Location loc = LocationManager.getValidatedLocations().get(index);
                                 LocationManager.getValidatedLocations().remove(index);
                                 LocationManager.getUnValidatedLocations().remove(loc);
-                                p.sendMessage(new FormattedMessage(ChatColor.GRAY + "Removed location " + (index + 1) + " successfully").toString());
+                                Messager.sendMessage(p, ChatColor.GRAY + "Removed location " + (index + 1) + " successfully");
                                 return true;
                             } else {
-                                p.sendMessage(new FormattedMessage(ChatColor.RED + "Invalid location index, view a list of locations with " + ChatColor.AQUA + "/drops list").toString());
+                                Messager.sendMessage(p, ChatColor.RED + "Invalid location index, view a list of locations with " + ChatColor.AQUA + "/drops list");
                                 return false;
                             }
                         } else {
-                            p.sendMessage(new FormattedMessage(Strings.noPermission.trim()).toString());
+                            Messager.sendMessage(p, Strings.noPermission.trim());
                             return false;
                         }
                     } else {
-                        p.sendMessage(new FormattedMessage(Strings.invalidArguments.trim()).toString());
+                        Messager.sendMessage(p, Strings.invalidArguments.trim());
                         return false;
                     }
 

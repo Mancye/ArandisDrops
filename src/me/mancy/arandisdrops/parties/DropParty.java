@@ -4,7 +4,7 @@ import me.mancy.arandisdrops.data.Particles;
 import me.mancy.arandisdrops.data.Settings;
 import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.main.Main;
-import me.mancy.arandisdrops.utils.FormattedMessage;
+import me.mancy.arandisdrops.utils.Messager;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Firework;
@@ -42,7 +42,7 @@ public class DropParty implements Listener {
             }
             Collections.shuffle(locations);
         } else {
-            Bukkit.getServer().getConsoleSender().sendMessage(new FormattedMessage(ChatColor.RED + "Error: No locations found when starting drop party").toString());
+            Messager.sendMessage(Bukkit.getConsoleSender(), ChatColor.RED + "Error: No locations found when starting drop party");
         }
     }
 
@@ -82,6 +82,7 @@ public class DropParty implements Listener {
                 amtLegendaryItems = Settings.getItemLists().get(5).size();
         }
         if (!Settings.getItemLists().get(1).isEmpty()) {
+
             for (int x = 0; x <= amtCommonItems; x++)
                 itemStackList.add(Settings.getItemLists().get(1).get(x));
         }
@@ -147,27 +148,27 @@ public class DropParty implements Listener {
         float green;
         float blue;
 
-        if (Arrays.asList(Settings.getItemLists().get(1)).contains(i)) {
+        if (Settings.getItemLists().get(1).contains(i)) {
             //Common = White
             red = Particles.particles.get("Common")[0];
             green = Particles.particles.get("Common")[1];
             blue = Particles.particles.get("Common")[2];
-        } else if (Arrays.asList(Settings.getItemLists().get(2)).contains(i)) {
+        } else if (Settings.getItemLists().get(2).contains(i)) {
             //Uncommon = green
             red = Particles.particles.get("Uncommon")[0];
             green = Particles.particles.get("Uncommon")[1];
             blue = Particles.particles.get("Uncommon")[2];
-        } else if (Arrays.asList(Settings.getItemLists().get(3)).contains(i)) {
+        } else if (Settings.getItemLists().get(3).contains(i)) {
             // Rare =blue
             red = Particles.particles.get("Rare")[0];
             green = Particles.particles.get("Rare")[1];
             blue = Particles.particles.get("Rare")[2];
-        } else if (Arrays.asList(Settings.getItemLists().get(4)).contains(i)) {
+        } else if (Settings.getItemLists().get(4).contains(i)) {
             //Epic = Gold
             red = Particles.particles.get("Epic")[0];
             green = Particles.particles.get("Epic")[1];
             blue = Particles.particles.get("Epic")[2];
-        } else if (Arrays.asList(Settings.getItemLists().get(5)).contains(i)) {
+        } else if (Settings.getItemLists().get(5).contains(i)) {
             // Legendary = Red
             red = Particles.particles.get("Legendary")[0];
             green = Particles.particles.get("Legendary")[1];
@@ -243,7 +244,7 @@ public class DropParty implements Listener {
 
             }
         } else {
-            Bukkit.getServer().getConsoleSender().sendMessage(new FormattedMessage(ChatColor.RED + "Fatal Error: No locations set at time of drop party starting").toString());
+            Messager.sendMessage(Bukkit.getConsoleSender(), ChatColor.RED + "Error: No locations found when starting drop party");
         }
     }
 
@@ -252,7 +253,7 @@ public class DropParty implements Listener {
         for (Block b : beaconCapBlocks) {
             b.setType(Material.STONE_SLAB);
         }
-        Bukkit.getServer().broadcastMessage(new FormattedMessage(Strings.partyEnded.trim()).toString());
+        Bukkit.getServer().broadcastMessage(Messager.toFormatted(Strings.partyEnded.trim()));
     }
 
 }

@@ -1,9 +1,9 @@
 package me.mancy.arandisdrops.menus.editor;
 
 import me.mancy.arandisdrops.data.Settings;
-import me.mancy.arandisdrops.utils.FormattedMessage;
 import me.mancy.arandisdrops.utils.Menu;
 import me.mancy.arandisdrops.utils.MenuRegistry;
+import me.mancy.arandisdrops.utils.Messager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -57,17 +57,17 @@ public class GlobalSettingsMenu extends Menu {
         switch (slot) {
             case 10:
                 player.closeInventory();
-                player.sendMessage(new FormattedMessage(ChatColor.GRAY + "Enter a new value for the radius").toString());
+                Messager.sendMessage(player, ChatColor.GRAY + "Enter a new value for the radius");
                 PlayerEditingManager.instance.playersEditingMap.put(player, SettingType.RADIUS);
                 break;
             case 12:
                 player.closeInventory();
-                player.sendMessage(new FormattedMessage(ChatColor.GRAY + "Enter a new value for the countdown").toString());
+                Messager.sendMessage(player, ChatColor.GRAY + "Enter a new value for the countdown time");
                 PlayerEditingManager.instance.playersEditingMap.put(player, SettingType.COUNTDOWN);
                 break;
             case 14:
                 player.closeInventory();
-                player.sendMessage(new FormattedMessage(ChatColor.GRAY + "Enter a new value for the height").toString());
+                Messager.sendMessage(player, ChatColor.GRAY + "Enter a new value for the height");
                 PlayerEditingManager.instance.playersEditingMap.put(player, SettingType.HEIGHT);
                 break;
             case 16:

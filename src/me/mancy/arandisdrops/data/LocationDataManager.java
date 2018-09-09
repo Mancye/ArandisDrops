@@ -2,7 +2,7 @@ package me.mancy.arandisdrops.data;
 
 import me.mancy.arandisdrops.main.Main;
 import me.mancy.arandisdrops.parties.LocationManager;
-import me.mancy.arandisdrops.utils.FormattedMessage;
+import me.mancy.arandisdrops.utils.Messager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -12,8 +12,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 public class LocationDataManager {
@@ -48,7 +46,7 @@ public class LocationDataManager {
             try {
                 LocationManager.setValidatedLocations((List<Location>) this.locationConfig.getList("Drop Locations"));
             } catch (ClassCastException e) {
-                Bukkit.getServer().getConsoleSender().sendMessage(new FormattedMessage(ChatColor.RED + "ERROR: Drop Locations configuration section corrupted, please revert changes to locations.yml file.").toString());
+                Messager.sendMessage(Bukkit.getConsoleSender(), ChatColor.RED + "ERROR: Drop Locations configuration section corrupted, please revert changes to locations.yml file.");
                 LocationManager.setValidatedLocations(new ArrayList<>());
             }
         } else {

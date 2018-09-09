@@ -4,21 +4,18 @@ import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.main.Main;
 import me.mancy.arandisdrops.data.Settings;
 import me.mancy.arandisdrops.parties.Countdown;
-import me.mancy.arandisdrops.parties.DropParty;
 import me.mancy.arandisdrops.parties.DropPartyManager;
 import me.mancy.arandisdrops.parties.LocationManager;
 import me.mancy.arandisdrops.tokens.Account;
 import me.mancy.arandisdrops.tokens.AccountManager;
-import me.mancy.arandisdrops.utils.FormattedMessage;
 import me.mancy.arandisdrops.utils.Menu;
 import me.mancy.arandisdrops.utils.MenuRegistry;
+import me.mancy.arandisdrops.utils.Messager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 
 import java.util.ArrayList;
@@ -50,6 +47,8 @@ public class MainMenu extends Menu implements Listener {
     private List<String> getTierLore(int tier, Player p) {
         List<String> lore = new ArrayList<>();
         Account account = AccountManager.getPlayersAccount(p);
+        if (account == null)
+            return null;
         ChatColor color;
         if (account.getBalance(tier) >= Settings.getCosts().get(tier))
             color = ChatColor.GREEN;
@@ -68,7 +67,8 @@ public class MainMenu extends Menu implements Listener {
         if (AccountManager.getPlayersAccount(p) == null) return;
 
         Account account = AccountManager.getPlayersAccount(p);
-
+        if (account == null)
+            return;
 
         List<String> tokensDesc = new ArrayList<>();
         for (int x = 1; x <= 4; x++) {
@@ -86,13 +86,13 @@ public class MainMenu extends Menu implements Listener {
         if (slot % 2 == 0 && slot >= 10 && slot <= 18) {
             if (DropPartyManager.isActiveDropParty()) {
                 player.closeInventory();
-                player.sendMessage(new FormattedMessage(Strings.alreadyActive).toString());
+                player.sendMessage(Messager.toFormatted(Strings.alreadyActive.trim()));
             } else if (LocationManager.getValidatedLocations().isEmpty()) {
                 player.closeInventory();
-                player.sendMessage(new FormattedMessage(ChatColor.RED + "Error: No locations set").toString());
+                Messager.sendMessage(player, ChatColor.RED + "Error: No locations set");
             } else if (Settings.getItemLists().get(1).size() == 0 && Settings.getItemLists().get(2).size() == 0 && Settings.getItemLists().get(3).size() == 0 && Settings.getItemLists().get(4).size() == 0 && Settings.getItemLists().get(5).size() == 0) {
                 player.closeInventory();
-                player.sendMessage(new FormattedMessage(ChatColor.RED + "Error: No items to drop").toString());
+                Messager.sendMessage(player, ChatColor.RED + "Error: No items to drop");
             } else {
                 Countdown countdown = new Countdown();
                 int tier = Integer.parseInt(getInventory().getItem(slot).getItemMeta().getDisplayName().charAt(7) + "");
@@ -104,7 +104,7 @@ public class MainMenu extends Menu implements Listener {
                     player.closeInventory();
                 } else {
                     player.closeInventory();
-                    player.sendMessage(new FormattedMessage(Strings.insufficientBalance).toString());
+                    player.sendMessage(Messager.toFormatted(Strings.insufficientBalance.trim()));
                 }
             }
         }

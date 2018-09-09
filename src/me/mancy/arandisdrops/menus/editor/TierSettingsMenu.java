@@ -1,8 +1,8 @@
 package me.mancy.arandisdrops.menus.editor;
 
-import me.mancy.arandisdrops.utils.FormattedMessage;
 import me.mancy.arandisdrops.utils.Menu;
 import me.mancy.arandisdrops.utils.MenuRegistry;
+import me.mancy.arandisdrops.utils.Messager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -34,7 +34,6 @@ public class TierSettingsMenu extends Menu {
         setButton(14, Material.BOOK, ChatColor.AQUA + "Edit Cost", new ArrayList<>());
         setExitButton(18);
         setBackButton(26);
-
     }
 
     @Override
@@ -47,7 +46,7 @@ public class TierSettingsMenu extends Menu {
             case 14:
                 PlayerEditingManager.instance.playerTierEditingMap.put(player, tier);
                 PlayerEditingManager.instance.playersEditingMap.put(player, SettingType.COST);
-                player.sendMessage(new FormattedMessage(ChatColor.AQUA + "Enter a new cost").toString());
+                Messager.sendMessage(player, ChatColor.AQUA + "Enter a new cost");
                 break;
             case 18:
                 player.closeInventory();

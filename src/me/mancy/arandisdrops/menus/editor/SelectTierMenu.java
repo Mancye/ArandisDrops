@@ -28,9 +28,9 @@ public class SelectTierMenu extends Menu {
 
         setButton(12, Material.IRON_BLOCK, ChatColor.GRAY + "Tier 2 Settings", null);
 
-        setButton(14, Material.GOLD_BLOCK, ChatColor.AQUA + "Tier 3 Settings", null);
+        setButton(14, Material.GOLD_BLOCK, ChatColor.GOLD + "Tier 3 Settings", null);
 
-        setButton(16, Material.DIAMOND_BLOCK, ChatColor.RED + "Tier 4 Settings", null);
+        setButton(16, Material.DIAMOND_BLOCK, ChatColor.AQUA + "Tier 4 Settings", null);
         setExitButton(18);
         setBackButton(26);
         MenuRegistry.registeredMenus.put(getInventory(), this);

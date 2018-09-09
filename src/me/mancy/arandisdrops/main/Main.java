@@ -13,8 +13,8 @@ import me.mancy.arandisdrops.tokens.Account;
 import me.mancy.arandisdrops.tokens.AccountManager;
 import me.mancy.arandisdrops.tokens.AccountSetup;
 import me.mancy.arandisdrops.tokens.listener.TokenChangeHandler;
-import me.mancy.arandisdrops.utils.FormattedMessage;
 import me.mancy.arandisdrops.utils.MenuListener;
+import me.mancy.arandisdrops.utils.Messager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
@@ -29,13 +29,13 @@ public class Main extends JavaPlugin {
         registerListeners();
         loadData();
         loadAccounts();
-        Bukkit.getConsoleSender().sendMessage(new FormattedMessage(ChatColor.GREEN + this.getDescription().getName()).toString() + " Was Successfully Enabled");
+        Bukkit.getConsoleSender().sendMessage(Messager.toFormatted(ChatColor.GREEN + this.getDescription().getName())+ " Was Successfully Enabled");
     }
 
     @Override
     public void onDisable() {
         saveData();
-        Bukkit.getConsoleSender().sendMessage(new FormattedMessage(ChatColor.RED + this.getDescription().getName()).toString() + " Was Successfully Disabled");
+        Bukkit.getConsoleSender().sendMessage(Messager.toFormatted(ChatColor.RED + this.getDescription().getName()) + " Was Successfully Disabled");
     }
 
     private void loadData() {
