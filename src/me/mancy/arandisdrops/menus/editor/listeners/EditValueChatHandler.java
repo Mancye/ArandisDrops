@@ -14,6 +14,8 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public class EditValueChatHandler implements Listener {
 
+    private Settings settings = Settings.getInstance();
+
     public EditValueChatHandler(Main main) {
         main.getServer().getPluginManager().registerEvents(this, main);
     }
@@ -28,21 +30,21 @@ public class EditValueChatHandler implements Listener {
             if (NumberUtils.isNumber(event.getMessage())) {
                 switch (PlayerEditingManager.instance.playersEditingMap.get(event.getPlayer())) {
                     case HEIGHT:
-                        Settings.setDropHeight(Double.parseDouble(event.getMessage()));
+                        settings.setDropHeight(Double.parseDouble(event.getMessage()));
                         PlayerEditingManager.instance.playersEditingMap.remove(event.getPlayer());
-                        Messager.sendMessage(event.getPlayer(), ChatColor.GRAY + "Set drop height to " + ChatColor.AQUA + Settings.getDropHeight());
+                        Messager.sendMessage(event.getPlayer(), ChatColor.GRAY + "Set drop height to " + ChatColor.AQUA + settings.getDropHeight());
                         event.getPlayer().openInventory(new GlobalSettingsMenu().getInventory());
                         break;
                     case RADIUS:
-                        Settings.setDropRadius(Double.parseDouble(event.getMessage()));
+                        settings.setDropRadius(Double.parseDouble(event.getMessage()));
                         PlayerEditingManager.instance.playersEditingMap.remove(event.getPlayer());
-                        Messager.sendMessage(event.getPlayer(), ChatColor.GRAY + "Set drop radius to " + ChatColor.AQUA + Settings.getDropRadius());
+                        Messager.sendMessage(event.getPlayer(), ChatColor.GRAY + "Set drop radius to " + ChatColor.AQUA + settings.getDropRadius());
                         event.getPlayer().openInventory(new GlobalSettingsMenu().getInventory());
                         break;
                     case COUNTDOWN:
-                        Settings.setCountdownTime(Integer.parseInt(event.getMessage()));
+                        settings.setCountdownTime(Integer.parseInt(event.getMessage()));
                         PlayerEditingManager.instance.playersEditingMap.remove(event.getPlayer());
-                        Messager.sendMessage(event.getPlayer(), ChatColor.GRAY + "Set countdown time to " + ChatColor.AQUA + Settings.getCountdownTime());
+                        Messager.sendMessage(event.getPlayer(), ChatColor.GRAY + "Set countdown time to " + ChatColor.AQUA + settings.getCountdownTime());
                         event.getPlayer().openInventory(new GlobalSettingsMenu().getInventory());
                         break;
                 }
@@ -55,20 +57,20 @@ public class EditValueChatHandler implements Listener {
                 int tier = PlayerEditingManager.instance.playerTierEditingMap.get(event.getPlayer());
                 switch (PlayerEditingManager.instance.playersEditingMap.get(event.getPlayer())) {
                     case COST:
-                        Settings.getCosts().put(tier, Integer.parseInt(event.getMessage()));
+                        settings.getCosts().put(tier, Integer.parseInt(event.getMessage()));
                         PlayerEditingManager.instance.playerTierEditingMap.remove(event.getPlayer());
                         PlayerEditingManager.instance.playersEditingMap.remove(event.getPlayer());
-                        Messager.sendMessage(event.getPlayer(), ChatColor.GRAY + "Set cost to " + ChatColor.AQUA + Settings.getCosts().get(tier));
+                        Messager.sendMessage(event.getPlayer(), ChatColor.GRAY + "Set cost to " + ChatColor.AQUA + settings.getCosts().get(tier) + ChatColor.GRAY + " tokens");
                         event.getPlayer().openInventory(new TierSettingsMenu(tier).getInventory());
                         break;
                     case CHANCE:
                         if (PlayerEditingManager.instance.playerRarityEditingMap.containsKey(event.getPlayer())) {
                             int rarity = PlayerEditingManager.instance.playerRarityEditingMap.get(event.getPlayer());
-                            Settings.getDropChances().get(tier)[rarity - 1] = Integer.parseInt(event.getMessage());
+                            settings.getDropChances().get(tier)[rarity - 1] = Integer.parseInt(event.getMessage());
                             PlayerEditingManager.instance.playerTierEditingMap.remove(event.getPlayer());
                             PlayerEditingManager.instance.playerRarityEditingMap.remove(event.getPlayer());
                             PlayerEditingManager.instance.playersEditingMap.remove(event.getPlayer());
-                            Messager.sendMessage(event.getPlayer(), ChatColor.GRAY + "Set drop chance to " + ChatColor.AQUA + Settings.getDropChances().get(tier)[rarity - 1]);
+                            Messager.sendMessage(event.getPlayer(), ChatColor.GRAY + "Set drop chance to " + ChatColor.AQUA + settings.getDropChances().get(tier)[rarity - 1]);
                             event.getPlayer().openInventory(new TierSettingsMenu(tier).getInventory());
                         }
                         break;

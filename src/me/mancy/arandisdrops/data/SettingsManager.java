@@ -17,6 +17,7 @@ public class SettingsManager {
 
     private File settingsFile;
     private FileConfiguration settingsConfiguration;
+    private Settings settings = Settings.getInstance();
 
     private final Main plugin;
 
@@ -37,35 +38,35 @@ public class SettingsManager {
     }
 
     public void saveSettings() {
-        settingsConfiguration.set("Drop Radius", Settings.getDropRadius());
+        settingsConfiguration.set("Drop Radius", settings.getDropRadius());
         saveFile(settingsConfiguration, settingsFile);
-        settingsConfiguration.set("Countdown Time", Settings.getCountdownTime());
+        settingsConfiguration.set("Countdown Time", settings.getCountdownTime());
         saveFile(settingsConfiguration, settingsFile);
-        settingsConfiguration.set("Drop Height", Settings.getDropHeight());
+        settingsConfiguration.set("Drop Height", settings.getDropHeight());
         saveFile(settingsConfiguration, settingsFile);
 
         String[] rarities = {"Common", "Uncommon", "Rare", "Epic", "Legendary"};
-        for (int x : Settings.getItemLists().keySet()) {
-            settingsConfiguration.set("Item Lists." + rarities[x - 1], Settings.getItemLists().get(x));
+        for (int x : settings.getItemLists().keySet()) {
+            settingsConfiguration.set("Item Lists." + rarities[x - 1], settings.getItemLists().get(x));
             saveFile(settingsConfiguration, settingsFile);
         }
 
-        for (int x : Settings.getCosts().keySet()) {
-            settingsConfiguration.set("Costs.Tier " + x, Settings.getCosts().get(x));
+        for (int x : settings.getCosts().keySet()) {
+            settingsConfiguration.set("Costs.Tier " + x, settings.getCosts().get(x));
             saveFile(settingsConfiguration, settingsFile);
         }
 
-        for (int x : Settings.getDropChances().keySet()) {
-            settingsConfiguration.set("Drop Chances.Tier " + x, Settings.getDropChances().get(x));
+        for (int x : settings.getDropChances().keySet()) {
+            settingsConfiguration.set("Drop Chances.Tier " + x, settings.getDropChances().get(x));
             saveFile(settingsConfiguration, settingsFile);
         }
 
     }
 
     public void loadSettings() {
-        Settings.setDropRadius(settingsConfiguration.getDouble("Drop Radius"));
-        Settings.setCountdownTime(settingsConfiguration.getInt("Countdown Time"));
-        Settings.setDropHeight(settingsConfiguration.getDouble("Drop Height"));
+        settings.setDropRadius(settingsConfiguration.getDouble("Drop Radius"));
+        settings.setCountdownTime(settingsConfiguration.getInt("Countdown Time"));
+        settings.setDropHeight(settingsConfiguration.getDouble("Drop Height"));
 
         Map<Integer, List<ItemStack>> itemList = new HashMap<>();
         String[] rarities = {"Common", "Uncommon", "Rare", "Epic", "Legendary"};
@@ -75,7 +76,7 @@ public class SettingsManager {
 
             itemList.put(x, (List<ItemStack>) settingsConfiguration.getList("Item Lists." + rarities[x - 1]));
         }
-        Settings.setItemLists(itemList);
+        settings.setItemLists(itemList);
 
         Map<Integer, Integer> costs = new HashMap<>();
         for (int x = 1; x <= 4; x++) {
@@ -83,7 +84,7 @@ public class SettingsManager {
                 settingsConfiguration.set("Costs.Tier " + x, 0);
             costs.put(x, settingsConfiguration.getInt("Costs.Tier " + x));
         }
-        Settings.setCosts(costs);
+        settings.setCosts(costs);
 
         Map<Integer, Integer[]> dropChances = new HashMap<>();
 
@@ -92,7 +93,7 @@ public class SettingsManager {
                 settingsConfiguration.set("Drop Chances.Tier " + x, null);
             dropChances.put(x, settingsConfiguration.getIntegerList("Drop Chances.Tier " + x).toArray(new Integer[settingsConfiguration.getIntegerList("Drop Chances.Tier " + x).size()]));
         }
-        Settings.setDropChances(dropChances);
+        settings.setDropChances(dropChances);
     }
 
     private void saveFile(FileConfiguration ymlConfig, File ymlFile) {

@@ -46,7 +46,8 @@ public class TierSettingsMenu extends Menu {
             case 14:
                 PlayerEditingManager.instance.playerTierEditingMap.put(player, tier);
                 PlayerEditingManager.instance.playersEditingMap.put(player, SettingType.COST);
-                Messager.sendMessage(player, ChatColor.AQUA + "Enter a new cost");
+                player.closeInventory();
+                Messager.sendMessage(player, ChatColor.AQUA + "Enter a new cost: ");
                 break;
             case 18:
                 player.closeInventory();

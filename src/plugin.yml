@@ -2,7 +2,7 @@ main: me.mancy.arandisdrops.main.Main
 api-version: 1.13
 name: ArandisDrops
 author: Mancy
-version: 2.0.1
+version: 2.1
 commands:
   drops:
   dtokens:

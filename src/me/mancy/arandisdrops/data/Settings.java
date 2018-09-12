@@ -8,65 +8,71 @@ import java.util.Map;
 
 public class Settings {
 
+    private static Settings instance = null;
+
     // Global Settings
-    private static double dropRadius;
-    private static double dropHeight;
-    private static int countdownTime;
+    private double dropRadius;
+    private double dropHeight;
+    private int countdownTime;
 
     //Tier Settings
-    private static Map<Integer, Integer[]> dropChances = new HashMap<>();
-    private static Map<Integer, Integer> costs = new HashMap<>();
-    private static Map<Integer, List<ItemStack>> itemLists = new HashMap<>();
+    private Map<Integer, Integer[]> dropChances = new HashMap<>();
+    private Map<Integer, Integer> costs = new HashMap<>();
+    private Map<Integer, List<ItemStack>> itemLists = new HashMap<>();
 
-    public static double getDropRadius() {
+    public double getDropRadius() {
         return dropRadius;
     }
 
-    public static void setDropRadius(double dropRadius) {
-        Settings.dropRadius = dropRadius;
+    public void setDropRadius(double dropRadius) {
+        this.dropRadius = dropRadius;
     }
 
-    public static double getDropHeight() {
+    public double getDropHeight() {
         return dropHeight;
     }
 
-    public static void setDropHeight(double dropHeight) {
-        Settings.dropHeight = dropHeight;
+    public void setDropHeight(double dropHeight) {
+        this.dropHeight = dropHeight;
     }
 
-    public static int getCountdownTime() {
+    public int getCountdownTime() {
         return countdownTime;
     }
 
-    public static void setCountdownTime(int countdownTime) {
-        Settings.countdownTime = countdownTime;
+    public void setCountdownTime(int countdownTime) {
+        this.countdownTime = countdownTime;
     }
 
-    public static Map<Integer, Integer[]> getDropChances() {
+    public Map<Integer, Integer[]> getDropChances() {
         return dropChances;
     }
 
-    public static void setDropChances(Map<Integer, Integer[]> dropChances) {
-        Settings.dropChances = dropChances;
+     void setDropChances(Map<Integer, Integer[]> dropChances) {
+         this.dropChances = dropChances;
     }
 
-    public static Map<Integer, Integer> getCosts() {
+    public Map<Integer, Integer> getCosts() {
         return costs;
     }
 
-    public static void setCosts(Map<Integer, Integer> costs) {
-        Settings.costs = costs;
+     void setCosts(Map<Integer, Integer> costs) {
+         this.costs = costs;
     }
 
-    public static Map<Integer, List<ItemStack>> getItemLists() {
+    public Map<Integer, List<ItemStack>> getItemLists() {
         return itemLists;
     }
 
-    public static void setItemLists(Map<Integer, List<ItemStack>> itemLists) {
-        Settings.itemLists = itemLists;
+     void setItemLists(Map<Integer, List<ItemStack>> itemLists) {
+         this.itemLists = itemLists;
     }
 
-
+    public static Settings getInstance() {
+        if (instance == null)
+            instance = new Settings();
+        return instance;
+    }
 
 
 }

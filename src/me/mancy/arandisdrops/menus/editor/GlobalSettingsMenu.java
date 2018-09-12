@@ -17,6 +17,8 @@ public class GlobalSettingsMenu extends Menu {
 
     private final Inventory menu = Bukkit.createInventory(null, 27, ChatColor.GREEN + "Global Settings");
 
+    private Settings settings = Settings.getInstance();
+
     private final Material MATERIAL_RADIUS = Material.HOPPER;
     private final Material MATERIAL_COUNTDOWN = Material.CLOCK;
     private final Material MATERIAL_HEIGHT = Material.QUARTZ_STAIRS;
@@ -34,15 +36,15 @@ public class GlobalSettingsMenu extends Menu {
     @Override
     protected void setUp(){
         List<String> radiusLore = new ArrayList<>(2);
-        radiusLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Current: " + Settings.getDropRadius());
+        radiusLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Current: " + settings.getDropRadius());
         setButton(10, MATERIAL_RADIUS, ChatColor.AQUA + "Edit Radius", radiusLore);
 
         List<String> countdownLore = new ArrayList<>(2);
-        countdownLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Current: " + Settings.getCountdownTime());
+        countdownLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Current: " + settings.getCountdownTime());
         setButton(12, MATERIAL_COUNTDOWN, ChatColor.AQUA + "Edit Countdown", countdownLore);
 
         List<String> heightLore = new ArrayList<>(2);
-        heightLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Current: " + Settings.getDropHeight());
+        heightLore.add(ChatColor.DARK_GRAY + "- " + ChatColor.GRAY + "Current: " + settings.getDropHeight());
         setButton(14, MATERIAL_HEIGHT, ChatColor.AQUA + "Edit Height", heightLore);
 
         setButton(16, MATERIAL_ITEM_LIST, ChatColor.AQUA + "Edit Item Lists", new ArrayList<>());

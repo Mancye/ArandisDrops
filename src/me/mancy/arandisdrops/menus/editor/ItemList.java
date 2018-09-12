@@ -5,7 +5,6 @@ import me.mancy.arandisdrops.main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -19,6 +18,8 @@ import java.util.*;
 
 public class ItemList implements Listener {
     private Inventory inventory = Bukkit.createInventory(null, 54, "Loading...");
+
+    private Settings settings = Settings.getInstance();
 
     private Main plugin;
     private static String rarity = "";
@@ -55,31 +56,31 @@ public class ItemList implements Listener {
                 if (event.getInventory().getName().contains("Item List") && !event.getInventory().getName().contains("Lists")) {
                     Inventory inventory = event.getInventory();
                     if (inventory.getName().contains("Common") && !inventory.getName().contains("Un")) {
-                        if (Settings.getItemLists().get(1).size() > 0)
-                            for (ItemStack i : Settings.getItemLists().get(1)) {
+                        if (settings.getItemLists().get(1).size() > 0)
+                            for (ItemStack i : settings.getItemLists().get(1)) {
                                 if (i != null)
                                     inventory.addItem(i);
                             }
                     } else if (inventory.getName().contains("Uncommon")) {
-                        for (ItemStack i : Settings.getItemLists().get(2)) {
+                        for (ItemStack i : settings.getItemLists().get(2)) {
                             if (i != null)
                                 inventory.addItem(i);
                         }
 
                     } else if (inventory.getName().contains("Rare")) {
-                        for (ItemStack i : Settings.getItemLists().get(3)) {
+                        for (ItemStack i : settings.getItemLists().get(3)) {
                             if (i != null)
                                 inventory.addItem(i);
                         }
 
                     } else if (inventory.getName().contains("Epic")) {
-                        for (ItemStack i : Settings.getItemLists().get(4)) {
+                        for (ItemStack i : settings.getItemLists().get(4)) {
                             if (i != null)
                                 inventory.addItem(i);
                         }
 
                     } else if (inventory.getName().contains("Legendary")) {
-                        for (ItemStack i : Settings.getItemLists().get(5)) {
+                        for (ItemStack i : settings.getItemLists().get(5)) {
                             if (i != null)
                                 inventory.addItem(i);
                         }
@@ -101,15 +102,15 @@ public class ItemList implements Listener {
                             itemStacks.add(i);
                     }
                     if (event.getInventory().getName().contains("Common") && !event.getInventory().getName().contains("Un")) {
-                        Settings.getItemLists().put(1, itemStacks);
+                        settings.getItemLists().put(1, itemStacks);
                     } else if (event.getInventory().getName().contains("Uncommon")) {
-                        Settings.getItemLists().put(2, itemStacks);
+                        settings.getItemLists().put(2, itemStacks);
                     } else if (event.getInventory().getName().contains("Rare")) {
-                        Settings.getItemLists().put(3, itemStacks);
+                        settings.getItemLists().put(3, itemStacks);
                     } else if (event.getInventory().getName().contains("Epic")) {
-                        Settings.getItemLists().put(4, itemStacks);
+                        settings.getItemLists().put(4, itemStacks);
                     } else if (event.getInventory().getName().contains("Legendary")) {
-                        Settings.getItemLists().put(5, itemStacks);
+                        settings.getItemLists().put(5, itemStacks);
                     }
                     Bukkit.getScheduler().runTaskLater(plugin, () ->
                                     event.getPlayer().openInventory(new EditItemListsMenu().getInventory())

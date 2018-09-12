@@ -4,7 +4,6 @@ import me.mancy.arandisdrops.data.ParticlesDataManager;
 import me.mancy.arandisdrops.data.Strings;
 import me.mancy.arandisdrops.menus.MainMenu;
 import me.mancy.arandisdrops.menus.editor.EditorMainMenu;
-import me.mancy.arandisdrops.parties.DropLocation;
 import me.mancy.arandisdrops.parties.DropPartyManager;
 import me.mancy.arandisdrops.parties.LocationManager;
 import me.mancy.arandisdrops.utils.Messager;

@@ -8,9 +8,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitScheduler;
 
+
 public class Countdown {
     private static Main plugin;
-
+    private Settings settings = Settings.getInstance();
     private int time = 0;
     private int taskID;
 
@@ -25,7 +26,7 @@ public class Countdown {
         Bukkit.broadcastMessage("");
         Bukkit.broadcastMessage("");
         Bukkit.broadcastMessage(ChatColor.GREEN + "          TIER " + tier + " DROP PARTY         ");
-        Bukkit.broadcastMessage(ChatColor.AQUA + "           BEGINS IN " + Settings.getCountdownTime() + " SECONDS");
+        Bukkit.broadcastMessage(ChatColor.AQUA + "           BEGINS IN " + settings.getCountdownTime() + " SECONDS");
         Bukkit.broadcastMessage("");
         Bukkit.broadcastMessage("");
     }

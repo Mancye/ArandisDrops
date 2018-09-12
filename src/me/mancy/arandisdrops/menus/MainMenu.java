@@ -25,6 +25,8 @@ public class MainMenu extends Menu implements Listener {
 
     private Inventory menu = Bukkit.createInventory(null, 27, ChatColor.AQUA + "Start a Drop Party");
 
+    private Settings settings = Settings.getInstance();
+
     public MainMenu(Main main) {
         main.getServer().getPluginManager().registerEvents(this, main);
     }
@@ -50,12 +52,12 @@ public class MainMenu extends Menu implements Listener {
         if (account == null)
             return null;
         ChatColor color;
-        if (account.getBalance(tier) >= Settings.getCosts().get(tier))
+        if (account.getBalance(tier) >= settings.getCosts().get(tier))
             color = ChatColor.GREEN;
         else
             color = ChatColor.RED;
         lore.add(color + ChatColor.ITALIC.toString() + "Click To Start A Tier " + tier + " Drop Party!");
-        lore.add(color + ChatColor.ITALIC.toString() + "COST: " + Settings.getCosts().get(tier) + " Token(s)");
+        lore.add(color + ChatColor.ITALIC.toString() + "COST: " + settings.getCosts().get(tier) + " Token(s)");
         return lore;
     }
 
@@ -90,16 +92,16 @@ public class MainMenu extends Menu implements Listener {
             } else if (LocationManager.getValidatedLocations().isEmpty()) {
                 player.closeInventory();
                 Messager.sendMessage(player, ChatColor.RED + "Error: No locations set");
-            } else if (Settings.getItemLists().get(1).size() == 0 && Settings.getItemLists().get(2).size() == 0 && Settings.getItemLists().get(3).size() == 0 && Settings.getItemLists().get(4).size() == 0 && Settings.getItemLists().get(5).size() == 0) {
+            } else if (settings.getItemLists().get(1).size() == 0 && settings.getItemLists().get(2).size() == 0 && settings.getItemLists().get(3).size() == 0 && settings.getItemLists().get(4).size() == 0 && settings.getItemLists().get(5).size() == 0) {
                 player.closeInventory();
                 Messager.sendMessage(player, ChatColor.RED + "Error: No items to drop");
             } else {
                 Countdown countdown = new Countdown();
                 int tier = Integer.parseInt(getInventory().getItem(slot).getItemMeta().getDisplayName().charAt(7) + "");
 
-                if (account.getBalance(tier) >= Settings.getCosts().get(tier)) {
-                    account.removeTokens(tier, Settings.getCosts().get(tier));
-                    countdown.setTimer(Settings.getCountdownTime(), tier);
+                if (account.getBalance(tier) >= settings.getCosts().get(tier)) {
+                    account.removeTokens(tier, settings.getCosts().get(tier));
+                    countdown.setTimer(settings.getCountdownTime(), tier);
                     countdown.startTimer(tier);
                     player.closeInventory();
                 } else {

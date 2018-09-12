@@ -19,6 +19,7 @@ public class DropParty implements Listener {
 
     private static Main plugin;
     private int tier;
+    private Settings settings = Settings.getInstance();
 
     private List<Location> locations = new ArrayList<>(LocationManager.getValidatedLocations().size());
     private List<Block> beaconCapBlocks = new ArrayList<>(LocationManager.getValidatedLocations().size());
@@ -52,69 +53,24 @@ public class DropParty implements Listener {
 
         List<ItemStack> itemStackList = new ArrayList<>();
 
-        int amtCommonItems = Math.round((Settings.getDropChances().get(tier)[0] / 100f) * totalItemsToDrop);
-        int amtUnCommonItems = Math.round((Settings.getDropChances().get(tier)[1] / 100f) * totalItemsToDrop);
-        int amtRareItems = Math.round((Settings.getDropChances().get(tier)[2] / 100f) * totalItemsToDrop);
-        int amtEpicItems = Math.round((Settings.getDropChances().get(tier)[3] / 100f) * totalItemsToDrop);
-        int amtLegendaryItems = Math.round((Settings.getDropChances().get(tier)[4] / 100f) * totalItemsToDrop);
-        if (!Settings.getItemLists().get(1).isEmpty()) {
-            if (amtCommonItems > Settings.getItemLists().get(1).size())
-                amtCommonItems = Settings.getItemLists().get(1).size();
+        for (int x = 1; x <= 5; x++) {
+            int amtItems = Math.round((settings.getDropChances().get(tier)[x - 1] / 100f) * totalItemsToDrop);
+
+            if (!settings.getItemLists().get(x).isEmpty()) {
+                if (amtItems > settings.getItemLists().get(x).size())
+                    amtItems = settings.getItemLists().get(x).size();
+            }
+
+            for (int i = 0; i <= amtItems; i++)
+                itemStackList.add(settings.getItemLists().get(x).get(i));
         }
 
-        if (!Settings.getItemLists().get(2).isEmpty()) {
-            if (amtUnCommonItems > Settings.getItemLists().get(2).size())
-                amtUnCommonItems = Settings.getItemLists().get(2).size();
-        }
-
-        if (!Settings.getItemLists().get(3).isEmpty()) {
-            if (amtRareItems > Settings.getItemLists().get(3).size())
-                amtRareItems = Settings.getItemLists().get(3).size();
-        }
-
-        if (!Settings.getItemLists().get(4).isEmpty()) {
-            if (amtEpicItems > Settings.getItemLists().get(4).size())
-                amtEpicItems = Settings.getItemLists().get(4).size();
-        }
-
-        if (!Settings.getItemLists().get(5).isEmpty()) {
-            if (amtLegendaryItems > Settings.getItemLists().get(5).size())
-                amtLegendaryItems = Settings.getItemLists().get(5).size();
-        }
-        if (!Settings.getItemLists().get(1).isEmpty()) {
-
-            for (int x = 0; x <= amtCommonItems; x++)
-                itemStackList.add(Settings.getItemLists().get(1).get(x));
-        }
-
-        if (!Settings.getItemLists().get(2).isEmpty()) {
-            for (int x = 0; x <= amtUnCommonItems; x++)
-                itemStackList.add(Settings.getItemLists().get(2).get(x));
-        }
-
-        if (!Settings.getItemLists().get(3).isEmpty()) {
-            for (int x = 0; x <= amtRareItems; x++)
-                itemStackList.add(Settings.getItemLists().get(3).get(x));
-        }
-
-        if (!Settings.getItemLists().get(4).isEmpty()) {
-            for (int x = 0; x <= amtEpicItems; x++)
-                itemStackList.add(Settings.getItemLists().get(4).get(x));
-        }
-
-        if (!Settings.getItemLists().get(5).isEmpty()) {
-            for (int x = 0; x <= amtLegendaryItems; x++)
-                itemStackList.add(Settings.getItemLists().get(5).get(x));
-        }
-        Collections.shuffle(itemStackList, new Random());
 
         if (itemStackList.size() > totalItemsToDrop) {
-            itemStackList.subList(totalItemsToDrop - 1, itemStackList.size());
-            for (int x = itemStackList.size() - 1; x > totalItemsToDrop; x--) {
-                itemStackList.remove(x);
-            }
+            itemStackList.subList(totalItemsToDrop, itemStackList.size() - 1).clear();
         }
 
+        Collections.shuffle(itemStackList, new Random());
         return itemStackList;
     }
 
@@ -148,27 +104,27 @@ public class DropParty implements Listener {
         float green;
         float blue;
 
-        if (Settings.getItemLists().get(1).contains(i)) {
+        if (settings.getItemLists().get(1).contains(i)) {
             //Common = White
             red = Particles.particles.get("Common")[0];
             green = Particles.particles.get("Common")[1];
             blue = Particles.particles.get("Common")[2];
-        } else if (Settings.getItemLists().get(2).contains(i)) {
+        } else if (settings.getItemLists().get(2).contains(i)) {
             //Uncommon = green
             red = Particles.particles.get("Uncommon")[0];
             green = Particles.particles.get("Uncommon")[1];
             blue = Particles.particles.get("Uncommon")[2];
-        } else if (Settings.getItemLists().get(3).contains(i)) {
+        } else if (settings.getItemLists().get(3).contains(i)) {
             // Rare =blue
             red = Particles.particles.get("Rare")[0];
             green = Particles.particles.get("Rare")[1];
             blue = Particles.particles.get("Rare")[2];
-        } else if (Settings.getItemLists().get(4).contains(i)) {
+        } else if (settings.getItemLists().get(4).contains(i)) {
             //Epic = Gold
             red = Particles.particles.get("Epic")[0];
             green = Particles.particles.get("Epic")[1];
             blue = Particles.particles.get("Epic")[2];
-        } else if (Settings.getItemLists().get(5).contains(i)) {
+        } else if (settings.getItemLists().get(5).contains(i)) {
             // Legendary = Red
             red = Particles.particles.get("Legendary")[0];
             green = Particles.particles.get("Legendary")[1];
@@ -227,9 +183,9 @@ public class DropParty implements Listener {
 
                 Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 
-                    double offsetX = -Settings.getDropRadius() + (Settings.getDropRadius() + Settings.getDropRadius()) * new Random().nextDouble();
-                    double offsetZ = -Settings.getDropRadius() + (Settings.getDropRadius() + Settings.getDropRadius()) * new Random().nextDouble();
-                    Location offsetLoc = new Location(locToDrop.getWorld(), locToDrop.getX() + offsetX, (locToDrop.getWorld().getHighestBlockYAt(locToDrop) + 1) + Settings.getDropHeight(), locToDrop.getZ() + offsetZ);
+                    double offsetX = -settings.getDropRadius() + (settings.getDropRadius() + settings.getDropRadius()) * new Random().nextDouble();
+                    double offsetZ = -settings.getDropRadius() + (settings.getDropRadius() + settings.getDropRadius()) * new Random().nextDouble();
+                    Location offsetLoc = new Location(locToDrop.getWorld(), locToDrop.getX() + offsetX, (locToDrop.getWorld().getHighestBlockYAt(locToDrop) + 1) + settings.getDropHeight(), locToDrop.getZ() + offsetZ);
 
                     playDropFireworks(offsetLoc);
                     playParticleEffects(offsetLoc, i);
